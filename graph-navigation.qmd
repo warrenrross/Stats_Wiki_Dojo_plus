@@ -16,7 +16,7 @@ Every wiki page links to the pages it depends on and the pages that use it. Foll
 
 **Example: Standard Error**
 
-`[[standard-error]]` connects to:
+[standard-error](wiki/concepts/standard-error.md) connects to:
 
 - [confidence-intervals](wiki/concepts/confidence-intervals.md) — CI formula uses SE
 - [hypothesis-testing-overview](wiki/concepts/hypothesis-testing-overview.md) — test statistic = (estimate − null) / SE
