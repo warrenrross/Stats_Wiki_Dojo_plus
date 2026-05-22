@@ -1,0 +1,47 @@
+---
+title: "Lessons"
+---
+
+# Lessons
+
+Quarto lessons combine prose explanation, math, and executable R code. Each lesson maps to one or more wiki pages and links to related coding dojo drills.
+
+## Foundations (Sections 1–2)
+
+| Lesson | CPS Tier | Key Constructs |
+|--------|----------|----------------|
+| [Sampling Distributions](foundations/sampling-distributions.qmd) | Construct | CLT, normal, t, χ², F |
+| [Standard Error](foundations/standard-error.qmd) | Construct | SE master table, all contexts |
+| [Confidence Intervals](foundations/confidence-intervals.qmd) | Procedure | Z and t intervals, CI on σ² |
+
+## Inference (Sections 1–2)
+
+| Lesson | CPS Tier | Key Constructs |
+|--------|----------|----------------|
+| [Hypothesis Testing](inference/hypothesis-testing.qmd) | Procedure | 7-step framework, Type I/II error |
+| [One- and Two-Sample t-Tests](inference/t-tests.qmd) | Procedure | Pooled t, Welch t, paired t |
+| [One-Way ANOVA](inference/anova.qmd) | Procedure | F-test, Fisher LSD |
+
+## Regression (Section 3)
+
+| Lesson | CPS Tier | Key Constructs |
+|--------|----------|----------------|
+| [Simple Linear Regression](regression/simple-linear-regression.qmd) | Procedure | LS estimates, SS decomposition, R² |
+| [Multiple Regression](regression/multiple-regression.qmd) | Procedure | MLR model, adjusted R², interaction terms |
+| [Model Diagnostics](regression/diagnostics.qmd) | Script | Residual plots, normality, Cook's D |
+
+## Quality Methods (Section 3)
+
+| Lesson | CPS Tier | Key Constructs |
+|--------|----------|----------------|
+| [Control Chart Concepts](quality-methods/control-charts.qmd) | Procedure | σ̂, control limits, run rules |
+| [X̄/R and X̄/S Charts](quality-methods/xbar-r-charts.qmd) | Script | Variables charts, revising limits, Cp/Cpk |
+| [p, c, and u Charts](quality-methods/p-c-u-charts.qmd) | Script | Attribute charts, variable sample sizes |
+
+## Experimental Design (Section 4)
+
+| Lesson | CPS Tier | Key Constructs |
+|--------|----------|----------------|
+| [CRD and One-Way ANOVA](experimental-design/crd-anova.qmd) | Procedure | ANOVA table, Fisher LSD, blocking |
+| [Factorial ANOVA](experimental-design/factorial-design.qmd) | Procedure | Main effects, interaction, 3× SD rule |
+| [2^k Factorial Design](experimental-design/two-k-design.qmd) | Procedure | ±1 coding, effects, Lenth's PSE, Daniel plot |

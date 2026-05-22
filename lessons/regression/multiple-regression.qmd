@@ -1,0 +1,94 @@
+---
+title: "Multiple Regression"
+categories: [statistics, procedure, regression]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/regression-mlr.md
+  - ../../wiki/concepts/regression-ht.md
+  - ../../wiki/r-code/regression-r.md
+---
+
+# Multiple Regression
+
+## Learning Goals
+
+1. Fit an MLR model and interpret each βⱼ coefficient
+2. Use adjusted R² to compare models with different numbers of predictors
+3. Test individual coefficients (t-test) and the overall model (F-test)
+4. Add interaction terms and interpret them
+
+## In Plain English
+
+MLR extends SLR to multiple predictors:
+
+$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_k x_{ik} + \epsilon_i$$
+
+**βⱼ interpretation:** holding all other predictors constant, a one-unit increase in xⱼ is associated with a βⱼ change in the mean response.
+
+$$R^2_{adj} = 1 - \frac{SS_E/(n-p)}{SS_T/(n-1)}, \quad p = k+1$$
+
+Adjusted R² penalizes for adding uninformative predictors; R² alone always increases.
+
+## R Example: Wire Bond MLR
+
+```{r}
+#| label: mlr-fit
+
+pacman::p_load(pacman, rio, tidyverse)
+
+# Wire bond strength: y = pull strength, x1 = wire length, x2 = die height
+# (Montgomery Table 12.1 — enter manually)
+df <- tribble(
+  ~strength, ~length, ~height,
+  9.95,  2, 50,   24.45, 8, 110,  31.75, 11, 120,  35.00, 10, 550,
+  25.02, 8, 295,  16.86,  4, 200,  14.38,  2, 375,  9.60,   2,  52,
+  24.35, 9, 100,  27.50,  8, 300,  17.08,  4, 412, 37.00,  11, 400,
+  41.95, 12, 500,  11.66,  2, 360,  21.65,  4, 205, 17.89,  4, 400,
+  69.00, 20, 600,  10.30,  1, 585,  34.93, 10, 540,  46.59, 15, 250
+)
+
+fit_mlr <- lm(strength ~ length + height, data = df)
+summary(fit_mlr)
+```
+
+```{r}
+#| label: mlr-anova
+
+anova(fit_mlr)
+
+cat("\nR²_adj =", round(summary(fit_mlr)$adj.r.squared, 4), "\n")
+cat("σ̂     =", round(summary(fit_mlr)$sigma, 4), "\n")
+
+# Overall F-test p-value
+f_info <- summary(fit_mlr)$fstatistic
+p_overall <- pf(f_info[1], f_info[2], f_info[3], lower.tail = FALSE)
+cat("Overall F p-value =", format(p_overall, digits = 4), "\n")
+```
+
+## Interaction Terms
+
+```{r}
+#| label: interaction
+
+# Add interaction x1*x2
+df <- df |> mutate(lh = length * height)
+fit_int <- lm(strength ~ length + height + lh, data = df)
+summary(fit_int)
+
+cat("\nCompare adjusted R²:\n")
+cat("  Without interaction:", round(summary(fit_mlr)$adj.r.squared, 4), "\n")
+cat("  With interaction:   ", round(summary(fit_int)$adj.r.squared, 4), "\n")
+```
+
+## Try It Yourself
+
+1. Which predictor has the larger t-statistic? What does that mean?
+2. Does adding the interaction term improve adjusted R²?
+3. Predict pull strength for a wire with length = 6, height = 300.
+
+## Related Wiki Pages
+
+- [Regression — MLR](../../wiki/concepts/regression-mlr.md)
+- [Regression — Hypothesis Tests](../../wiki/concepts/regression-ht.md)
+- [Regression — CI and PI](../../wiki/concepts/regression-ci.md)
+- [R: Regression Workflow](../../wiki/r-code/regression-r.md)

@@ -1,0 +1,116 @@
+---
+title: "Confidence Intervals"
+categories: [statistics, procedure, foundations]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/confidence-intervals.md
+  - ../../wiki/concepts/standard-error.md
+  - ../../wiki/concepts/distributions.md
+---
+
+# Confidence Intervals
+
+## Learning Goals
+
+1. State the correct interpretation of a confidence interval
+2. Choose Z vs t based on what is known
+3. Construct CI on μ (Z and t), σ², and p
+4. Determine sample size to achieve a target margin of error
+
+## In Plain English
+
+A confidence interval gives a **range of plausible values** for an unknown population parameter. "95% confident" means: if we repeated this process many times, 95% of the intervals we build would contain the true parameter.
+
+> **Teacher's phrasing:** "We are [100(1−α)]% confident that [parameter in context] is between [lower] and [upper]."
+
+**It does NOT mean there is a 95% chance μ is in this particular interval.**
+
+## General Structure
+
+$$\text{Estimate} \pm \text{Critical value} \times \text{Standard Error}$$
+
+## When to Use Z vs t
+
+| Condition | Use |
+|-----------|-----|
+| σ known | Z |
+| σ unknown, normal population | t (df = n−1) |
+| σ unknown, n ≥ 40 | Z (CLT approximation) |
+
+## CI on Mean μ
+
+```{r}
+#| label: ci-on-mean
+
+# One-sample t CI (σ unknown)
+set.seed(7)
+x <- rnorm(20, mean = 100, sd = 15)
+
+n    <- length(x)
+xbar <- mean(x)
+s    <- sd(x)
+se   <- s / sqrt(n)
+t_crit <- qt(0.975, df = n - 1)
+
+lower <- xbar - t_crit * se
+upper <- xbar + t_crit * se
+
+cat(sprintf("x̄ = %.3f,  s = %.3f,  n = %d\n", xbar, s, n))
+cat(sprintf("t* = %.3f\n", t_crit))
+cat(sprintf("95%% CI: (%.3f, %.3f)\n", lower, upper))
+
+# Compare with t.test()
+t.test(x, conf.level = 0.95)$conf.int
+```
+
+## CI on Variance σ²
+
+$$\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}} \leq \sigma^2 \leq \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}$$
+
+```{r}
+#| label: ci-on-variance
+
+n <- 20; s2 <- var(x)
+chi_lo <- qchisq(0.025, df = n - 1)  # lower χ² critical value
+chi_hi <- qchisq(0.975, df = n - 1)  # upper χ² critical value
+
+cat(sprintf("95%% CI on σ²: (%.3f, %.3f)\n",
+            (n-1)*s2/chi_hi, (n-1)*s2/chi_lo))
+cat(sprintf("95%% CI on σ:  (%.3f, %.3f)\n",
+            sqrt((n-1)*s2/chi_hi), sqrt((n-1)*s2/chi_lo)))
+```
+
+## Sample Size for Target Margin of Error
+
+$$n = \left(\frac{z_{\alpha/2}\,\sigma}{E}\right)^2$$
+
+```{r}
+#| label: sample-size
+
+# Required n to estimate μ within E = 5, with 95% confidence, σ ≈ 15
+E     <- 5
+sigma <- 15
+z     <- qnorm(0.975)
+
+n_req <- ceiling((z * sigma / E)^2)
+cat("Required n:", n_req)
+```
+
+## Common Mistakes
+
+- Using Z when σ is unknown and n is small
+- Forgetting to take square root for CI on σ (vs σ²)
+- Using α instead of α/2 for two-sided intervals
+- Misinterpreting the CI as P(μ ∈ CI) = 0.95
+
+## Try It Yourself
+
+1. Change `conf.level` to 0.99. How does the CI width change?
+2. For the χ² CI: why are the bounds **not** symmetric around s²?
+3. Double the sample size n. By what factor does the CI width shrink?
+
+## Related Wiki Pages
+
+- [Confidence Intervals (formulas)](../../wiki/concepts/confidence-intervals.md)
+- [Standard Error](../../wiki/concepts/standard-error.md)
+- [Hypothesis Testing Overview](../../wiki/concepts/hypothesis-testing-overview.md)

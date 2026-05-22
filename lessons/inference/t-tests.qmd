@@ -1,0 +1,92 @@
+---
+title: "One- and Two-Sample t-Tests"
+categories: [statistics, procedure, inference]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/two-sample-tests.md
+  - ../../wiki/concepts/standard-error.md
+  - ../../wiki/r-code/hypothesis-tests-r.md
+---
+
+# One- and Two-Sample t-Tests
+
+## Learning Goals
+
+1. Select the correct test: one-sample, pooled, Welch, or paired
+2. Run an F-test on variances before choosing pooled vs Welch
+3. Compute all four tests in R and interpret the output
+4. State conclusions using teacher-expected phrasing
+
+## When to Use Which Test
+
+| Scenario | Test | R function |
+|----------|------|-----------|
+| One sample, σ unknown | One-sample t | `t.test(x, mu=μ₀)` |
+| Two independent samples, σ₁=σ₂ | Pooled t | `t.test(x, y, var.equal=TRUE)` |
+| Two independent samples, σ₁≠σ₂ | Welch t | `t.test(x, y, var.equal=FALSE)` |
+| Two paired samples | Paired t | `t.test(x, y, paired=TRUE)` |
+
+**Always run `var.test()` first to decide pooled vs Welch.**
+
+## Key Formulas
+
+**Pooled t** (equal variances):
+$$T_0 = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{1/n_1 + 1/n_2}}, \quad df = n_1+n_2-2$$
+
+**Welch t** (unequal variances):
+$$T_0 = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}, \quad df = \nu \text{ (Welch formula, round down)}$$
+
+**Paired t** (compute differences first):
+$$T_0 = \frac{\bar{d}}{s_d/\sqrt{n}}, \quad df = n-1$$
+
+## R Example: Two-Sample Tests
+
+```{r}
+#| label: two-sample-tests
+
+# Two independent groups: strength of material A vs B
+set.seed(21)
+A <- c(72.1, 68.3, 74.5, 70.2, 71.8, 69.4, 73.0)
+B <- c(65.8, 70.1, 67.4, 69.9, 66.2, 71.3, 68.0)
+
+# Step 1: F-test on variances (H₀: σ₁² = σ₂²)
+var_result <- var.test(A, B)
+cat("F-test p-value:", round(var_result$p.value, 4), "\n")
+
+alpha <- 0.05
+equal_var <- var_result$p.value > alpha
+cat("Equal variances assumed:", equal_var, "\n\n")
+
+# Step 2: Two-sample t-test
+t_result <- t.test(A, B, var.equal = equal_var, alternative = "two.sided")
+print(t_result)
+```
+
+## R Example: Paired t-Test
+
+```{r}
+#| label: paired-t
+
+# Before/after treatment on the same subjects
+before <- c(82, 75, 90, 68, 79, 85, 72)
+after  <- c(78, 70, 86, 65, 74, 80, 68)
+
+# Paired t-test
+paired_result <- t.test(before, after, paired = TRUE, alternative = "two.sided")
+print(paired_result)
+
+cat("\nd̄ =", round(mean(before - after), 3),
+    "\nsd =", round(sd(before - after), 3), "\n")
+```
+
+## Try It Yourself
+
+1. For the two-sample test: what does the F-test p-value tell you about choosing pooled vs Welch?
+2. For the paired test: compute the differences manually and run a one-sample t-test on them. Do you get the same result?
+3. Why is the paired test usually more powerful than the two-sample test for the same data?
+
+## Related Wiki Pages
+
+- [Two-Sample Tests](../../wiki/concepts/two-sample-tests.md)
+- [Standard Error](../../wiki/concepts/standard-error.md)
+- [R: Hypothesis Tests](../../wiki/r-code/hypothesis-tests-r.md)

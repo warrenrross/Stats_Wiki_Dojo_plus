@@ -1,0 +1,102 @@
+---
+title: "One-Way ANOVA"
+categories: [statistics, procedure, inference]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/crd-one-way-anova.md
+  - ../../wiki/concepts/ss-decomposition.md
+  - ../../wiki/r-code/anova-r.md
+---
+
+# One-Way ANOVA
+
+## Learning Goals
+
+1. State when one-way ANOVA is appropriate (a ≥ 3 groups, single factor)
+2. Construct and interpret the ANOVA table (SS, df, MS, F₀)
+3. Apply Fisher's LSD for pairwise comparisons after a significant F-test
+4. Run a CRD ANOVA in R and extract all required values
+
+## In Plain English
+
+One-way ANOVA tests whether **a ≥ 3 group means are all equal**. It decomposes total variation (SS_T) into variation **between** groups (SS_Treatments) and variation **within** groups (SS_Error).
+
+$$F_0 = \frac{MS_{Treatments}}{MS_E}$$
+
+A large F₀ means between-group variation is large relative to within-group noise — evidence against H₀: μ₁ = μ₂ = ... = μₐ.
+
+## ANOVA Table Structure
+
+| Source | SS | df | MS | F₀ |
+|--------|----|----|----|----|
+| Treatments | SS_T | a−1 | SS_T/(a−1) | MS_Trt/MS_E |
+| Error | SS_E | N−a | SS_E/(N−a) | |
+| Total | SS_T | N−1 | | |
+
+$\hat{\sigma} = \sqrt{MS_E}$
+
+## Fisher's LSD (Post-Hoc)
+
+After rejecting H₀, test all pairwise differences:
+
+$$LSD = t_{\alpha/2,\, N-a} \sqrt{MS_E\!\left(\frac{1}{n_i}+\frac{1}{n_j}\right)}$$
+
+Reject H₀: μᵢ = μⱼ if |ȳᵢ − ȳⱼ| > LSD.
+
+## R Example
+
+```{r}
+#| label: one-way-anova
+
+pacman::p_load(pacman, tidyverse)
+
+# Tensile strength of concrete with 4 mixing methods (balanced, n=5 each)
+set.seed(9)
+df <- data.frame(
+  strength = c(rnorm(5, 3000, 150), rnorm(5, 3200, 150),
+               rnorm(5, 3100, 150), rnorm(5, 3350, 150)),
+  method   = factor(rep(c("A","B","C","D"), each = 5))
+)
+
+# Fit one-way ANOVA (CRD)
+fit <- aov(strength ~ method, data = df)
+summary(fit)
+```
+
+```{r}
+#| label: anova-extraction
+
+# Extract key values
+aov_tbl <- summary(fit)[[1]]
+rownames(aov_tbl) <- trimws(rownames(aov_tbl))
+
+MSE  <- aov_tbl["Residuals", "Mean Sq"]
+df_E <- aov_tbl["Residuals", "Df"]
+N    <- nrow(df)
+a    <- nlevels(df$method)
+n    <- N / a
+
+cat("MSE =", round(MSE, 2), "\n")
+cat("σ̂  =", round(sqrt(MSE), 2), "\n")
+
+# Fisher LSD (α = 0.05)
+LSD <- qt(0.975, df = df_E) * sqrt(MSE * (1/n + 1/n))
+cat("LSD =", round(LSD, 2), "\n")
+
+# Group means
+group_means <- tapply(df$strength, df$method, mean)
+print(round(group_means, 2))
+```
+
+## Try It Yourself
+
+1. Which pairs of methods have significantly different means (|ȳᵢ − ȳⱼ| > LSD)?
+2. Increase within-group SD from 150 to 300. Does the F-test still reject H₀?
+3. What does MS_E estimate? What does √MS_E represent?
+
+## Related Wiki Pages
+
+- [CRD and One-Way ANOVA](../../wiki/concepts/crd-one-way-anova.md)
+- [SS Decomposition](../../wiki/concepts/ss-decomposition.md)
+- [R: ANOVA](../../wiki/r-code/anova-r.md)
+- [ANOVA Table Examples](../../wiki/examples/anova-table-examples.md)

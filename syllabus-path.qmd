@@ -1,0 +1,79 @@
+---
+title: "Suggested Linear Path"
+---
+
+# Suggested Linear Path
+
+This path gives a traditional sequence through the resource, organized by the CPS learning model:
+
+1. **Constructs** — foundational quantities that appear inside multiple methods
+2. **Procedures** — inferential techniques that require decision logic
+3. **Scripts** — fixed-sequence workflows to practice until automatic
+
+---
+
+## Unit 1: Foundations (Sections 1–2)
+
+Start here to build the core concepts everything else depends on.
+
+| Step | Topic | Type | Link |
+|------|-------|------|------|
+| 1 | Probability and sample spaces | Construct | [Lesson](lessons/foundations/sampling-distributions.qmd) |
+| 2 | Distributions (normal, t, χ², F) | Construct | [Lesson](lessons/foundations/sampling-distributions.qmd) |
+| 3 | Standard error — the universal SE | Construct | [Lesson](lessons/foundations/standard-error.qmd) |
+| 4 | Confidence intervals | Procedure | [Lesson](lessons/foundations/confidence-intervals.qmd) |
+
+---
+
+## Unit 2: Inference (Sections 1–2)
+
+| Step | Topic | Type | Link |
+|------|-------|------|------|
+| 5 | Hypothesis testing — 7-step framework | Procedure | [Lesson](lessons/inference/hypothesis-testing.qmd) |
+| 6 | One- and two-sample t-tests | Procedure | [Lesson](lessons/inference/t-tests.qmd) |
+| 7 | Chi-square and proportions | Procedure | [Lesson](lessons/inference/hypothesis-testing.qmd) |
+| 8 | One-way ANOVA (introduction) | Procedure | [Lesson](lessons/inference/anova.qmd) |
+
+---
+
+## Unit 3: Regression (Section 3)
+
+| Step | Topic | Type | Link |
+|------|-------|------|------|
+| 9 | Simple linear regression | Procedure | [Lesson](lessons/regression/simple-linear-regression.qmd) |
+| 10 | Multiple regression | Procedure | [Lesson](lessons/regression/multiple-regression.qmd) |
+| 11 | Model diagnostics and adequacy | Script | [Lesson](lessons/regression/diagnostics.qmd) |
+
+---
+
+## Unit 4: Quality and Process Methods (Section 3)
+
+| Step | Topic | Type | Link |
+|------|-------|------|------|
+| 12 | Control chart concepts | Procedure | [Lesson](lessons/quality-methods/control-charts.qmd) |
+| 13 | X̄/R and X̄/S charts | Script | [Lesson](lessons/quality-methods/xbar-r-charts.qmd) |
+| 14 | p, c, and u charts | Script | [Lesson](lessons/quality-methods/p-c-u-charts.qmd) |
+
+---
+
+## Unit 5: Experimental Design (Section 4)
+
+| Step | Topic | Type | Link |
+|------|-------|------|------|
+| 15 | Completely randomized design (CRD) and one-way ANOVA | Procedure | [Lesson](lessons/experimental-design/crd-anova.qmd) |
+| 16 | Factorial ANOVA (two- and three-factor) | Procedure | [Lesson](lessons/experimental-design/factorial-design.qmd) |
+| 17 | 2^k factorial designs | Procedure | [Lesson](lessons/experimental-design/two-k-design.qmd) |
+
+---
+
+## Unit 6: Coding Fluency (Dojo)
+
+Practice the R workflows until they are automatic.
+
+| Drill | Skill | Link |
+|-------|-------|------|
+| Simulate the CLT | Sampling distributions, SE | [Drill](dojo/r-drills/simulate-clt.qmd) |
+| Fit and interpret a regression model | lm(), anova(), summary(), predict() | [Drill](dojo/r-drills/fit-regression-model.qmd) |
+| Build a control chart | qcc, xbar/R, p-chart, Cp/Cpk | [Drill](dojo/r-drills/build-control-chart.qmd) |
+| Fill an ANOVA table | SS, MS, F, df reconstruction | [Drill](dojo/r-drills/fill-anova-table.qmd) |
+| Factorial ANOVA in R | aov(), interaction plots, LSD | [Drill](dojo/r-drills/factorial-anova.qmd) |

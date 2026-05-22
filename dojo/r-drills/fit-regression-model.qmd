@@ -1,0 +1,144 @@
+---
+title: "Drill: Fit and Interpret a Regression Model"
+categories: [r, drill, coding-dojo]
+tier-focus: script
+---
+
+# Drill: Fit and Interpret a Regression Model
+
+## Drill Purpose
+
+Build fluency with the complete regression workflow: fit → ANOVA → summary → confint → predict → diagnostics. This sequence appears in full on exams.
+
+## Trigger
+
+Use this drill when you see: a dataset with one continuous response and one or more predictors, and you need to fit a regression model, test coefficients, build intervals, and check assumptions.
+
+## Fixed Sequence
+
+1. Import and inspect data
+2. `lm()` — fit the model
+3. `anova()` — ANOVA table (F-test, SS decomposition)
+4. `summary()` — coefficient table, R², σ̂
+5. `confint()` — CI on βⱼ (watch column names!)
+6. `predict()` — CI on mean response and PI on future observation
+7. Residual diagnostics — check assumptions
+
+## Setup
+
+```{r}
+#| label: setup
+
+pacman::p_load(pacman, tidyverse)
+```
+
+## Worked Example: Wire Bond Data
+
+```{r}
+#| label: import
+
+# Wire bond pull strength data (Montgomery Table 12.1)
+df <- tribble(
+  ~strength, ~length, ~height,
+   9.95, 2,  50,  24.45, 8, 110,  31.75, 11, 120,  35.00, 10, 550,
+  25.02, 8, 295,  16.86, 4, 200,  14.38,  2, 375,   9.60,  2,  52,
+  24.35, 9, 100,  27.50, 8, 300,  17.08,  4, 412,  37.00, 11, 400,
+  41.95,12, 500,  11.66, 2, 360,  21.65,  4, 205,  17.89,  4, 400,
+  69.00,20, 600,  10.30, 1, 585,  34.93, 10, 540,  46.59, 15, 250
+)
+
+glimpse(df)
+```
+
+```{r}
+#| label: fit
+
+fit <- lm(strength ~ length + height, data = df)
+```
+
+```{r}
+#| label: anova-table
+
+anova(fit)
+
+# Extract SSR, SSE, MSE manually
+a   <- anova(fit)
+SSR <- sum(a[1:(nrow(a)-1), "Sum Sq"])
+SSE <- a["Residuals", "Sum Sq"]
+MSE <- a["Residuals", "Mean Sq"]
+cat("SSR =", round(SSR, 3), "  SSE =", round(SSE, 3),
+    "  MSE =", round(MSE, 3), "\n")
+```
+
+```{r}
+#| label: summary-table
+
+summary(fit)
+
+# Key scalars
+cat("\nR²     =", round(summary(fit)$r.squared, 4), "\n")
+cat("R²_adj =", round(summary(fit)$adj.r.squared, 4), "\n")
+cat("σ̂     =", round(summary(fit)$sigma, 4), "\n")
+```
+
+```{r}
+#| label: confint
+
+# 95% CI on each coefficient
+ci <- confint(fit, level = 0.95)
+print(ci)
+
+# Extraction by name (critical: use exact column name)
+cat("\nβ̂₁ (length) CI lower:", round(ci["length", "2.5 %"], 4), "\n")
+cat("β̂₁ (length) CI upper:", round(ci["length", "97.5 %"], 4), "\n")
+```
+
+```{r}
+#| label: predict
+
+# Predict at length = 10, height = 300
+x0 <- data.frame(length = 10, height = 300)
+
+ci_mean <- predict(fit, newdata = x0, interval = "confidence", level = 0.95)
+pi_obs  <- predict(fit, newdata = x0, interval = "prediction",  level = 0.95)
+
+cat("Point estimate:", round(ci_mean[,"fit"], 3), "\n")
+cat("95% CI on mean: (", round(ci_mean[,"lwr"], 3), ",",
+                        round(ci_mean[,"upr"], 3), ")\n")
+cat("95% PI on obs:  (", round(pi_obs[,"lwr"], 3), ",",
+                        round(pi_obs[,"upr"], 3), ")\n")
+```
+
+```{r}
+#| label: diagnostics
+#| fig-cap: "Residual diagnostics"
+#| fig-subcap:
+#|   - "Residuals vs Fitted"
+#|   - "Normal Q-Q"
+#| layout-ncol: 2
+
+df <- df |>
+  mutate(resid = residuals(fit), fitted_val = fitted(fit))
+
+ggplot(df, aes(x = fitted_val, y = resid)) +
+  geom_point(color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(x = "Fitted", y = "Residuals") + theme_bw()
+
+ggplot(df, aes(sample = resid)) +
+  stat_qq(color = "steelblue") + stat_qq_line(color = "red") +
+  labs(title = "Normal Q-Q") + theme_bw()
+```
+
+## Reflection Questions
+
+1. What does β̂₁ = [value] mean in words?
+2. Is the 95% CI on β̂₁ entirely positive/negative? What does that tell you?
+3. Why is the PI always wider than the CI at the same x₀?
+
+## Related Wiki Pages
+
+- [R: Regression Workflow](../../wiki/r-code/regression-r.md)
+- [Regression — SLR](../../wiki/concepts/regression-slr.md)
+- [Regression — MLR](../../wiki/concepts/regression-mlr.md)
+- [Regression CI Examples](../../wiki/examples/regression-ci-examples.md)

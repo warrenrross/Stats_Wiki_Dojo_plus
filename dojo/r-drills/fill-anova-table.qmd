@@ -1,0 +1,106 @@
+---
+title: "Drill: Fill an ANOVA Table"
+categories: [r, drill, coding-dojo]
+tier-focus: script
+---
+
+# Drill: Fill an ANOVA Table
+
+## Drill Purpose
+
+Build fluency with reconstructing complete ANOVA tables from partial information — a common exam task for both regression and DOE contexts.
+
+## Trigger
+
+Use this drill when you see: a partial ANOVA table with some cells blank, and you need to fill in SS, df, MS, F₀, σ̂, and R².
+
+## Fixed Sequence
+
+**Regression ANOVA reconstruction:**
+
+1. Identify which cells are given (SS, df, MS, F₀, R², n, k)
+2. Compute missing SS from SS_T = SS_R + SS_E
+3. Compute missing df from df_T = n−1, df_R = k, df_E = n−k−1
+4. Compute MS = SS/df
+5. Compute F₀ = MS_R/MS_E
+6. Compute σ̂ = √MS_E, R² = SS_R/SS_T
+
+**DOE ANOVA reconstruction:**
+
+1. Compute MS_E from F₀ = MS_Factor/MS_E → MS_E = MS_Factor/F₀
+2. Compute SS_E = MS_E × df_E
+3. Compute remaining SS by addition
+
+## Worked Example: Regression (Scenario B — given F₀ and σ̂²)
+
+```{r}
+#| label: regression-reconstruction
+
+# Given: n=20, k=2, F₀=15.0, σ̂²=MSE=6.5
+n <- 20; k <- 2
+F0  <- 15.0
+MSE <- 6.5     # σ̂² = MSE
+
+df_R <- k
+df_E <- n - k - 1
+df_T <- n - 1
+
+MSR <- F0 * MSE
+SSR <- MSR * df_R
+SSE <- MSE * df_E
+SST <- SSR + SSE
+
+R2     <- SSR / SST
+R2_adj <- 1 - (SSE/df_E) / (SST/df_T)
+
+cat("ANOVA Table:\n")
+cat(sprintf("%-12s %8s %8s %8s %8s\n", "Source", "SS", "df", "MS", "F₀"))
+cat(sprintf("%-12s %8.3f %8d %8.3f %8.3f\n", "Regression", SSR, df_R, MSR, F0))
+cat(sprintf("%-12s %8.3f %8d %8.3f\n", "Error", SSE, df_E, MSE))
+cat(sprintf("%-12s %8.3f %8d\n", "Total", SST, df_T))
+cat(sprintf("\nσ̂  = √MSE = %.4f\n", sqrt(MSE)))
+cat(sprintf("R²     = %.4f\n", R2))
+cat(sprintf("R²_adj = %.4f\n", R2_adj))
+```
+
+## Worked Example: DOE RCBD (given MS_Factor and F₀)
+
+```{r}
+#| label: doe-reconstruction
+
+# Given: a=4 treatments, b=5 blocks, MS_Factor=115.2067, F₀=3.498
+a <- 4; b <- 5
+MS_Fac <- 115.2067
+F0_doe <- 3.498
+
+df_Fac  <- a - 1
+df_E    <- (a - 1) * (b - 1)
+df_Blk  <- b - 1
+
+MS_E <- MS_Fac / F0_doe
+SS_E <- MS_E * df_E
+SS_Fac <- MS_Fac * df_Fac
+
+cat("DOE RCBD ANOVA Table:\n")
+cat(sprintf("%-12s %8s %8s %8s %8s\n", "Source", "SS", "df", "MS", "F₀"))
+cat(sprintf("%-12s %8.4f %8d %8.4f %8.4f\n", "Treatments", SS_Fac, df_Fac, MS_Fac, F0_doe))
+cat(sprintf("%-12s %8.4f %8d %8.4f\n", "Error", SS_E, df_E, MS_E))
+cat(sprintf("\nσ̂ = √MS_E = %.4f\n", sqrt(MS_E)))
+
+# Compare to F critical value
+F_crit <- qf(0.95, df1 = df_Fac, df2 = df_E)
+cat(sprintf("F_crit(0.05, %d, %d) = %.4f\n", df_Fac, df_E, F_crit))
+cat("Decision:", if(F0_doe > F_crit) "Reject H₀ (significant)" else "Fail to reject H₀")
+```
+
+## Reflection Questions
+
+1. In Scenario B: if σ̂² had been 12 instead of 6.5 (same F₀), what would change?
+2. In the DOE example: is the treatment effect significant? How close is F₀ to F_crit?
+3. What formula connects MS_E to σ̂?
+
+## Related Wiki Pages
+
+- [ANOVA Table Examples](../../wiki/examples/anova-table-examples.md)
+- [SS Decomposition](../../wiki/concepts/ss-decomposition.md)
+- [R: ANOVA](../../wiki/r-code/anova-r.md)

@@ -1,0 +1,132 @@
+---
+title: "Drill: Factorial ANOVA in R"
+categories: [r, drill, coding-dojo]
+tier-focus: script
+---
+
+# Drill: Factorial ANOVA in R
+
+## Drill Purpose
+
+Build fluency with the two-factor and 2^k ANOVA workflow in R: import wide data → reshape long → fit model → trimws() → extract values → interaction plot → LSD.
+
+## Trigger
+
+Use this drill when you have a factorial experiment with 2+ factors and need to test main effects, interactions, and do pairwise comparisons.
+
+## Fixed Sequence
+
+1. Import (wide format: one column per replicate)
+2. `pivot_longer()` — reshape to long format
+3. `aov()` — fit factorial model
+4. `summary()[[1]]` + **`trimws()`** — extract ANOVA table
+5. Check interaction significance
+6. If interaction non-significant: `LSD.test()` on significant main effect marginal means
+7. Interaction plot — interpret parallel vs crossing lines
+
+## Setup
+
+```{r}
+#| label: setup
+
+pacman::p_load(pacman, agricolae, tidyverse)
+```
+
+## Worked Example: Two-Factor Warping Data
+
+```{r}
+#| label: import-reshape
+
+# Warping of copper plates: factor A = temperature (4 levels), B = Cu content (3 levels)
+# Entered in wide format (R1, R2 = replicates)
+df_wide <- tribble(
+  ~temp, ~cu,  ~R1,  ~R2,
+  "50",  "40",  17,   20,
+  "50",  "60",  12,    9,
+  "50",  "80",  16,   12,
+  "50", "100",  21,   17,
+  "75",  "40",  12,   13,
+  "75",  "60",  18,   21,
+  "75",  "80",  10,   12,
+  "75", "100",  24,   21,
+  "100", "40",  14,   15,
+  "100", "60",  18,   20,
+  "100", "80",  14,   11,
+  "100","100",  23,   22,
+  "125", "40",  19,   17,
+  "125", "60",  23,   20,
+  "125", "80",  19,   16,
+  "125","100",  24,   28
+)
+
+# Reshape to long
+df <- df_wide |>
+  pivot_longer(cols = c(R1, R2), names_to = "rep", values_to = "warping") |>
+  mutate(temp = factor(temp), cu = factor(cu))
+
+head(df)
+```
+
+```{r}
+#| label: fit-aov
+
+fit <- aov(warping ~ temp * cu, data = df)
+
+aov_tbl <- summary(fit)[[1]]
+rownames(aov_tbl) <- trimws(rownames(aov_tbl))  # MANDATORY
+print(aov_tbl)
+```
+
+```{r}
+#| label: extract-values
+
+MSE  <- aov_tbl["Residuals", "Mean Sq"]
+df_E <- aov_tbl["Residuals", "Df"]
+N    <- nrow(df); a <- nlevels(df$temp); b <- nlevels(df$cu); n <- 2
+
+cat("MSE =", round(MSE, 4), "\n")
+cat("σ̂  =", round(sqrt(MSE), 4), "\n")
+
+# Is interaction significant?
+p_int <- aov_tbl["temp:cu", "Pr(>F)"]
+cat("Interaction p-value:", round(p_int, 4), "\n")
+```
+
+```{r}
+#| label: interaction-plot
+#| fig-cap: "Interaction plot: parallel lines → no interaction"
+
+df |>
+  group_by(temp, cu) |>
+  summarise(mean_w = mean(warping), .groups = "drop") |>
+  ggplot(aes(x = cu, y = mean_w, color = temp, group = temp)) +
+  geom_line(linewidth = 1) + geom_point(size = 2.5) +
+  labs(title = "Warping: Interaction Plot",
+       x = "Cu Content (%)", y = "Mean Warping", color = "Temp (°C)") +
+  theme_bw()
+```
+
+```{r}
+#| label: lsd-test
+
+# If interaction not significant, apply LSD on significant main effect
+# LSD for Cu (b=4 levels, n_i = a*n observations per Cu level)
+n_i_cu <- a * n
+LSD_cu  <- qt(0.975, df_E) * sqrt(MSE * 2 / n_i_cu)
+cat("\nLSD for Cu marginal means:", round(LSD_cu, 4), "\n")
+
+# Marginal means for Cu
+tapply(df$warping, df$cu, mean) |> round(3) |> print()
+```
+
+## Reflection Questions
+
+1. Is the interaction significant at α = 0.05? What does this mean for your recommendations?
+2. Apply the 3× SD rule to the within-cell standard deviations. Is constant variance reasonable?
+3. For each significant main effect, which levels are significantly different by LSD?
+
+## Related Wiki Pages
+
+- [R: Factorial ANOVA](../../wiki/r-code/factorial-anova-r.md)
+- [Factorial ANOVA](../../wiki/concepts/factorial-anova.md)
+- [Factorial Examples](../../wiki/examples/factorial-examples.md)

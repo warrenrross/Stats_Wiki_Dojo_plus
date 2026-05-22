@@ -1,0 +1,73 @@
+---
+title: "Control Chart Concepts"
+categories: [statistics, procedure, quality]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/control-charts.md
+  - ../../wiki/concepts/process-capability.md
+  - ../../wiki/r-code/control-charts-r.md
+---
+
+# Control Chart Concepts
+
+## Learning Goals
+
+1. Explain the purpose of a control chart and the difference between common and special cause variation
+2. Choose the correct chart type for a given situation
+3. Apply the Western Electric run rules to detect out-of-control signals
+4. Distinguish control limits from specification limits
+
+## In Plain English
+
+A control chart monitors a process over time to detect **special cause variation** (unexpected shifts, trends, or spikes) against the background of **common cause variation** (natural process noise).
+
+Control limits are set at **±3σ** from the process center — not at specification limits. A point outside control limits signals a process change worth investigating.
+
+## Chart Selection Guide
+
+| Data type | Subgroup size | Chart |
+|-----------|--------------|-------|
+| Measurements (continuous) | n ≥ 2 | X̄/R (n ≤ 10) or X̄/S (n > 10) |
+| Fraction defective | Variable | p-chart |
+| Count of defects (fixed area) | Fixed | c-chart |
+| Defects per unit (variable area) | Variable | u-chart |
+
+## Control Limits Formulas
+
+**X̄/R chart:**
+
+$$UCL_{\bar{X}} = \bar{\bar{X}} + A_2\bar{R}, \quad LCL_{\bar{X}} = \bar{\bar{X}} - A_2\bar{R}$$
+
+$$UCL_R = D_4\bar{R}, \quad LCL_R = D_3\bar{R}$$
+
+where A₂, D₃, D₄ are control chart constants from the table (depend on n).
+
+**p-chart:**
+
+$$UCL_p = \bar{p} + 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}, \quad LCL_p = \max\!\left(0,\; \bar{p} - 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}\right)$$
+
+## Western Electric Run Rules
+
+A process is out of control if **any** of the following occur:
+
+1. One point beyond ±3σ
+2. Two of three consecutive points beyond ±2σ (same side)
+3. Four of five consecutive points beyond ±1σ (same side)
+4. Eight consecutive points on the same side of the center line
+
+## Control Limits vs. Specification Limits
+
+| | Control Limits | Specification Limits |
+|--|----------------|---------------------|
+| Set by | Process data (±3σ) | Engineering / customer |
+| Purpose | Detect process changes | Define acceptable product |
+| Relationship | A capable process has CL inside spec limits | |
+
+> A process can be **in control** but **not capable** if its natural variation exceeds the spec limits.
+
+## Related Wiki Pages
+
+- [Control Charts](../../wiki/concepts/control-charts.md)
+- [Process Capability](../../wiki/concepts/process-capability.md)
+- [R: Control Charts](../../wiki/r-code/control-charts-r.md)
+- [Control Chart Examples](../../wiki/examples/control-chart-examples.md)

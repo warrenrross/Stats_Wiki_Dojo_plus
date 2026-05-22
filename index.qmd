@@ -1,0 +1,53 @@
+---
+title: "INEG 2314H — Statistical Methods"
+---
+
+# Statistical Methods Wiki + Coding Dojo
+
+A living resource for university-level statistical methods in industrial engineering.
+
+This site combines:
+
+- a structured **statistics wiki** organized by the CPS framework (Construct → Procedure → Script)
+- **executable Quarto lessons** with prose, math, and R code
+- **R-based coding drills** for technical fluency
+- **concept backlinks** for graph-based exploration
+- a **suggested linear learning path** through the course
+
+---
+
+## How to Use This Resource
+
+### Follow the Linear Path
+
+Use the linear path if you want a course-like sequence through the material.
+
+[Linear Path →](syllabus-path.qmd)
+
+### Explore the Knowledge Graph
+
+Use the wiki and backlinks if you want to move by conceptual relationship instead of chapter order.
+
+[Knowledge Graph Navigation →](graph-navigation.qmd)
+
+### Practice in the Coding Dojo
+
+Use the dojo when you want to run R code, modify examples, and build technical fluency.
+
+[Coding Dojo →](dojo/index.qmd)
+
+### Browse the Wiki
+
+Search or browse the full concept index.
+
+[Wiki Index →](wiki/index.md)
+
+---
+
+## Course Coverage
+
+| Section | Topics |
+|---------|--------|
+| 1–2 | Sampling, probability, distributions, CI, hypothesis testing, chi-square, proportions |
+| 3 | Regression (SLR, MLR), control charts, process capability |
+| 4 | CRD, RCBD, factorial ANOVA, 2^k factorial design |

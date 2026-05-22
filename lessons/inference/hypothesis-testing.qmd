@@ -1,0 +1,88 @@
+---
+title: "Hypothesis Testing — The 7-Step Framework"
+categories: [statistics, procedure, inference]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/hypothesis-testing-overview.md
+  - ../../wiki/concepts/which-test.md
+  - ../../wiki/r-code/hypothesis-tests-r.md
+---
+
+# Hypothesis Testing — The 7-Step Framework
+
+## Learning Goals
+
+1. Apply the 7-step hypothesis testing procedure to any test
+2. Distinguish Type I and Type II errors and explain their consequences
+3. Interpret p-values using the teacher's expected phrasing
+4. Compute one-sample Z and t tests in R
+
+## In Plain English
+
+Hypothesis testing is a formal decision procedure. You assume nothing is happening (H₀), then ask: "How unlikely is my data if H₀ were true?" If very unlikely (p-value < α), you reject H₀.
+
+You never **prove** H₀ is true — you only fail to find evidence against it.
+
+## The 7-Step Procedure
+
+| Step | Action |
+|------|--------|
+| 1 | Identify the **parameter of interest** (μ, σ², p) |
+| 2 | State **H₀** (null hypothesis — "no effect") |
+| 3 | State **H₁** (alternative — two-sided ≠, upper >, lower <) |
+| 4 | Choose the **test statistic** formula |
+| 5 | State the **rejection criterion** (critical value or p-value < α) |
+| 6 | **Compute** the test statistic and p-value |
+| 7 | **Conclude** in plain language, in context |
+
+## Error Types
+
+| | H₀ True | H₀ False |
+|---|---------|---------|
+| **Fail to reject H₀** | Correct ✓ | Type II error (β) |
+| **Reject H₀** | Type I error (α) | Correct ✓ (Power = 1−β) |
+
+## Teacher's Conclusion Phrasing
+
+**Reject H₀:**
+> "Because p-value = [value] < α = [value], we reject H₀. There is sufficient evidence to conclude that [H₁ in context] at α = [value]."
+
+**Fail to reject H₀:**
+> "Because p-value = [value] > α = [value], we fail to reject H₀. There is insufficient evidence to conclude that [H₁ in context] at α = [value]."
+
+## R Example: One-Sample t-Test
+
+```{r}
+#| label: one-sample-t
+
+# Is the mean rod length significantly different from 10 mm? (α = 0.05)
+rod_lengths <- c(9.8, 10.2, 9.7, 10.5, 10.1, 9.9, 10.3, 9.6, 10.4, 10.0)
+
+result <- t.test(rod_lengths, mu = 10, alternative = "two.sided", conf.level = 0.95)
+print(result)
+
+# Manual extraction for reporting
+cat("\nt* =", round(result$statistic, 4), "\n")
+cat("p-value =", round(result$p.value, 4), "\n")
+cat("df =", result$parameter, "\n")
+
+alpha <- 0.05
+if (result$p.value < alpha) {
+  cat("Decision: Reject H₀. Sufficient evidence that μ ≠ 10.\n")
+} else {
+  cat("Decision: Fail to reject H₀. Insufficient evidence that μ ≠ 10.\n")
+}
+```
+
+## Try It Yourself
+
+1. Change `alternative` to `"greater"`. What changes in the output?
+2. Change `mu = 10` to `mu = 10.1`. Does the conclusion change?
+3. What is the Type I error rate (α) in this test? What is the consequence of making a Type I error in this context?
+
+## Related Wiki Pages
+
+- [Hypothesis Testing Overview](../../wiki/concepts/hypothesis-testing-overview.md)
+- [Which Test?](../../wiki/concepts/which-test.md)
+- [R: Hypothesis Tests](../../wiki/r-code/hypothesis-tests-r.md)
+- [Power and Sample Size](../../wiki/concepts/power-sample-size.md)

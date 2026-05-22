@@ -1,0 +1,106 @@
+---
+title: "Drill: Simulate the CLT"
+categories: [r, drill, coding-dojo]
+tier-focus: script
+---
+
+# Drill: Simulate the Central Limit Theorem
+
+## Drill Purpose
+
+Build intuition for the sampling distribution of x̄ and the Central Limit Theorem by simulation. This underpins every CI and test statistic in the course.
+
+## Trigger
+
+Use this drill when you need to:
+
+- Explain why we can use Z/t even when the population is not normal
+- Demonstrate that SE = σ/√n shrinks with larger n
+- Show that the sampling distribution of x̄ is approximately normal for large n
+
+## Setup
+
+```{r}
+#| label: setup
+
+pacman::p_load(pacman, tidyverse)
+```
+
+## Fixed Sequence
+
+1. Define a non-normal population
+2. Draw many samples of size n, compute x̄ for each
+3. Plot the sampling distribution and overlay the theoretical normal
+4. Compute SE and verify it matches sd(x̄ values)
+
+## Worked Example
+
+```{r}
+#| label: clt-worked
+#| fig-cap: "Sampling distribution of x̄: exponential population, n=30"
+
+set.seed(42)
+
+# Non-normal population: exponential with mean = 20
+pop_rate <- 1/20
+pop_mean <- 20
+pop_sd   <- 20   # exponential: SD = mean
+
+# Parameters
+n_sim  <- 10000  # number of samples to draw
+n_samp <- 30     # sample size
+
+# Simulate
+xbars <- replicate(n_sim, mean(rexp(n_samp, rate = pop_rate)))
+
+# Theoretical SE
+se_theory <- pop_sd / sqrt(n_samp)
+
+cat("Theoretical SE = σ/√n =", round(se_theory, 4), "\n")
+cat("Simulated  SE = sd(x̄) =", round(sd(xbars), 4), "\n")
+
+# Plot
+tibble(xbar = xbars) |>
+  ggplot(aes(x = xbar)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 60,
+                 fill = "steelblue", color = "white", alpha = 0.8) +
+  stat_function(fun = dnorm, args = list(mean = pop_mean, sd = se_theory),
+                color = "firebrick", linewidth = 1.2) +
+  labs(title = sprintf("Sampling dist of x̄: Exponential pop, n = %d", n_samp),
+       x = "Sample mean", y = "Density") +
+  theme_bw()
+```
+
+## Practice Variation
+
+```{r}
+#| label: practice
+
+# Change these parameters and re-run:
+n_samp_new <- 5    # try 5, 10, 30, 100
+
+xbars_new <- replicate(n_sim, mean(rexp(n_samp_new, rate = pop_rate)))
+se_new    <- pop_sd / sqrt(n_samp_new)
+
+tibble(xbar = xbars_new) |>
+  ggplot(aes(x = xbar)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 60,
+                 fill = "coral", color = "white", alpha = 0.8) +
+  stat_function(fun = dnorm, args = list(mean = pop_mean, sd = se_new),
+                color = "navy", linewidth = 1.2) +
+  labs(title = sprintf("Sampling dist of x̄: n = %d", n_samp_new),
+       x = "Sample mean", y = "Density") +
+  theme_bw()
+```
+
+## Reflection Questions
+
+1. At what sample size does the sampling distribution look approximately normal for an exponential population?
+2. When you double n, by what factor does SE decrease?
+3. Which part of the CLT result becomes the denominator in a Z-test or t-test?
+
+## Related Wiki Pages
+
+- [Distributions](../../wiki/concepts/distributions.md)
+- [Standard Error](../../wiki/concepts/standard-error.md)
+- [Confidence Intervals](../../wiki/concepts/confidence-intervals.md)

@@ -1,0 +1,111 @@
+---
+title: "Standard Error — The Universal Reference"
+categories: [statistics, construct, foundations]
+tier-focus: construct
+related:
+  - ../../wiki/concepts/standard-error.md
+  - ../../wiki/concepts/degrees-of-freedom.md
+  - ../../wiki/concepts/confidence-intervals.md
+---
+
+# Standard Error — The Universal Reference
+
+## Learning Goals
+
+By the end of this lesson, students should be able to:
+
+1. Explain in plain English what standard error measures
+2. Identify which SE formula applies in each inferential context
+3. Recognize that CI and test statistic formulas share the same SE structure
+4. Compute SE for means, proportions, and regression coefficients
+
+## In Plain English
+
+Standard error (SE) is the **standard deviation of a sampling distribution** — it measures how uncertain your estimate is. Every confidence interval and test statistic divides by one.
+
+The structure is always the same regardless of what you're estimating:
+
+$$\text{CI}: \quad \hat{\theta} \pm (\text{critical value}) \times SE(\hat{\theta})$$
+
+$$\text{Test statistic}: \quad \frac{\hat{\theta} - \theta_0}{SE(\hat{\theta})}$$
+
+Larger SE → wider CI → harder to detect a difference.
+
+## SE Master Table
+
+### Means
+
+| Situation | SE Formula | Distribution |
+|-----------|-----------|-------------|
+| One-sample, σ known | $\sigma / \sqrt{n}$ | Z |
+| One-sample, σ unknown | $s / \sqrt{n}$ | t, df = n−1 |
+| Two-sample pooled | $s_p\sqrt{1/n_1 + 1/n_2}$ | t, df = n₁+n₂−2 |
+| Two-sample Welch | $\sqrt{s_1^2/n_1 + s_2^2/n_2}$ | t, df = ν (Welch) |
+| Paired | $s_d / \sqrt{n}$ | t, df = n−1 |
+
+$$s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}$$
+
+### Proportions
+
+| Situation | SE Formula |
+|-----------|-----------|
+| Hypothesis test (use null p₀) | $\sqrt{p_0(1-p_0)/n}$ |
+| Confidence interval (use p̂) | $\sqrt{\hat{p}(1-\hat{p})/n}$ |
+
+### Regression
+
+| Parameter | SE Formula |
+|-----------|-----------|
+| SLR slope β̂₁ | $\sqrt{MSE / S_{xx}}$ |
+| MLR coefficient β̂ⱼ | $\sqrt{MSE \cdot C_{jj}}$ |
+| CI on mean response | $\sqrt{MSE[1/n + (x_0-\bar{x})^2/S_{xx}]}$ |
+| PI on future obs | adds +1 under the square root |
+
+> R gives `se(β̂ⱼ)` in the `Std. Error` column of `summary(fit)`.
+
+## R Example
+
+```{r}
+#| label: se-demo
+#| echo: true
+
+# Simulate a sample and compute SE
+set.seed(42)
+x <- rnorm(30, mean = 50, sd = 10)
+
+n    <- length(x)
+xbar <- mean(x)
+s    <- sd(x)
+se   <- s / sqrt(n)
+
+cat("n =", n, "\n")
+cat("x̄ =", round(xbar, 3), "\n")
+cat("s =", round(s, 3), "\n")
+cat("SE = s/√n =", round(se, 3), "\n")
+cat("95% CI: (", round(xbar - 1.96*se, 2), ",", round(xbar + 1.96*se, 2), ")\n")
+```
+
+## Why the SE Changes Shape
+
+All SEs follow the same logic:
+
+1. Start with the **variance of the estimate** (how variable is θ̂?)
+2. Take the **square root** → standard deviation of the estimate = SE
+3. **n appears in the denominator** → more data = smaller SE = narrower CI
+
+For regression, MSE plays the role of σ² (variance estimated from residuals), and the extra terms account for the position of x₀ relative to the data centroid.
+
+## Try It Yourself
+
+Modify the code above:
+
+1. Change `n` from 30 to 100. How does SE change?
+2. Change `sd` from 10 to 20. How does SE change?
+3. What happens to the 95% CI as n → ∞?
+
+## Related Wiki Pages
+
+- [Standard Error (master table)](../../wiki/concepts/standard-error.md)
+- [Degrees of Freedom](../../wiki/concepts/degrees-of-freedom.md)
+- [Confidence Intervals](../../wiki/concepts/confidence-intervals.md)
+- [Hypothesis Testing Overview](../../wiki/concepts/hypothesis-testing-overview.md)

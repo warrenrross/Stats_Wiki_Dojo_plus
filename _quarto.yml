@@ -1,0 +1,91 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "INEG 2314H — Statistical Methods"
+  description: "A living university-level statistical methods resource: wiki, executable lessons, and R coding dojo."
+  site-url: "https://warrenrross.github.io/Stats_Wiki_Dojo_plus/"
+
+  navbar:
+    left:
+      - text: Home
+        file: index.qmd
+      - text: Linear Path
+        file: syllabus-path.qmd
+      - text: Lessons
+        file: lessons/index.qmd
+      - text: Coding Dojo
+        file: dojo/index.qmd
+      - text: Knowledge Graph
+        file: graph-navigation.qmd
+      - text: Wiki Index
+        file: wiki/index.md
+
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - section: "Start Here"
+        contents:
+          - index.qmd
+          - about.qmd
+          - syllabus-path.qmd
+          - graph-navigation.qmd
+
+      - section: "Lessons"
+        contents:
+          - lessons/index.qmd
+          - section: "Foundations"
+            contents:
+              - lessons/foundations/sampling-distributions.qmd
+              - lessons/foundations/standard-error.qmd
+              - lessons/foundations/confidence-intervals.qmd
+          - section: "Inference"
+            contents:
+              - lessons/inference/hypothesis-testing.qmd
+              - lessons/inference/t-tests.qmd
+              - lessons/inference/anova.qmd
+          - section: "Regression"
+            contents:
+              - lessons/regression/simple-linear-regression.qmd
+              - lessons/regression/multiple-regression.qmd
+              - lessons/regression/diagnostics.qmd
+          - section: "Quality Methods"
+            contents:
+              - lessons/quality-methods/control-charts.qmd
+              - lessons/quality-methods/xbar-r-charts.qmd
+              - lessons/quality-methods/p-c-u-charts.qmd
+          - section: "Experimental Design"
+            contents:
+              - lessons/experimental-design/crd-anova.qmd
+              - lessons/experimental-design/factorial-design.qmd
+              - lessons/experimental-design/two-k-design.qmd
+
+      - section: "Coding Dojo"
+        contents:
+          - dojo/index.qmd
+          - dojo/r-drills/simulate-clt.qmd
+          - dojo/r-drills/fit-regression-model.qmd
+          - dojo/r-drills/build-control-chart.qmd
+          - dojo/r-drills/fill-anova-table.qmd
+          - dojo/r-drills/factorial-anova.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - assets/css/styles.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: show
+    code-tools: true
+    code-copy: true
+    fig-align: center
+    smooth-scroll: true
+
+execute:
+  freeze: auto
+  warning: false
+  message: false

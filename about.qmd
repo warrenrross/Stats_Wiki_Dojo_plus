@@ -1,0 +1,27 @@
+---
+title: "About This Resource"
+---
+
+# About
+
+This is a living statistical methods resource for INEG 2314H at [your institution].
+
+## Design Philosophy
+
+This resource is built on two frameworks:
+
+**CPS Knowledge Structure** — every page is classified as a Construct (foundational quantity), Procedure (inferential technique), or Script (fixed-sequence workflow). See [knowledge-dimensions](references/knowledge-dimensions.md) for the theoretical grounding.
+
+**LLM-Maintained Wiki** — the wiki is written and maintained incrementally by an AI agent from lecture slides, homework files, and R projects. See [llm-wiki](references/llm-wiki.md) for the architecture.
+
+## How It Works
+
+- The **wiki** (`wiki/`) is the conceptual backbone — markdown pages maintained by an LLM agent
+- The **lessons** (`lessons/`) are polished Quarto documents combining prose, math, and executable R code
+- The **dojo** (`dojo/`) is practice-focused: short R drills for building technical fluency
+- The **maintenance** folder tracks the agent queue, change log, and link audits
+
+## Instructor
+
+Warren Ross
+warren.r.ross@gmail.com

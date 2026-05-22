@@ -1,0 +1,106 @@
+---
+title: "CRD and One-Way ANOVA"
+categories: [statistics, procedure, doe]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/crd-one-way-anova.md
+  - ../../wiki/concepts/rcbd-blocking.md
+  - ../../wiki/r-code/anova-r.md
+---
+
+# Completely Randomized Design (CRD) and One-Way ANOVA
+
+## Learning Goals
+
+1. Identify when a CRD is appropriate and when blocking is needed
+2. Set up the one-way ANOVA model and construct the ANOVA table
+3. Apply Fisher's LSD for pairwise comparisons
+4. Run both balanced and unbalanced CRD in R and extract key values
+
+## In Plain English
+
+A CRD randomly assigns experimental units to treatment levels. Use CRD when experimental units are **homogeneous**. If there is a known nuisance variable (time, batch, operator), use RCBD instead — blocking removes that variation from SS_Error.
+
+## ANOVA Table (Balanced CRD)
+
+| Source | SS | df | MS | F₀ |
+|--------|----|----|----|----|
+| Treatments | SS_Trt | a−1 | MS_Trt | MS_Trt/MS_E |
+| Error | SS_E | N−a | MS_E | |
+| Total | SS_T | N−1 | | |
+
+$$\hat{\sigma} = \sqrt{MS_E}, \quad \text{Fisher LSD} = t_{\alpha/2,\,N-a}\sqrt{MS_E\left(\tfrac{1}{n_i}+\tfrac{1}{n_j}\right)}$$
+
+## R Example
+
+```{r}
+#| label: crd-r
+
+pacman::p_load(pacman, rio, tidyverse)
+
+# Coating thickness for 4 application methods (5 replicates each)
+set.seed(15)
+df <- data.frame(
+  thickness = c(rnorm(5, 125, 8), rnorm(5, 132, 8),
+                rnorm(5, 119, 8), rnorm(5, 138, 8)),
+  method    = factor(rep(c("Spray","Dip","Brush","Roll"), each = 5))
+)
+
+# Fit ANOVA
+fit <- aov(thickness ~ method, data = df)
+
+# ANOVA table
+aov_tbl <- summary(fit)[[1]]
+rownames(aov_tbl) <- trimws(rownames(aov_tbl))
+print(aov_tbl)
+```
+
+```{r}
+#| label: crd-lsd
+
+# Extract values
+MSE  <- aov_tbl["Residuals", "Mean Sq"]
+df_E <- aov_tbl["Residuals", "Df"]
+N    <- nrow(df); a <- nlevels(df$method); n <- N / a
+
+cat("MSE =", round(MSE, 3), "\n")
+cat("σ̂  =", round(sqrt(MSE), 3), "\n")
+cat("F₀  =", round(aov_tbl["method", "F value"], 3), "\n")
+cat("p   =", round(aov_tbl["method", "Pr(>F)"], 4), "\n\n")
+
+# Fisher LSD
+LSD <- qt(0.975, df = df_E) * sqrt(MSE * 2/n)
+cat("LSD =", round(LSD, 3), "\n\n")
+
+# Group means and pairwise differences
+means <- tapply(df$thickness, df$method, mean)
+cat("Group means:\n"); print(round(means, 2))
+```
+
+## RCBD: When to Block
+
+If you suspect a nuisance factor (e.g., different operators, batches), use RCBD:
+
+```{r}
+#| label: rcbd-stub
+
+# RCBD model: response ~ treatment + block
+# fit_rcbd <- aov(y ~ treatment + block, data = df_rcbd)
+# Key: df_Error = (a-1)(b-1) instead of N-a
+cat("RCBD df_Error = (a-1)(b-1)\n")
+cat("CRD df_Error  = N-a\n")
+cat("Blocking removes SS_Block from SS_Error → smaller MS_E → larger F₀\n")
+```
+
+## Try It Yourself
+
+1. Is the F-test significant at α = 0.05? Which methods differ significantly by LSD?
+2. What does MS_E estimate in this context?
+3. If you suspected that different operators applied each method, what design would you switch to?
+
+## Related Wiki Pages
+
+- [CRD and One-Way ANOVA](../../wiki/concepts/crd-one-way-anova.md)
+- [RCBD Blocking](../../wiki/concepts/rcbd-blocking.md)
+- [R: ANOVA](../../wiki/r-code/anova-r.md)
+- [CRD Examples](../../wiki/examples/crd-examples.md)

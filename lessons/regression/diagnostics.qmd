@@ -1,0 +1,116 @@
+---
+title: "Model Diagnostics and Adequacy"
+categories: [statistics, script, regression]
+tier-focus: script
+related:
+  - ../../wiki/concepts/model-adequacy.md
+  - ../../wiki/examples/model-adequacy-examples.md
+  - ../../wiki/r-code/regression-r.md
+---
+
+# Model Diagnostics and Adequacy
+
+## Learning Goals
+
+1. Produce the four standard residual diagnostic plots
+2. Diagnose violations of linearity, constant variance, and normality
+3. Identify outliers (large residuals), leverage points, and influential observations
+4. State conclusions using the teacher's expected diagnostic phrasing
+
+## The Four Assumptions to Check
+
+| Assumption | What to look for | Plot |
+|-----------|-----------------|------|
+| Linearity | No curve in residuals vs fitted | Residuals vs ŷ |
+| Constant variance | No fan shape | Residuals vs ŷ |
+| Normality | Points follow the line | Normal Q-Q plot |
+| Independence | No pattern vs. time/order | Residuals vs run order |
+
+## Teacher's Phrasing
+
+> "The residuals show [random scatter / a curved pattern / a fan shape], suggesting [no violation / a violation of linearity / a violation of constant variance] of the [linearity / constant variance] assumption."
+
+## R Example: Full Diagnostic Workflow
+
+```{r}
+#| label: diagnostics-setup
+
+pacman::p_load(pacman, tidyverse)
+
+# Use SLR rocket motor model from simple-linear-regression lesson
+age      <- c(15.5, 23.75, 8, 17, 5.5, 19, 24, 2.5, 7.5, 11, 13, 3.75)
+strength <- c(2158.7, 1678.15, 2316, 2061.3, 2207.5, 1708.3,
+              1784.7, 2575, 2357.9, 2256.7, 2165.2, 2399.55)
+df  <- tibble(age, strength)
+fit <- lm(strength ~ age, data = df)
+
+# Add residuals and diagnostics to data frame
+df <- df |>
+  mutate(resid  = residuals(fit),
+         fitted = fitted(fit),
+         rstud  = rstudent(fit),
+         h      = hatvalues(fit))
+```
+
+```{r}
+#| label: residuals-vs-fitted
+#| fig-cap: "Residuals vs Fitted — check linearity and constant variance"
+
+ggplot(df, aes(x = fitted, y = resid)) +
+  geom_point(size = 2.5, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "firebrick") +
+  labs(x = "Fitted Values", y = "Residuals",
+       title = "Residuals vs Fitted") +
+  theme_bw()
+```
+
+```{r}
+#| label: qq-plot
+#| fig-cap: "Normal Q-Q — check normality of residuals"
+
+ggplot(df, aes(sample = resid)) +
+  stat_qq(size = 2.5, color = "steelblue") +
+  stat_qq_line(color = "firebrick") +
+  labs(title = "Normal Q-Q Plot of Residuals") +
+  theme_bw()
+```
+
+```{r}
+#| label: shapiro-wilk
+
+# Shapiro-Wilk normality test
+sw <- shapiro.test(df$resid)
+cat("Shapiro-Wilk: W =", round(sw$statistic, 4),
+    ", p-value =", round(sw$p.value, 4), "\n")
+
+if (sw$p.value > 0.05) {
+  cat("Normality assumption is reasonable (fail to reject at α=0.05).\n")
+} else {
+  cat("Normality assumption may be violated (reject at α=0.05).\n")
+}
+```
+
+```{r}
+#| label: influence
+
+# Cook's distance — identify influential observations
+cooks <- cooks.distance(fit)
+cat("Top Cook's distances:\n")
+sort(cooks, decreasing = TRUE) |> head(5) |> round(4) |> print()
+
+threshold <- 4 / nrow(df)
+cat("\nInfluential (Cook's D > 4/n =", round(threshold, 4), "):\n")
+which(cooks > threshold)
+```
+
+## Try It Yourself
+
+1. Does the Q-Q plot suggest any departure from normality?
+2. Is there any evidence of non-constant variance in the residuals vs fitted plot?
+3. Are any observations influential based on Cook's distance?
+
+## Related Wiki Pages
+
+- [Model Adequacy](../../wiki/concepts/model-adequacy.md)
+- [Model Adequacy Examples](../../wiki/examples/model-adequacy-examples.md)
+- [R: Regression Workflow](../../wiki/r-code/regression-r.md)

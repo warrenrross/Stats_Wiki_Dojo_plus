@@ -1,0 +1,91 @@
+---
+title: "Sampling Distributions and the CLT"
+categories: [statistics, construct, foundations]
+tier-focus: construct
+related:
+  - ../../wiki/concepts/distributions.md
+  - ../../wiki/concepts/probability.md
+  - ../../wiki/concepts/standard-error.md
+---
+
+# Sampling Distributions and the CLT
+
+## Learning Goals
+
+1. Explain the difference between a population distribution and a sampling distribution
+2. State the Central Limit Theorem and identify when it applies
+3. Recognize the normal, t, χ², and F distributions and when each is used
+4. Compute normal and t probabilities in R
+
+## In Plain English
+
+A **sampling distribution** is the distribution of a statistic (like x̄) across all possible samples of size n. You never see it directly — you only see one sample — but understanding it is the foundation of all inference.
+
+The **Central Limit Theorem (CLT)** says: for large enough n, x̄ is approximately normal regardless of the population distribution.
+
+$$\bar{X} \sim N\!\left(\mu,\; \frac{\sigma^2}{n}\right) \quad \text{(approximately, for large n)}$$
+
+This is why we can make probability statements about sample means.
+
+## The Four Key Distributions
+
+| Distribution | Used for | df |
+|-------------|---------|-----|
+| Normal Z | Mean when σ known, or n ≥ 40 | — |
+| Student's t | Mean when σ unknown, n small | n−1 |
+| Chi-square χ² | Variance, goodness-of-fit | varies |
+| F | Ratio of variances, ANOVA, regression | (df₁, df₂) |
+
+## R Example: CLT Simulation
+
+```{r}
+#| label: clt-simulation
+#| fig-cap: "Sampling distribution of x̄ from a skewed population, n=30"
+
+set.seed(123)
+
+# Skewed population (exponential)
+pop <- rexp(100000, rate = 1/10)  # mean = 10
+
+# Draw 5000 samples of size n=30, compute each x̄
+n_sim  <- 5000
+n_samp <- 30
+xbars  <- replicate(n_sim, mean(sample(pop, n_samp)))
+
+# Plot
+hist(xbars, breaks = 50, col = "steelblue", border = "white",
+     main = paste("Sampling dist of x̄ (n =", n_samp, ")"),
+     xlab = "Sample mean", probability = TRUE)
+curve(dnorm(x, mean = mean(pop), sd = sd(pop)/sqrt(n_samp)),
+      add = TRUE, col = "firebrick", lwd = 2)
+```
+
+## Normal and t Probability in R
+
+```{r}
+#| label: probability-r
+
+# P(Z < 1.96)
+pnorm(1.96)
+
+# P(Z > 1.96)  [upper tail]
+pnorm(1.96, lower.tail = FALSE)
+
+# t critical value: df = 15, α/2 = 0.025
+qt(0.975, df = 15)
+
+# P(T₁₅ < 2.131)
+pt(2.131, df = 15)
+```
+
+## Try It Yourself
+
+1. Change `n_samp` from 30 to 5. Does the sampling distribution still look normal?
+2. Change `rexp` to `runif(100000, 0, 20)` (uniform population). Does CLT still hold?
+3. What sample size is "large enough" for the CLT to kick in for an exponential population?
+
+## Related Wiki Pages
+
+- [Distributions](../../wiki/concepts/distributions.md)
+- [Probability](../../wiki/concepts/probability.md)
+- [Standard Error](../../wiki/concepts/standard-error.md)

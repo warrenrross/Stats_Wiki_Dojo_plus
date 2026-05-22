@@ -1,0 +1,106 @@
+---
+title: "2^k Factorial Designs"
+categories: [statistics, procedure, doe]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/2k-factorial-design.md
+  - ../../wiki/r-code/factorial-anova-r.md
+  - ../../wiki/examples/2k-factorial-examples.md
+---
+
+# 2^k Factorial Designs
+
+## Learning Goals
+
+1. Set up a 2^k design with ±1 coding and compute main effects and interactions
+2. Distinguish replicated (use aov()) from unreplicated (use lm() + Lenth's method) designs
+3. Apply Effect = 2 × lm coefficient — avoid the common ×2 trap
+4. Interpret a Daniel (normal probability) plot to screen significant effects
+
+## In Plain English
+
+A 2^k design runs each of k factors at two levels (−1 = low, +1 = high). With k factors there are 2^k runs per replicate. The design is efficient: it estimates k main effects and all 2^(k−1) − 1 interactions with the minimum number of runs.
+
+**Key relationship:** Effect = 2 × (lm coefficient). The lm() spans ±1 (range = 2), so the coefficient = Effect/2.
+
+## Lenth's Method (Unreplicated Designs)
+
+For single-replicate 2^k (no error df):
+
+$$s_0 = 1.5 \cdot \text{median}(|e_j|), \quad PSE = 1.5 \cdot \text{median}(|e_j| < 2.5s_0)$$
+
+$$ME = t_{\alpha/2,\; m/3} \cdot PSE$$
+
+Effects with |effect| ≥ ME are considered significant.
+
+## R Example: Replicated 2^2 Design
+
+```{r}
+#| label: two-k-replicated
+
+pacman::p_load(pacman, FrF2, tidyverse)
+
+# 2^2 design with n=3 replicates: factors A (temperature) and B (pressure)
+set.seed(7)
+df <- expand.grid(A = c(-1, 1), B = c(-1, 1)) |>
+  slice(rep(1:n(), each = 3)) |>
+  mutate(y = 40 + 5*A + 3*B + 2*A*B + rnorm(12, 0, 2))
+
+df$A <- factor(df$A); df$B <- factor(df$B)
+
+fit_aov <- aov(y ~ A * B, data = df)
+aov_tbl <- summary(fit_aov)[[1]]
+rownames(aov_tbl) <- trimws(rownames(aov_tbl))
+print(aov_tbl)
+```
+
+```{r}
+#| label: two-k-effects
+
+# Effect estimates via lm (numeric coding)
+df_num <- df |> mutate(A = as.numeric(as.character(A)),
+                        B = as.numeric(as.character(B)),
+                        AB = A * B)
+fit_lm <- lm(y ~ A + B + AB, data = df_num)
+
+coefs <- coef(fit_lm)
+cat("Effects (= 2 × coefficient):\n")
+cat("  A  =", round(2 * coefs["A"], 3), "\n")
+cat("  B  =", round(2 * coefs["B"], 3), "\n")
+cat("  AB =", round(2 * coefs["AB"], 3), "\n")
+```
+
+## R Example: Unreplicated 2^3 — Daniel Plot
+
+```{r}
+#| label: daniel-plot
+#| fig-cap: "Daniel (normal probability) plot — points off the line are significant"
+
+# 2^3 single replicate
+design <- FrF2(8, 3, randomize = FALSE)
+y <- c(22, 32, 35, 55, 44, 40, 60, 39)
+design$y <- y
+
+DanielPlot(lm(y ~ A * B * C, data = design),
+           main = "Daniel Plot — Unreplicated 2^3",
+           half = FALSE)
+```
+
+## Common Mistakes
+
+- Using aov() on a single-replicate design (0 error df — will fail or give nonsense)
+- Reporting lm() coefficients as effects (off by factor of 2)
+- Forgetting trimws() when extracting from summary(aov)[[1]]
+- Ignoring a borderline F: always compare to the critical value, not just eyeball the p-value
+
+## Try It Yourself
+
+1. In the replicated 2^2: are both main effects significant? Is the interaction?
+2. Change the true effect sizes in the simulation and observe how F₀ and the Daniel plot change.
+3. What would you do if you ran a 2^4 with a single replicate and got borderline effects?
+
+## Related Wiki Pages
+
+- [2^k Factorial Design](../../wiki/concepts/2k-factorial-design.md)
+- [R: Factorial ANOVA](../../wiki/r-code/factorial-anova-r.md)
+- [2^k Factorial Examples](../../wiki/examples/2k-factorial-examples.md)

@@ -1,0 +1,103 @@
+---
+title: "Drill: Build a Control Chart"
+categories: [r, drill, coding-dojo]
+tier-focus: script
+---
+
+# Drill: Build a Control Chart
+
+## Drill Purpose
+
+Build fluency with the qcc control chart workflow: R chart → X̄ chart → identify out-of-control → revise limits → process capability.
+
+## Trigger
+
+Use this drill when you have subgroup measurement data and need to determine whether a process is in statistical control and whether it meets specification limits.
+
+## Fixed Sequence
+
+1. Load data (subgroup matrix: rows = subgroups, cols = observations)
+2. Build **R chart first** — estimates σ̂
+3. Build **X̄ chart** using σ̂ from R chart
+4. Identify out-of-control subgroups (`$violations`)
+5. Remove and **revise limits**
+6. Compute **Cp and Cpk** against spec limits
+7. State conclusion in teacher's phrasing
+
+## Setup
+
+```{r}
+#| label: setup
+
+pacman::p_load(pacman, qcc)
+```
+
+## Worked Example: Piston Rings
+
+```{r}
+#| label: r-chart
+#| fig-cap: "R Chart — check for out-of-control range"
+
+data("pistonrings")
+diameter <- qcc.groups(pistonrings$diameter, pistonrings$sample)
+
+r_chart <- qcc(diameter, type = "R", nsigmas = 3,
+               title = "R Chart — Piston Ring Diameter")
+
+cat("R̄  (center):", round(r_chart$center, 6), "\n")
+cat("UCL_R:", round(r_chart$limits[2], 6), "\n")
+cat("R chart violations:", r_chart$violations$beyond.limits, "\n")
+```
+
+```{r}
+#| label: xbar-chart
+#| fig-cap: "X̄ Chart — check for out-of-control means"
+
+xbar_chart <- qcc(diameter, type = "xbar", nsigmas = 3,
+                  std.dev = sd.R(diameter),
+                  title = "X̄ Chart — Piston Ring Diameter")
+
+cat("x̄̄  (center):", round(xbar_chart$center, 6), "\n")
+cat("UCL:", round(xbar_chart$limits[2], 6), "\n")
+cat("LCL:", round(xbar_chart$limits[1], 6), "\n")
+cat("σ̂ :", round(xbar_chart$std.dev, 6), "\n")
+cat("X̄ chart violations:", xbar_chart$violations$beyond.limits, "\n")
+```
+
+```{r}
+#| label: capability
+#| fig-cap: "Process capability"
+
+# Spec limits: LSL = 73.95, USL = 74.05
+pc <- process.capability(xbar_chart, spec.limits = c(73.95, 74.05))
+print(pc, digits = 6)
+```
+
+## Practice Variation: p-Chart
+
+```{r}
+#| label: p-chart
+#| fig-cap: "p-Chart — fraction defective"
+
+data("orangejuice")
+
+p_chart <- qcc(data  = orangejuice$D,
+               type  = "p",
+               sizes = orangejuice$size,
+               title = "p-Chart — Orange Juice")
+
+cat("\np̄:", round(p_chart$center, 4), "\n")
+cat("Out-of-control:", p_chart$violations$beyond.limits, "\n")
+```
+
+## Reflection Questions
+
+1. For the piston ring X̄ chart: is the process in statistical control? In control but not capable?
+2. Is Cpk ≥ 1.33? What does that mean for the process?
+3. For the p-chart: which lots should be investigated for special causes?
+
+## Related Wiki Pages
+
+- [R: Control Charts](../../wiki/r-code/control-charts-r.md)
+- [Control Charts](../../wiki/concepts/control-charts.md)
+- [Process Capability](../../wiki/concepts/process-capability.md)

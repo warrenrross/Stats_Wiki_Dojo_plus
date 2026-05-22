@@ -1,0 +1,110 @@
+---
+title: "Factorial ANOVA"
+categories: [statistics, procedure, doe]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/factorial-anova.md
+  - ../../wiki/r-code/factorial-anova-r.md
+  - ../../wiki/examples/factorial-examples.md
+---
+
+# Factorial ANOVA
+
+## Learning Goals
+
+1. Distinguish main effects from interaction effects
+2. Construct the ANOVA table for a two-factor factorial design
+3. Apply the 3× SD rule for constant variance check
+4. Interpret an interaction plot and apply the marginality principle
+
+## In Plain English
+
+A factorial design tests multiple factors simultaneously and — critically — can detect **interactions**: situations where the effect of one factor depends on the level of another.
+
+**Interaction present:** the optimal level of A depends on which level of B you're at.
+**Interaction absent:** the optimal level of A is the same regardless of B.
+
+## ANOVA Table (Two-Factor, Balanced)
+
+| Source | df | MS | F₀ |
+|--------|----|----|-------|
+| A | a−1 | MS_A | MS_A/MS_E |
+| B | b−1 | MS_B | MS_B/MS_E |
+| AB (interaction) | (a−1)(b−1) | MS_AB | MS_AB/MS_E |
+| Error | ab(n−1) | MS_E | |
+| Total | abn−1 | | |
+
+## Critical Rules
+
+- **trimws() is mandatory** after `summary(fit)[[1]]` — R pads row names with trailing spaces
+- **Hierarchical principle** — if AB is in the model, both A and B stay even if one is non-significant
+- **3× SD rule** — if one cell's within-cell SD is ≈3× larger than others, constant variance is not reasonable
+
+## R Example: Two-Factor Factorial
+
+```{r}
+#| label: factorial-fit
+
+pacman::p_load(pacman, agricolae, tidyverse)
+
+# Viscosity experiment: 2 pH levels × 2 catalyst types, n=4 per cell
+set.seed(33)
+df <- expand.grid(pH = factor(c("Low","High")),
+                  catalyst = factor(c("A","B")),
+                  rep = 1:4) |>
+  mutate(viscosity = c(rnorm(4, 82, 3), rnorm(4, 91, 3),
+                       rnorm(4, 79, 3), rnorm(4, 76, 3))) |>
+  select(-rep)
+
+fit <- aov(viscosity ~ pH * catalyst, data = df)
+
+aov_tbl <- summary(fit)[[1]]
+rownames(aov_tbl) <- trimws(rownames(aov_tbl))
+print(aov_tbl)
+```
+
+```{r}
+#| label: interaction-plot
+#| fig-cap: "Interaction plot: if lines are parallel, no interaction"
+
+df |>
+  group_by(pH, catalyst) |>
+  summarise(mean_visc = mean(viscosity), .groups = "drop") |>
+  ggplot(aes(x = pH, y = mean_visc, color = catalyst, group = catalyst)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 3) +
+  labs(title = "Interaction Plot: Viscosity",
+       y = "Mean Viscosity", x = "pH") +
+  theme_bw()
+```
+
+```{r}
+#| label: constant-variance-check
+
+# 3× SD rule: within-cell SDs
+df |>
+  group_by(pH, catalyst) |>
+  summarise(sd = sd(viscosity), .groups = "drop") |>
+  print()
+
+# LSD on marginal means of significant factor
+MSE  <- aov_tbl["Residuals", "Mean Sq"]
+df_E <- aov_tbl["Residuals", "Df"]
+a    <- nlevels(df$pH); b <- nlevels(df$catalyst); n <- 4
+n_i  <- b * n   # observations per level of pH (marginal mean)
+
+LSD_pH <- qt(0.975, df_E) * sqrt(MSE * 2 / n_i)
+cat("LSD for pH marginal means:", round(LSD_pH, 3), "\n")
+```
+
+## Try It Yourself
+
+1. Is the interaction significant? How do you interpret the interaction plot?
+2. Apply the 3× SD rule — is constant variance reasonable?
+3. If the interaction is not significant, which factor should drive recommendations?
+
+## Related Wiki Pages
+
+- [Factorial ANOVA](../../wiki/concepts/factorial-anova.md)
+- [R: Factorial ANOVA](../../wiki/r-code/factorial-anova-r.md)
+- [Factorial Examples](../../wiki/examples/factorial-examples.md)

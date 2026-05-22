@@ -1,0 +1,80 @@
+---
+title: "p, c, and u Charts"
+categories: [statistics, script, quality]
+tier-focus: script
+related:
+  - ../../wiki/concepts/control-charts.md
+  - ../../wiki/r-code/control-charts-r.md
+---
+
+# p, c, and u Charts
+
+## Learning Goals
+
+1. Choose among p, c, and u charts based on data type and sample size
+2. Build each chart in R using the qcc package
+3. Handle variable sample sizes in p and u charts
+4. Interpret out-of-control signals on attribute charts
+
+## Chart Selection
+
+| Chart | Data | Sample size |
+|-------|------|------------|
+| p | Fraction defective (proportion) | Variable or fixed |
+| c | Count of defects (per inspection unit) | Fixed |
+| u | Defects per unit | Variable |
+
+## p-Chart (Fraction Defective)
+
+$$\bar{p} = \frac{\sum D_i}{\sum n_i}, \quad UCL_p = \bar{p} + 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n_i}}, \quad LCL_p = \max(0, \bar{p} - \cdots)$$
+
+With variable n, limits vary by subgroup.
+
+## R Example: p-Chart
+
+```{r}
+#| label: p-chart
+
+pacman::p_load(pacman, qcc)
+
+data("orangejuice")  # D = defectives, size = sample size
+head(orangejuice)
+
+p_chart <- qcc(data = orangejuice$D, type = "p",
+               sizes = orangejuice$size,
+               title = "p-Chart — Orange Juice Cans")
+
+cat("\np-bar:", round(p_chart$center, 4), "\n")
+cat("Out-of-control points:", p_chart$violations$beyond.limits, "\n")
+```
+
+## R Example: c-Chart and u-Chart
+
+```{r}
+#| label: c-u-charts
+
+data("circuit")  # x = defects, size = inspection area
+head(circuit)
+
+# c-chart (fixed sample size)
+c_chart <- qcc(data = circuit$x[circuit$size == 1],
+               type = "c",
+               title = "c-Chart — Circuit Boards")
+
+# u-chart (variable area)
+u_chart <- qcc(data = circuit$x, type = "u",
+               sizes = circuit$size,
+               title = "u-Chart — Circuit Boards")
+```
+
+## Try It Yourself
+
+1. For the p-chart: which subgroups are out of control?
+2. For the u-chart: why do control limits vary from subgroup to subgroup?
+3. Remove the out-of-control points from the p-chart and rebuild with revised limits.
+
+## Related Wiki Pages
+
+- [Control Charts](../../wiki/concepts/control-charts.md)
+- [R: Control Charts](../../wiki/r-code/control-charts-r.md)
+- [Control Chart Examples](../../wiki/examples/control-chart-examples.md)

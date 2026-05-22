@@ -1,0 +1,27 @@
+---
+title: "Coding Dojo"
+---
+
+# Coding Dojo
+
+Practice-focused R drills. Each drill builds fluency with a recurring statistical workflow that appears on exams and in real analysis.
+
+**How to use:** Run the drill, modify the code, answer the reflection questions. The goal is automaticity — you want the sequence to run without working memory.
+
+---
+
+## Available Drills
+
+| Drill | Skill | CPS Tier |
+|-------|-------|----------|
+| [Simulate the CLT](r-drills/simulate-clt.qmd) | Sampling distributions, SE, normal probability | Script |
+| [Fit a Regression Model](r-drills/fit-regression-model.qmd) | lm(), anova(), summary(), confint(), predict() | Script |
+| [Build a Control Chart](r-drills/build-control-chart.qmd) | qcc, X̄/R, p-chart, Cp/Cpk | Script |
+| [Fill an ANOVA Table](r-drills/fill-anova-table.qmd) | SS, MS, F reconstruction from partial information | Script |
+| [Factorial ANOVA in R](r-drills/factorial-anova.qmd) | aov(), trimws(), interaction plots, LSD.test() | Script |
+
+---
+
+## Datasets
+
+Raw datasets used in drills are in [`datasets/`](datasets/).

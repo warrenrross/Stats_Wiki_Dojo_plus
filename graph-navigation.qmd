@@ -1,0 +1,67 @@
+---
+title: "Knowledge Graph Navigation"
+---
+
+# Knowledge Graph Navigation
+
+This resource supports both linear study and graph-based exploration.
+
+The linear path acts like a road. The wiki acts like a map.
+
+---
+
+## How Backlinks Work
+
+Every wiki page links to the pages it depends on and the pages that use it. Following these links reveals the conceptual structure of statistics as a connected graph — not a list of isolated topics.
+
+**Example: Standard Error**
+
+`[[standard-error]]` connects to:
+
+- [confidence-intervals](wiki/concepts/confidence-intervals.md) — CI formula uses SE
+- [hypothesis-testing-overview](wiki/concepts/hypothesis-testing-overview.md) — test statistic = (estimate − null) / SE
+- [regression-slr](wiki/concepts/regression-slr.md) — β̂₁ and β̂₀ have their own SEs from MSE
+- [control-charts](wiki/concepts/control-charts.md) — σ̂ from R̄/d₂ or s̄/c₄ plays the SE role
+
+Once you understand SE as "standard deviation of the sampling distribution," every procedure that uses it becomes a variant of the same idea.
+
+---
+
+## Threshold Concepts
+
+These are the constructs most worth deeply understanding first — once they click, multiple procedures unlock simultaneously.
+
+| Concept | Why it's a threshold | Unlocks |
+|---------|---------------------|---------|
+| [Standard Error](wiki/concepts/standard-error.md) | Every CI and test statistic divides by one | CI, HT, regression, control charts |
+| [SS Decomposition](wiki/concepts/ss-decomposition.md) | SS_T = SS_Model + SS_Error underlies every ANOVA table | Regression, CRD, RCBD, factorial, 2^k |
+| [Sampling Distributions](wiki/concepts/distributions.md) | The link between a single sample and the population | Everything in inference |
+| [Degrees of Freedom](wiki/concepts/degrees-of-freedom.md) | Which df goes with which test | Every t, χ², and F test |
+
+---
+
+## Cross-Section Connections
+
+| Idea | Where it first appears | Where it recurs |
+|------|----------------------|----------------|
+| SE = σ/√n | Sections 1–2 CI | Regression βⱼ SE, control chart σ̂ |
+| SS decomposition | Regression ANOVA | CRD, RCBD, factorial ANOVA |
+| F-test | Regression F-test | One-way ANOVA, factorial ANOVA, 2^k |
+| Residual diagnostics | Regression model adequacy | CRD and RCBD model checking |
+| Variance estimation | σ² → MSE in regression | → MS_Error in ANOVA |
+
+---
+
+## Suggested Exploration Paths
+
+**If you're confused about p-values:**
+[hypothesis-testing-overview](wiki/concepts/hypothesis-testing-overview.md) → [which-test](wiki/concepts/which-test.md) → [reading-r-output](wiki/r-code/reading-r-output.md)
+
+**If you're confused about ANOVA tables:**
+[ss-decomposition](wiki/concepts/ss-decomposition.md) → [regression-ht](wiki/concepts/regression-ht.md) → [crd-one-way-anova](wiki/concepts/crd-one-way-anova.md) → [anova-table-examples](wiki/examples/anova-table-examples.md)
+
+**If you're confused about which chart to use:**
+[control-charts](wiki/concepts/control-charts.md) → [which-test-flowchart](wiki/reference/which-test-flowchart.md)
+
+**If you're confused about 2^k designs:**
+[ss-decomposition](wiki/concepts/ss-decomposition.md) → [factorial-anova](wiki/concepts/factorial-anova.md) → [2k-factorial-design](wiki/concepts/2k-factorial-design.md) → [2k-factorial-examples](wiki/examples/2k-factorial-examples.md)

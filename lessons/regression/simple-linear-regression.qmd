@@ -1,0 +1,95 @@
+---
+title: "Simple Linear Regression"
+categories: [statistics, procedure, regression]
+tier-focus: procedure
+related:
+  - ../../wiki/concepts/regression-slr.md
+  - ../../wiki/concepts/ss-decomposition.md
+  - ../../wiki/r-code/regression-r.md
+---
+
+# Simple Linear Regression
+
+## Learning Goals
+
+1. Fit a SLR model using least squares and interpret β̂₀ and β̂₁
+2. Construct and read the ANOVA table (SS decomposition, F-test, R²)
+3. Test H₀: β₁ = 0 and H₀: β₁ = β₁₀ (non-zero null)
+4. Produce a scatter plot with the fitted line in R
+
+## In Plain English
+
+SLR models the linear relationship between a response y and a single predictor x:
+
+$$y_i = \beta_0 + \beta_1 x_i + \epsilon_i, \quad \epsilon_i \sim N(0, \sigma^2)$$
+
+Least squares minimizes $\sum(y_i - \hat{y}_i)^2$ and gives:
+
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} \qquad \hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$$
+
+where $S_{xx} = \sum(x_i-\bar{x})^2$ and $S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y})$.
+
+## SS Decomposition
+
+$$SS_T = SS_R + SS_E \qquad R^2 = \frac{SS_R}{SS_T}$$
+
+> **Teacher's phrasing for R²:** "X% of the variation in [Y] is explained by the regression model."
+
+## R Example: Rocket Motor SLR
+
+```{r}
+#| label: slr-fit
+#| fig-cap: "Shear strength vs. age for rocket motor propellant"
+
+pacman::p_load(pacman, tidyverse)
+
+# Rocket motor propellant data (Montgomery Example 11.1)
+age      <- c(15.5, 23.75, 8, 17, 5.5, 19, 24, 2.5, 7.5, 11, 13, 3.75)
+strength <- c(2158.7, 1678.15, 2316, 2061.3, 2207.5, 1708.3,
+              1784.7, 2575, 2357.9, 2256.7, 2165.2, 2399.55)
+
+df <- tibble(age = age, strength = strength)
+
+# Fit model
+fit <- lm(strength ~ age, data = df)
+
+# Plot
+ggplot(df, aes(x = age, y = strength)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linewidth = 1.1) +
+  annotate("label", x = 5, y = 2500,
+           label = sprintf("ŷ = %.2f + %.2f·x", coef(fit)[1], coef(fit)[2]),
+           color = "firebrick", hjust = 0) +
+  labs(title = "Rocket Motor: Shear Strength vs. Age",
+       x = "Age (weeks)", y = "Shear Strength (psi)") +
+  theme_bw()
+```
+
+```{r}
+#| label: slr-output
+
+# ANOVA table
+fit |> anova() |> print()
+
+# Coefficient table and R²
+fit |> summary() |> print()
+
+# Key scalars
+cat("\nβ̂₁ =", round(coef(fit)["age"], 4), "\n")
+cat("β̂₀ =", round(coef(fit)["(Intercept)"], 4), "\n")
+cat("R²  =", round(summary(fit)$r.squared, 4), "\n")
+cat("σ̂  =", round(summary(fit)$sigma, 4), "\n")
+```
+
+## Try It Yourself
+
+1. What does β̂₁ = −37.15 mean in context? (Per additional week of age, strength changes by ...)
+2. Is the regression significant at α = 0.05? How do you know from the ANOVA table?
+3. Compute R² manually from the ANOVA table: R² = SS_R / SS_T.
+
+## Related Wiki Pages
+
+- [Regression — SLR](../../wiki/concepts/regression-slr.md)
+- [SS Decomposition](../../wiki/concepts/ss-decomposition.md)
+- [Regression — Hypothesis Tests](../../wiki/concepts/regression-ht.md)
+- [R: Regression Workflow](../../wiki/r-code/regression-r.md)

@@ -1,0 +1,89 @@
+---
+title: "X̄/R and X̄/S Charts"
+categories: [statistics, script, quality]
+tier-focus: script
+related:
+  - ../../wiki/concepts/control-charts.md
+  - ../../wiki/r-code/control-charts-r.md
+  - ../../wiki/examples/control-chart-examples.md
+---
+
+# X̄/R and X̄/S Charts
+
+## Learning Goals
+
+1. Build X̄/R charts in R using the qcc package (R chart first, always)
+2. Identify out-of-control points and revise limits
+3. Compute Cp and Cpk and interpret process capability
+4. State conclusions using the teacher's expected phrasing
+
+## Fixed Sequence (Script)
+
+1. Build **R chart first** — estimate σ̂ from R̄/d₂
+2. Build **X̄ chart** using σ̂ from the R chart
+3. Identify any out-of-control points
+4. Remove special-cause points and **revise limits**
+5. Compute **Cp and Cpk** against specification limits
+6. State process capability conclusion
+
+## R Example: Variables Control Chart
+
+```{r}
+#| label: xbar-r
+
+pacman::p_load(pacman, qcc, tidyverse)
+
+# Piston ring diameter data (n=5 per subgroup, 25 subgroups)
+# Using built-in pistonrings dataset
+data("pistonrings")
+
+diameter <- qcc.groups(pistonrings$diameter, pistonrings$sample)
+
+# Step 1: R chart
+r_chart <- qcc(diameter, type = "R", nsigmas = 3,
+               title = "R Chart — Piston Ring Diameter")
+```
+
+```{r}
+#| label: xbar-chart
+
+# Step 2: X̄ chart (σ̂ from R chart)
+xbar_chart <- qcc(diameter, type = "xbar", nsigmas = 3,
+                  std.dev = sd.R(diameter),
+                  title = "X̄ Chart — Piston Ring Diameter")
+
+cat("\nCenter (x̄̄):", round(xbar_chart$center, 4), "\n")
+cat("UCL:", round(xbar_chart$limits[2], 4), "\n")
+cat("LCL:", round(xbar_chart$limits[1], 4), "\n")
+cat("σ̂ :", round(xbar_chart$std.dev, 6), "\n")
+```
+
+```{r}
+#| label: process-capability
+
+# Process capability (LSL = 73.95, USL = 74.05 mm)
+pc <- process.capability(xbar_chart, spec.limits = c(73.95, 74.05))
+print(pc, digits = 6)
+```
+
+## Teacher's Phrasing
+
+| Finding | What to say |
+|---------|------------|
+| All points in limits | "The process is in statistical control." |
+| Points outside limits | "Point(s) [#] fall outside the control limits, indicating the process is out of control." |
+| Cp ≥ 1.33, Cpk ≥ 1.33 | "The process is capable of meeting specifications." |
+| Cp ≥ 1.33, Cpk < 1.33 | "The process spread is adequate but the process is off-center." |
+| Cp < 1.33 | "The process is not capable of meeting specifications." |
+
+## Try It Yourself
+
+1. Which points (if any) are flagged as out of control on the X̄ chart?
+2. What is Cpk? Is the process capable?
+3. Remove any out-of-control subgroups and rebuild the charts with revised limits.
+
+## Related Wiki Pages
+
+- [Control Charts](../../wiki/concepts/control-charts.md)
+- [Process Capability](../../wiki/concepts/process-capability.md)
+- [R: Control Charts](../../wiki/r-code/control-charts-r.md)
