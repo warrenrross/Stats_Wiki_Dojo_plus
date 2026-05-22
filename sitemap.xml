@@ -9,128 +9,132 @@
     <lastmod>2026-05-22T02:43:46.171Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/formula-sheet.html</loc>
-    <lastmod>2026-05-22T02:52:06.010Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/summary-stats-r.html</loc>
-    <lastmod>2026-05-22T02:49:56.416Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/reading-r-output.html</loc>
-    <lastmod>2026-05-22T02:52:06.009Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/factorial-anova-r.html</loc>
-    <lastmod>2026-05-22T02:43:46.169Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/control-charts-r.html</loc>
-    <lastmod>2026-05-22T02:52:06.009Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/index.html</loc>
-    <lastmod>2026-05-22T11:42:27.590Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/regression-examples.html</loc>
-    <lastmod>2026-05-22T11:42:00.840Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/model-adequacy-examples.html</loc>
-    <lastmod>2026-05-22T02:52:06.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/hw1-examples.html</loc>
-    <lastmod>2026-05-22T11:39:50.696Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/crd-examples.html</loc>
-    <lastmod>2026-05-22T02:43:46.151Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/control-chart-examples.html</loc>
-    <lastmod>2026-05-22T02:52:06.002Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/2k-factorial-examples.html</loc>
-    <lastmod>2026-05-22T02:43:46.152Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/variance-estimation.html</loc>
-    <lastmod>2026-05-22T02:52:06.007Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/taxonomy.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/ht-tests-overview.html</loc>
     <lastmod>2026-05-22T02:52:21.136Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ss-decomposition.html</loc>
-    <lastmod>2026-05-22T02:52:06.006Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/anova-design-guide.html</loc>
+    <lastmod>2026-05-22T02:43:46.171Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-mlr.html</loc>
-    <lastmod>2026-05-22T02:52:06.007Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/regression-r.html</loc>
+    <lastmod>2026-05-22T02:52:06.009Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-ci.html</loc>
-    <lastmod>2026-05-22T02:52:06.003Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/random-effects-model.html</loc>
-    <lastmod>2026-05-22T02:43:46.160Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/process-capability.html</loc>
-    <lastmod>2026-05-22T02:52:06.004Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/power-sample-size.html</loc>
-    <lastmod>2026-05-22T02:49:56.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/hypothesis-testing-overview.html</loc>
-    <lastmod>2026-05-22T02:49:56.412Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-two-sample-t-means.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/hypothesis-tests-r.html</loc>
     <lastmod>2026-05-22T02:49:56.416Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-paired-t.html</loc>
-    <lastmod>2026-05-22T02:49:56.412Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/data-wrangling-r.html</loc>
+    <lastmod>2026-05-22T12:33:12.154Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-z-mean.html</loc>
-    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/anova-r.html</loc>
+    <lastmod>2026-05-22T02:43:46.168Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-chisq-variance.html</loc>
-    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/two-sample-examples.html</loc>
+    <lastmod>2026-05-22T11:41:11.582Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-goodness-of-fit.html</loc>
-    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/regression-ci-examples.html</loc>
+    <lastmod>2026-05-22T02:52:06.000Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/factorial-anova.html</loc>
-    <lastmod>2026-05-22T02:43:46.158Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/hw4-drill-examples.html</loc>
+    <lastmod>2026-05-22T11:40:25.933Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/degrees-of-freedom.html</loc>
-    <lastmod>2026-05-22T02:52:06.002Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/factorial-examples.html</loc>
+    <lastmod>2026-05-22T02:43:46.149Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/correlation-transformations.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/control-chart-practice.html</loc>
+    <lastmod>2026-05-22T02:52:06.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/anova-table-examples.html</loc>
+    <lastmod>2026-05-22T02:52:06.001Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/which-test.html</loc>
+    <lastmod>2026-05-22T02:52:06.004Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/two-sample-tests.html</loc>
+    <lastmod>2026-05-22T02:49:56.416Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/standard-error.html</loc>
     <lastmod>2026-05-22T02:52:06.005Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/confidence-intervals.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-slr.html</loc>
+    <lastmod>2026-05-22T02:52:06.007Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-ht.html</loc>
+    <lastmod>2026-05-22T02:52:06.008Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/rcbd-blocking.html</loc>
+    <lastmod>2026-05-22T02:43:46.162Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/proportions.html</loc>
+    <lastmod>2026-05-22T02:49:56.412Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/probability.html</loc>
+    <lastmod>2026-05-22T02:49:56.410Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/model-adequacy.html</loc>
+    <lastmod>2026-05-22T02:52:06.008Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-two-sample-z-means.html</loc>
     <lastmod>2026-05-22T02:49:56.411Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/2k-factorial-design.html</loc>
-    <lastmod>2026-05-22T02:43:46.159Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-two-sample-f-variances.html</loc>
+    <lastmod>2026-05-22T02:49:56.415Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-z-proportion.html</loc>
+    <lastmod>2026-05-22T02:49:56.415Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-t-mean.html</loc>
+    <lastmod>2026-05-22T02:49:56.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-independence.html</loc>
+    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/fwl-theorem.html</loc>
+    <lastmod>2026-05-22T02:43:46.154Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/distributions.html</loc>
+    <lastmod>2026-05-22T02:49:56.411Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/crd-one-way-anova.html</loc>
+    <lastmod>2026-05-22T02:43:46.164Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/control-charts.html</loc>
+    <lastmod>2026-05-22T02:52:06.006Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/chi-square.html</loc>
+    <lastmod>2026-05-22T02:49:56.416Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/backlinks.html</loc>
+    <lastmod>2026-05-22T16:23:19.059Z</lastmod>
   </url>
   <url>
     <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/lessons/regression/simple-linear-regression.html</loc>
@@ -237,128 +241,132 @@
     <lastmod>2026-05-22T02:42:04.370Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/chi-square.html</loc>
-    <lastmod>2026-05-22T02:49:56.416Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/2k-factorial-design.html</loc>
+    <lastmod>2026-05-22T02:43:46.159Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/control-charts.html</loc>
-    <lastmod>2026-05-22T02:52:06.006Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/crd-one-way-anova.html</loc>
-    <lastmod>2026-05-22T02:43:46.164Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/distributions.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/confidence-intervals.html</loc>
     <lastmod>2026-05-22T02:49:56.411Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/fwl-theorem.html</loc>
-    <lastmod>2026-05-22T02:43:46.154Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-independence.html</loc>
-    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-t-mean.html</loc>
-    <lastmod>2026-05-22T02:49:56.409Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-z-proportion.html</loc>
-    <lastmod>2026-05-22T02:49:56.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-two-sample-f-variances.html</loc>
-    <lastmod>2026-05-22T02:49:56.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-two-sample-z-means.html</loc>
-    <lastmod>2026-05-22T02:49:56.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/model-adequacy.html</loc>
-    <lastmod>2026-05-22T02:52:06.008Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/probability.html</loc>
-    <lastmod>2026-05-22T02:49:56.410Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/proportions.html</loc>
-    <lastmod>2026-05-22T02:49:56.412Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/rcbd-blocking.html</loc>
-    <lastmod>2026-05-22T02:43:46.162Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-ht.html</loc>
-    <lastmod>2026-05-22T02:52:06.008Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-slr.html</loc>
-    <lastmod>2026-05-22T02:52:06.007Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/standard-error.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/correlation-transformations.html</loc>
     <lastmod>2026-05-22T02:52:06.005Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/two-sample-tests.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/degrees-of-freedom.html</loc>
+    <lastmod>2026-05-22T02:52:06.002Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/factorial-anova.html</loc>
+    <lastmod>2026-05-22T02:43:46.158Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-goodness-of-fit.html</loc>
+    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-chisq-variance.html</loc>
+    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-one-sample-z-mean.html</loc>
+    <lastmod>2026-05-22T02:49:56.414Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-paired-t.html</loc>
+    <lastmod>2026-05-22T02:49:56.412Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ht-two-sample-t-means.html</loc>
     <lastmod>2026-05-22T02:49:56.416Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/which-test.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/hypothesis-testing-overview.html</loc>
+    <lastmod>2026-05-22T02:49:56.412Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/power-sample-size.html</loc>
+    <lastmod>2026-05-22T02:49:56.411Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/process-capability.html</loc>
     <lastmod>2026-05-22T02:52:06.004Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/anova-table-examples.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/random-effects-model.html</loc>
+    <lastmod>2026-05-22T02:43:46.160Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-ci.html</loc>
+    <lastmod>2026-05-22T02:52:06.003Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/regression-mlr.html</loc>
+    <lastmod>2026-05-22T02:52:06.007Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/ss-decomposition.html</loc>
+    <lastmod>2026-05-22T02:52:06.006Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/taxonomy.html</loc>
+    <lastmod>2026-05-22T16:21:57.325Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/concepts/variance-estimation.html</loc>
+    <lastmod>2026-05-22T02:52:06.007Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/2k-factorial-examples.html</loc>
+    <lastmod>2026-05-22T02:43:46.152Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/control-chart-examples.html</loc>
+    <lastmod>2026-05-22T02:52:06.002Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/crd-examples.html</loc>
+    <lastmod>2026-05-22T02:43:46.151Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/hw1-examples.html</loc>
+    <lastmod>2026-05-22T11:39:50.696Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/model-adequacy-examples.html</loc>
     <lastmod>2026-05-22T02:52:06.001Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/control-chart-practice.html</loc>
-    <lastmod>2026-05-22T02:52:06.000Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/regression-examples.html</loc>
+    <lastmod>2026-05-22T11:42:00.840Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/factorial-examples.html</loc>
-    <lastmod>2026-05-22T02:43:46.149Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/index.html</loc>
+    <lastmod>2026-05-22T16:21:51.428Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/hw4-drill-examples.html</loc>
-    <lastmod>2026-05-22T11:40:25.933Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/regression-ci-examples.html</loc>
-    <lastmod>2026-05-22T02:52:06.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/examples/two-sample-examples.html</loc>
-    <lastmod>2026-05-22T11:41:11.582Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/anova-r.html</loc>
-    <lastmod>2026-05-22T02:43:46.168Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/data-wrangling-r.html</loc>
-    <lastmod>2026-05-22T02:43:46.169Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/hypothesis-tests-r.html</loc>
-    <lastmod>2026-05-22T02:49:56.416Z</lastmod>
-  </url>
-  <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/regression-r.html</loc>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/control-charts-r.html</loc>
     <lastmod>2026-05-22T02:52:06.009Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/anova-design-guide.html</loc>
-    <lastmod>2026-05-22T02:43:46.171Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/factorial-anova-r.html</loc>
+    <lastmod>2026-05-22T02:43:46.169Z</lastmod>
   </url>
   <url>
-    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/ht-tests-overview.html</loc>
-    <lastmod>2026-05-22T02:52:21.136Z</lastmod>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/reading-r-output.html</loc>
+    <lastmod>2026-05-22T02:52:06.009Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/r-code/summary-stats-r.html</loc>
+    <lastmod>2026-05-22T02:49:56.416Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/formula-sheet.html</loc>
+    <lastmod>2026-05-22T02:52:06.010Z</lastmod>
+  </url>
+  <url>
+    <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/knowledge-dimensions.html</loc>
+    <lastmod>2026-05-22T16:21:13.021Z</lastmod>
   </url>
   <url>
     <loc>https://warrenrross.github.io/Stats_Wiki_Dojo_plus/wiki/reference/quick-reference-section4.html</loc>

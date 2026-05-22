@@ -726,6 +726,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td><a href="../../wiki/examples/hw1-examples.html">hw1-examples</a></td>
+<td>“Find P(X &gt; x) / compute quantile / sample mean, sd, variance”</td>
+</tr>
+<tr class="even">
+<td><a href="../../wiki/examples/hw4-drill-examples.html">hw4-drill-examples</a></td>
+<td>“Tidy a time series / uncount a frequency table / reshape with tsibble”</td>
+</tr>
+<tr class="odd">
+<td><a href="../../wiki/examples/two-sample-examples.html">two-sample-examples</a></td>
+<td>“Compare two group means / choose pooled vs Welch t / paired t-test”</td>
+</tr>
+<tr class="even">
+<td><a href="../../wiki/examples/regression-examples.html">regression-examples</a></td>
+<td>“Fit SLR / read lm() output / complete ANOVA table / non-zero null β₁ test”</td>
+</tr>
+<tr class="odd">
 <td><a href="../../wiki/examples/regression-ci-examples.html">regression-ci-examples</a></td>
 <td>“Find CI on β₁ / CI on mean response / PI on a new obs”</td>
 </tr>
@@ -795,6 +811,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>CRD and RCBD templates, scalar extraction</td>
 </tr>
 <tr class="odd">
+<td><a href="../../wiki/r-code/data-wrangling-r.html">data-wrangling-r</a></td>
+<td>Wide-to-long reshaping with melt(); NA handling for unbalanced layouts</td>
+</tr>
+<tr class="even">
 <td><a href="../../wiki/r-code/factorial-anova-r.html">factorial-anova-r</a></td>
 <td>Multi-factor and 2^k patterns, DanielPlot()</td>
 </tr>
@@ -845,7 +865,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="related" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="related"><span class="header-section-number">1.4</span> Related</h2>
 <ul>
-<li>[[knowledge-dimensions]] — full theoretical grounding (Anderson, Schema Theory, Cognitive Load)</li>
+<li><a href="../../wiki/reference/knowledge-dimensions.html">knowledge-dimensions</a> — theoretical grounding for the CPS framework (Anderson, Schema Theory, Cognitive Load, Threshold Concepts)</li>
 <li><a href="../../wiki/concepts/which-test.html">which-test</a> — Tier 2 meta-procedure for test selection</li>
 <li><a href="../../wiki/reference/formula-sheet.html">formula-sheet</a> — cross-tier reference (untiered)</li>
 </ul>
@@ -1400,48 +1420,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Page <span class="pp">|</span> Trigger Scenario <span class="pp">|</span></span>
 <span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|-----------------|</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">regression-ci-examples</span><span class="co">](../examples/regression-ci-examples.md)</span> <span class="pp">|</span> "Find CI on β₁ / CI on mean response / PI on a new obs" <span class="pp">|</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">model-adequacy-examples</span><span class="co">](../examples/model-adequacy-examples.md)</span> <span class="pp">|</span> "Diagnose residual plots and check assumptions" <span class="pp">|</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">anova-table-examples</span><span class="co">](../examples/anova-table-examples.md)</span> <span class="pp">|</span> "Complete the partial ANOVA / regression summary table" <span class="pp">|</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">control-chart-examples</span><span class="co">](../examples/control-chart-examples.md)</span> <span class="pp">|</span> "Apply WE rules / read qcc output / compute Cp/Cpk" <span class="pp">|</span></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">control-chart-practice</span><span class="co">](../examples/control-chart-practice.md)</span> <span class="pp">|</span> "Compute X̄/R chart limits / p-chart limits from scratch" <span class="pp">|</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">crd-examples</span><span class="co">](../examples/crd-examples.md)</span> <span class="pp">|</span> "Run one-way ANOVA in R; compute CI on treatment difference" <span class="pp">|</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">factorial-examples</span><span class="co">](../examples/factorial-examples.md)</span> <span class="pp">|</span> "Interpret 2-factor ANOVA; complete partial ANOVA table" <span class="pp">|</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">2k-factorial-examples</span><span class="co">](../examples/2k-factorial-examples.md)</span> <span class="pp">|</span> "Compute effects manually / read Daniel plot" <span class="pp">|</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tier 3 — Scripts (R Code)</span></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Page <span class="pp">|</span> What It Automates <span class="pp">|</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------------------|</span></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">summary-stats-r</span><span class="co">](../r-code/summary-stats-r.md)</span> <span class="pp">|</span> Descriptive statistics in R <span class="pp">|</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">hypothesis-tests-r</span><span class="co">](../r-code/hypothesis-tests-r.md)</span> <span class="pp">|</span> t.test(), var.test(), chisq.test(), prop.test() <span class="pp">|</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">regression-r</span><span class="co">](../r-code/regression-r.md)</span> <span class="pp">|</span> lm(), anova(), confint(), predict(), diagnostics <span class="pp">|</span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">control-charts-r</span><span class="co">](../r-code/control-charts-r.md)</span> <span class="pp">|</span> qcc package charts and process.capability() <span class="pp">|</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">reading-r-output</span><span class="co">](../r-code/reading-r-output.md)</span> <span class="pp">|</span> Translate every R output term to teacher phrasing <span class="pp">|</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">anova-r</span><span class="co">](../r-code/anova-r.md)</span> <span class="pp">|</span> CRD and RCBD templates, scalar extraction <span class="pp">|</span></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">factorial-anova-r</span><span class="co">](../r-code/factorial-anova-r.md)</span> <span class="pp">|</span> Multi-factor and 2^k patterns, DanielPlot() <span class="pp">|</span></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reference Pages (Untiered)</span></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Page <span class="pp">|</span> Purpose <span class="pp">|</span></span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|</span></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">formula-sheet</span><span class="co">](../reference/formula-sheet.md)</span> <span class="pp">|</span> All formulas, all sections <span class="pp">|</span></span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">which-test-flowchart</span><span class="co">](../reference/which-test-flowchart.md)</span> <span class="pp">|</span> Quick test-selection flowchart <span class="pp">|</span></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">ht-tests-overview</span><span class="co">](../reference/ht-tests-overview.md)</span> <span class="pp">|</span> Unit 2 all-tests summary table (a–j) with links to per-test pages <span class="pp">|</span></span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">quick-reference-section3</span><span class="co">](../reference/quick-reference-section3.md)</span> <span class="pp">|</span> Exam 3 print-ready formula sheet <span class="pp">|</span></span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">quick-reference-section4</span><span class="co">](../reference/quick-reference-section4.md)</span> <span class="pp">|</span> Unit 5 compact formula sheet <span class="pp">|</span></span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">anova-design-guide</span><span class="co">](../reference/anova-design-guide.md)</span> <span class="pp">|</span> DOE design decision table <span class="pp">|</span></span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related</span></span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>[<span class="co">[</span><span class="ot">knowledge-dimensions</span><span class="co">]</span>] — full theoretical grounding (Anderson, Schema Theory, Cognitive Load)</span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">which-test</span><span class="co">](which-test.md)</span> — Tier 2 meta-procedure for test selection</span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">formula-sheet</span><span class="co">](../reference/formula-sheet.md)</span> — cross-tier reference (untiered)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">hw1-examples</span><span class="co">](../examples/hw1-examples.md)</span> <span class="pp">|</span> "Find P(X &gt; x) / compute quantile / sample mean, sd, variance" <span class="pp">|</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">hw4-drill-examples</span><span class="co">](../examples/hw4-drill-examples.md)</span> <span class="pp">|</span> "Tidy a time series / uncount a frequency table / reshape with tsibble" <span class="pp">|</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">two-sample-examples</span><span class="co">](../examples/two-sample-examples.md)</span> <span class="pp">|</span> "Compare two group means / choose pooled vs Welch t / paired t-test" <span class="pp">|</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">regression-examples</span><span class="co">](../examples/regression-examples.md)</span> <span class="pp">|</span> "Fit SLR / read lm() output / complete ANOVA table / non-zero null β₁ test" <span class="pp">|</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">regression-ci-examples</span><span class="co">](../examples/regression-ci-examples.md)</span> <span class="pp">|</span> "Find CI on β₁ / CI on mean response / PI on a new obs" <span class="pp">|</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">model-adequacy-examples</span><span class="co">](../examples/model-adequacy-examples.md)</span> <span class="pp">|</span> "Diagnose residual plots and check assumptions" <span class="pp">|</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">anova-table-examples</span><span class="co">](../examples/anova-table-examples.md)</span> <span class="pp">|</span> "Complete the partial ANOVA / regression summary table" <span class="pp">|</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">control-chart-examples</span><span class="co">](../examples/control-chart-examples.md)</span> <span class="pp">|</span> "Apply WE rules / read qcc output / compute Cp/Cpk" <span class="pp">|</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">control-chart-practice</span><span class="co">](../examples/control-chart-practice.md)</span> <span class="pp">|</span> "Compute X̄/R chart limits / p-chart limits from scratch" <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">crd-examples</span><span class="co">](../examples/crd-examples.md)</span> <span class="pp">|</span> "Run one-way ANOVA in R; compute CI on treatment difference" <span class="pp">|</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">factorial-examples</span><span class="co">](../examples/factorial-examples.md)</span> <span class="pp">|</span> "Interpret 2-factor ANOVA; complete partial ANOVA table" <span class="pp">|</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">2k-factorial-examples</span><span class="co">](../examples/2k-factorial-examples.md)</span> <span class="pp">|</span> "Compute effects manually / read Daniel plot" <span class="pp">|</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tier 3 — Scripts (R Code)</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Page <span class="pp">|</span> What It Automates <span class="pp">|</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------------------|</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">summary-stats-r</span><span class="co">](../r-code/summary-stats-r.md)</span> <span class="pp">|</span> Descriptive statistics in R <span class="pp">|</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">hypothesis-tests-r</span><span class="co">](../r-code/hypothesis-tests-r.md)</span> <span class="pp">|</span> t.test(), var.test(), chisq.test(), prop.test() <span class="pp">|</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">regression-r</span><span class="co">](../r-code/regression-r.md)</span> <span class="pp">|</span> lm(), anova(), confint(), predict(), diagnostics <span class="pp">|</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">control-charts-r</span><span class="co">](../r-code/control-charts-r.md)</span> <span class="pp">|</span> qcc package charts and process.capability() <span class="pp">|</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">reading-r-output</span><span class="co">](../r-code/reading-r-output.md)</span> <span class="pp">|</span> Translate every R output term to teacher phrasing <span class="pp">|</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">anova-r</span><span class="co">](../r-code/anova-r.md)</span> <span class="pp">|</span> CRD and RCBD templates, scalar extraction <span class="pp">|</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">data-wrangling-r</span><span class="co">](../r-code/data-wrangling-r.md)</span> <span class="pp">|</span> Wide-to-long reshaping with melt(); NA handling for unbalanced layouts <span class="pp">|</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">factorial-anova-r</span><span class="co">](../r-code/factorial-anova-r.md)</span> <span class="pp">|</span> Multi-factor and 2^k patterns, DanielPlot() <span class="pp">|</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reference Pages (Untiered)</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Page <span class="pp">|</span> Purpose <span class="pp">|</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">formula-sheet</span><span class="co">](../reference/formula-sheet.md)</span> <span class="pp">|</span> All formulas, all sections <span class="pp">|</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">which-test-flowchart</span><span class="co">](../reference/which-test-flowchart.md)</span> <span class="pp">|</span> Quick test-selection flowchart <span class="pp">|</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">ht-tests-overview</span><span class="co">](../reference/ht-tests-overview.md)</span> <span class="pp">|</span> Unit 2 all-tests summary table (a–j) with links to per-test pages <span class="pp">|</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">quick-reference-section3</span><span class="co">](../reference/quick-reference-section3.md)</span> <span class="pp">|</span> Exam 3 print-ready formula sheet <span class="pp">|</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">quick-reference-section4</span><span class="co">](../reference/quick-reference-section4.md)</span> <span class="pp">|</span> Unit 5 compact formula sheet <span class="pp">|</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">anova-design-guide</span><span class="co">](../reference/anova-design-guide.md)</span> <span class="pp">|</span> DOE design decision table <span class="pp">|</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">knowledge-dimensions</span><span class="co">](../reference/knowledge-dimensions.md)</span> — theoretical grounding for the CPS framework (Anderson, Schema Theory, Cognitive Load, Threshold Concepts)</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">which-test</span><span class="co">](which-test.md)</span> — Tier 2 meta-procedure for test selection</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">formula-sheet</span><span class="co">](../reference/formula-sheet.md)</span> — cross-tier reference (untiered)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
