@@ -109,20 +109,31 @@ Stats_Wiki_Dojo_plus/
 
 | Issue | Status | Notes |
 |-------|--------|-------|
-| WebR not yet added to dojo | Pending | Need to verify `qcc`, `agricolae`, `FrF2` availability at `https://repo.r-wasm.org/bin/emscripten/contrib/4.4/PACKAGES`; if available, convert `{r}` interactive chunks to `{webr-r}` and add `webr` engine to frontmatter |
-| `_freeze/` untracked | Pending | Commit `_freeze/` directory — needed for GitHub Pages CI to render without R |
-| `fill-anova-table.qmd` | Unverified | Uses base R only — most likely to work with WebR since no packages needed |
-| GitHub Pages deploy | Not configured | `quarto publish gh-pages` not yet run; site URL set in `_quarto.yml` but never pushed to Pages branch |
+| WebR dojo conversion | Done (2026-05-21) | All 5 dojo pages have `{webr-r}` interactive sections; quarto-webr 0.4.4 extension in `_extensions/` |
+| `_freeze/` untracked | Done (2026-05-21) | Committed; GitHub Pages CI will use cached output |
+| GitHub Pages deploy | Done (2026-05-21) | Live at `https://warrenrross.github.io/Stats_Wiki_Dojo_plus/`; gh-pages branch bootstrapped manually |
 | Two empty stubs in wiki root | Harmless | `wiki/process-capability.md` and `wiki/regression-examples.md` are 1-line orphan stubs from original Stats_Notes; leave unless cleaning up |
+
+### Future deploys
+
+After any content change, rebuild and push the gh-pages branch:
+```bash
+quarto render
+cd /tmp && rm -rf gh-pages-deploy && git clone --branch gh-pages \
+  https://github.com/warrenrross/Stats_Wiki_Dojo_plus.git gh-pages-deploy
+cp -r _site/. /tmp/gh-pages-deploy/
+cd /tmp/gh-pages-deploy && git add -A && git commit -m "Deploy: <description>"
+TOKEN=$(security find-internet-password -s github.com -w)
+git push "https://warrenrross:${TOKEN}@github.com/warrenrross/Stats_Wiki_Dojo_plus.git" gh-pages
+```
+Or simply run `quarto publish gh-pages` — now that the branch exists, it will work without `--no-prompt`.
 
 ---
 
 ## Pending Tasks
 
-1. **WebR dojo conversion** — check package availability, add `webr` engine to 5 dojo files
-2. **Commit `_freeze/`** — stage and commit so GitHub Pages works without local R
-3. **Configure GitHub Pages** — run `quarto publish gh-pages` or set up CI workflow
-4. **Section 4 quick reference .docx** — `wiki/reference/quick-reference-section4.md` exists but no Word version built
+1. **Section 4 quick reference .docx** — `wiki/reference/quick-reference-section4.md` exists but no Word version built
+2. **Test WebR pages in browser** — confirm package loading works at deployed URL
 
 ---
 
@@ -153,3 +164,4 @@ Stats_Wiki_Dojo_plus/
 | Date | Work Done |
 |------|-----------|
 | 2026-05-21 | Full scaffold: GitHub repo created, Quarto installed (1.9.37), site scaffolded from Stats_Notes, render errors fixed (SCSS marker, c-chart data, root .md exclusion), 59 wiki files converted from `[[wikilinks]]` to relative Markdown links, 5 dojo drill files created, preview confirmed working |
+| 2026-05-21 | WebR added to all 5 dojo pages (quarto-webr 0.4.4); _freeze/ committed; site deployed to GitHub Pages at https://warrenrross.github.io/Stats_Wiki_Dojo_plus/ |
