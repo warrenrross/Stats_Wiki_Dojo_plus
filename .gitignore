@@ -12,3 +12,6 @@ wiki/**/*.html
 wiki/**/*.knit.md
 
 # _freeze/ is intentionally NOT ignored — commit it so GitHub Pages CI works without R
+
+# Local Claude Code permission settings (machine-specific; skills are committed separately)
+.claude/settings.local.json

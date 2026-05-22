@@ -28,6 +28,16 @@ A Quarto website for INEG 2314H — Statistical Methods. It serves as a living t
 
 ---
 
+## Local Skills
+
+Project-specific slash commands stored in `.claude/skills/`:
+
+| Skill | Trigger | What it does |
+|-------|---------|--------------|
+| `ingest-examples` | `/ingest-examples [file or description]` | Reads a source R/homework file from `../Section*/Drill/` and creates a `wiki/examples/` page using the standard template; updates `wiki/index.md` |
+
+---
+
 ## Key Workflows
 
 ### Preview
@@ -112,7 +122,8 @@ Stats_Wiki_Dojo_plus/
 | WebR dojo conversion | Done (2026-05-21) | All 5 dojo pages have `{webr-r}` interactive sections; quarto-webr 0.4.4 extension in `_extensions/` |
 | `_freeze/` untracked | Done (2026-05-21) | Committed; GitHub Pages CI will use cached output |
 | GitHub Pages deploy | Done (2026-05-21) | Live at `https://warrenrross.github.io/Stats_Wiki_Dojo_plus/`; gh-pages branch bootstrapped manually |
-| Two empty stubs in wiki root | Harmless | `wiki/process-capability.md` and `wiki/regression-examples.md` are 1-line orphan stubs from original Stats_Notes; leave unless cleaning up |
+| Two empty stubs in wiki root | Harmless | `wiki/process-capability.md` and `wiki/regression-examples.md` are 1-line orphan stubs from original Stats_Notes; leave unless cleaning up. Note: `wiki/examples/regression-examples.md` is the real page — different path. |
+| git remote tracking stale | Cosmetic | `git status` shows "N commits ahead of origin/main" even after successful push; happens because we push via full URL rather than `origin` shorthand. Remote is current — ignore the counter. |
 
 ### Future deploys
 
@@ -133,7 +144,8 @@ Or simply run `quarto publish gh-pages` — now that the branch exists, it will 
 ## Pending Tasks
 
 1. **Unit 5 quick reference .docx** — `wiki/reference/quick-reference-section4.md` exists but no Word version built
-2. **Test WebR pages in browser** — confirm package loading works at deployed URL
+2. **Test WebR pages in browser** — confirm package loading works at deployed URL (https://warrenrross.github.io/Stats_Wiki_Dojo_plus/)
+3. **Cross-link `data-wrangling-r.md`** — `wiki/r-code/data-wrangling-r.md` is not referenced from `wiki/concepts/taxonomy.md`
 
 ---
 
@@ -165,3 +177,4 @@ Or simply run `quarto publish gh-pages` — now that the branch exists, it will 
 |------|-----------|
 | 2026-05-21 | Full scaffold: GitHub repo created, Quarto installed (1.9.37), site scaffolded from Stats_Notes, render errors fixed (SCSS marker, c-chart data, root .md exclusion), wiki cross-references converted to relative Markdown links, 5 dojo drill files created, preview confirmed working |
 | 2026-05-21 | WebR added to all 5 dojo pages (quarto-webr 0.4.4); _freeze/ committed; site deployed to GitHub Pages at https://warrenrross.github.io/Stats_Wiki_Dojo_plus/ |
+| 2026-05-22 | Added README.md (human-readable site guide); replaced all Section 1–4 labels with Unit 1–5 throughout 68 files; fixed bracket links in wiki/index.md; restored Obsidian context in README + CLAUDE.md; created 4 worked example pages (hw1-examples, hw4-drill-examples, two-sample-examples, regression-examples) from source drill/homework files; redeployed to gh-pages |
