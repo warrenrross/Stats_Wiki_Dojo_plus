@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>reading-r-output – INEG 2314H — Statistical Methods</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cb9eb8060de154f7129409f226e8d1c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">INEG 2314H — Statistical Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../syllabus-path.html"> 
+<span class="menu-text">Linear Path</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lessons/index.html"> 
+<span class="menu-text">Lessons</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dojo/index.html"> 
+<span class="menu-text">Coding Dojo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../graph-navigation.html"> 
+<span class="menu-text">Knowledge Graph</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../wiki/index.html"> 
+<span class="menu-text">Wiki Index</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">INEG 2314H — Statistical Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Resource</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Suggested Linear Path</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../graph-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge Graph Navigation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lessons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/sampling-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling Distributions and the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/standard-error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standard Error — The Universal Reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Confidence Intervals</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Inference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing — The 7-Step Framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/t-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One- and Two-Sample t-Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One-Way ANOVA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple Linear Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Diagnostics and Adequacy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Quality Methods</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/control-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Chart Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/xbar-r-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">X̄/R and X̄/S Charts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/p-c-u-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">p, c, and u Charts</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Experimental Design</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/crd-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRD and One-Way ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/factorial-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Factorial ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/two-k-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2^k Factorial Designs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Coding Dojo</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coding Dojo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/simulate-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Simulate the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fit-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fit and Interpret a Regression Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/build-control-chart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Build a Control Chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fill-anova-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fill an ANOVA Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/factorial-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Factorial ANOVA in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#teacher-language-guide-reading-r-output" id="toc-teacher-language-guide-reading-r-output" class="nav-link active" data-scroll-target="#teacher-language-guide-reading-r-output"><span class="header-section-number">1</span> Teacher-Language Guide: Reading R Output</a>
+  <ul class="collapse">
+  <li><a href="#hypothesis-test-conclusions-all-tests" id="toc-hypothesis-test-conclusions-all-tests" class="nav-link" data-scroll-target="#hypothesis-test-conclusions-all-tests"><span class="header-section-number">1.1</span> Hypothesis Test Conclusions (all tests)</a></li>
+  <li><a href="#t.test-output-1-sample-or-2-sample" id="toc-t.test-output-1-sample-or-2-sample" class="nav-link" data-scroll-target="#t.test-output-1-sample-or-2-sample"><span class="header-section-number">1.2</span> <code>t.test()</code> Output (1-sample or 2-sample)</a></li>
+  <li><a href="#summarylm-regression-coefficients-table" id="toc-summarylm-regression-coefficients-table" class="nav-link" data-scroll-target="#summarylm-regression-coefficients-table"><span class="header-section-number">1.3</span> <code>summary(lm())</code> — Regression Coefficients Table</a></li>
+  <li><a href="#anovalm-output" id="toc-anovalm-output" class="nav-link" data-scroll-target="#anovalm-output"><span class="header-section-number">1.4</span> <code>anova(lm())</code> Output</a></li>
+  <li><a href="#confint-output" id="toc-confint-output" class="nav-link" data-scroll-target="#confint-output"><span class="header-section-number">1.5</span> <code>confint()</code> Output</a></li>
+  <li><a href="#predict-output" id="toc-predict-output" class="nav-link" data-scroll-target="#predict-output"><span class="header-section-number">1.6</span> <code>predict()</code> Output</a></li>
+  <li><a href="#qcc-control-chart-output" id="toc-qcc-control-chart-output" class="nav-link" data-scroll-target="#qcc-control-chart-output"><span class="header-section-number">1.7</span> <code>qcc()</code> Control Chart Output</a></li>
+  <li><a href="#process.capability-output" id="toc-process.capability-output" class="nav-link" data-scroll-target="#process.capability-output"><span class="header-section-number">1.8</span> <code>process.capability()</code> Output</a></li>
+  <li><a href="#cor.test-output" id="toc-cor.test-output" class="nav-link" data-scroll-target="#cor.test-output"><span class="header-section-number">1.9</span> <code>cor.test()</code> Output</a></li>
+  <li><a href="#r-diagnostic-plot-plotfit" id="toc-r-diagnostic-plot-plotfit" class="nav-link" data-scroll-target="#r-diagnostic-plot-plotfit"><span class="header-section-number">1.10</span> R Diagnostic Plot <code>plot(fit)</code></a></li>
+  <li><a href="#related" id="toc-related" class="nav-link" data-scroll-target="#related"><span class="header-section-number">1.11</span> Related</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+
+
+
+
+<section id="teacher-language-guide-reading-r-output" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Teacher-Language Guide: Reading R Output</h1>
+<p><strong>Purpose:</strong> Map every R output term to the statistical language your instructor expects in exam answers.</p>
+<hr>
+<section id="hypothesis-test-conclusions-all-tests" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="hypothesis-test-conclusions-all-tests"><span class="header-section-number">1.1</span> Hypothesis Test Conclusions (all tests)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>p-value vs α</th>
+<th>What to say</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>p-value &lt; α</td>
+<td>“Reject H₀ at α = X. There is <strong>sufficient evidence</strong> to conclude that [H₁ in context].”</td>
+</tr>
+<tr class="even">
+<td>p-value &gt; α</td>
+<td>“Fail to reject H₀ at α = X. There is <strong>insufficient evidence</strong> to conclude that [H₁ in context].”</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Never say “accept H₀”</strong> — always “fail to reject.”</p>
+<hr>
+</section>
+<section id="t.test-output-1-sample-or-2-sample" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="t.test-output-1-sample-or-2-sample"><span class="header-section-number">1.2</span> <code>t.test()</code> Output (1-sample or 2-sample)</h2>
+<pre><code>    One Sample t-test
+t = -2.34, df = 19, p-value = 0.031
+alternative hypothesis: true mean is not equal to 50
+95 percent confidence interval:
+ 47.21  49.85</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>R Output</th>
+<th>Teacher’s Term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>t = -2.34</code></td>
+<td>T₀ = −2.34 (test statistic t*)</td>
+</tr>
+<tr class="even">
+<td><code>df = 19</code></td>
+<td>degrees of freedom (n − 1)</td>
+</tr>
+<tr class="odd">
+<td><code>p-value = 0.031</code></td>
+<td>p-value; compare to α</td>
+</tr>
+<tr class="even">
+<td><code>95 percent confidence interval</code></td>
+<td>“We are 95% confident that μ is between 47.21 and 49.85”</td>
+</tr>
+<tr class="odd">
+<td><code>alternative hypothesis</code></td>
+<td>H₁</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="summarylm-regression-coefficients-table" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="summarylm-regression-coefficients-table"><span class="header-section-number">1.3</span> <code>summary(lm())</code> — Regression Coefficients Table</h2>
+<pre><code>Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2627.822     44.184  59.488  &lt; 2e-16 ***
+x            -37.154      2.550 -14.571  &lt; 2e-16 ***</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 50%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Teacher’s Term</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Estimate</code></td>
+<td>β̂ⱼ — least-squares estimate</td>
+<td>Coefficient estimate; report with units</td>
+</tr>
+<tr class="even">
+<td><code>Std. Error</code></td>
+<td>se(β̂ⱼ) — standard error</td>
+<td>Used in CI and t-test formulas</td>
+</tr>
+<tr class="odd">
+<td><code>t value</code></td>
+<td>T₀ — test statistic for H₀: βⱼ = 0</td>
+<td>Only valid if null IS zero</td>
+</tr>
+<tr class="even">
+<td><code>Pr(&gt;|t|)</code></td>
+<td>p-value (two-sided, null = 0)</td>
+<td>Compare to α</td>
+</tr>
+<tr class="odd">
+<td><code>***</code> / <code>**</code> / <code>*</code></td>
+<td>Significance stars</td>
+<td>Ignore for exams — use actual p-value</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bottom of summary:</strong></p>
+<pre><code>Residual standard error: 14.08 on 18 degrees of freedom
+Multiple R-squared:  0.9219,    Adjusted R-squared:  0.9175
+F-statistic: 212.3 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>R Output</th>
+<th>Teacher’s Term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Residual standard error: 14.08</code></td>
+<td>σ̂ = 14.08 (estimate of σ)</td>
+</tr>
+<tr class="even">
+<td><code>on 18 degrees of freedom</code></td>
+<td>df = n − p = n − 2 for SLR</td>
+</tr>
+<tr class="odd">
+<td><code>Multiple R-squared: 0.9219</code></td>
+<td>R² = 0.9219; “92.19% of variation in Y is explained”</td>
+</tr>
+<tr class="even">
+<td><code>Adjusted R-squared: 0.9175</code></td>
+<td>R²_adj; use when comparing models</td>
+</tr>
+<tr class="odd">
+<td><code>F-statistic: 212.3</code></td>
+<td>F₀ = 212.3</td>
+</tr>
+<tr class="even">
+<td><code>on 1 and 18 DF</code></td>
+<td>df₁ = k = 1, df₂ = n − p = 18</td>
+</tr>
+<tr class="odd">
+<td><code>p-value: &lt; 2.2e-16</code></td>
+<td>p-value for overall F-test</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="anovalm-output" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="anovalm-output"><span class="header-section-number">1.4</span> <code>anova(lm())</code> Output</h2>
+<pre><code>Analysis of Variance Table
+
+Response: y
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+x          1  42113   42113  212.33 &lt; 2.2e-16 ***
+Residuals 18   3570     198</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>R Output</th>
+<th>Teacher’s Term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Df</code> (x row)</td>
+<td>k = number of predictors</td>
+</tr>
+<tr class="even">
+<td><code>Df</code> (Residuals)</td>
+<td>n − p = error df</td>
+</tr>
+<tr class="odd">
+<td><code>Sum Sq</code> (x)</td>
+<td>SSR — Regression sum of squares</td>
+</tr>
+<tr class="even">
+<td><code>Sum Sq</code> (Residuals)</td>
+<td>SSE — Error sum of squares</td>
+</tr>
+<tr class="odd">
+<td><code>Mean Sq</code> (x)</td>
+<td>MSR = SSR/k</td>
+</tr>
+<tr class="even">
+<td><code>Mean Sq</code> (Residuals)</td>
+<td>MSE = σ̂² (error variance estimate)</td>
+</tr>
+<tr class="odd">
+<td><code>F value</code></td>
+<td>F₀ = MSR/MSE (use <code>summary()$fstatistic</code> for MLR overall)</td>
+</tr>
+<tr class="even">
+<td><code>Pr(&gt;F)</code></td>
+<td>p-value for F-test on significance of regression</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="confint-output" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="confint-output"><span class="header-section-number">1.5</span> <code>confint()</code> Output</h2>
+<pre><code>                 2.5 %    97.5 %
+(Intercept)  2534.79   2720.85
+x             -42.50    -31.81</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Reading</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Row <code>(Intercept)</code></td>
+<td>95% CI on β₀: (2534.79, 2720.85)</td>
+</tr>
+<tr class="even">
+<td>Row <code>x</code></td>
+<td>95% CI on β₁: (−42.50, −31.81)</td>
+</tr>
+<tr class="odd">
+<td>0 NOT in CI for <code>x</code></td>
+<td>Reject H₀: β₁ = 0; β₁ is significant</td>
+</tr>
+<tr class="even">
+<td>0 IN CI for <code>x</code></td>
+<td>Fail to reject H₀: β₁ = 0; β₁ is not significant</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Column name changes with confidence level:</strong> - 90% → <code>"5 %"</code> and <code>"95 %"</code> - 95% → <code>"2.5 %"</code> and <code>"97.5 %"</code> - 99% → <code>"0.5 %"</code> and <code>"99.5 %"</code></p>
+<hr>
+</section>
+<section id="predict-output" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="predict-output"><span class="header-section-number">1.6</span> <code>predict()</code> Output</h2>
+<pre><code>    fit      lwr      upr
+1  267.3   241.7   292.9</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Output</th>
+<th>CI on mean response</th>
+<th>PI on future obs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>fit</code></td>
+<td>ŷ₀ = point estimate</td>
+<td>Same</td>
+</tr>
+<tr class="even">
+<td><code>lwr</code></td>
+<td>Lower bound</td>
+<td>Lower bound (wider)</td>
+</tr>
+<tr class="odd">
+<td><code>upr</code></td>
+<td>Upper bound</td>
+<td>Upper bound (wider)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Teacher’s phrasing (CI):</strong> “We are X% confident that the <strong>mean</strong> [Y] at x = [x₀] is between [lwr] and [upr].”</p>
+<p><strong>Teacher’s phrasing (PI):</strong> “We are X% confident that a <strong>new individual</strong> [Y] at x = [x₀] will fall between [lwr] and [upr].”</p>
+<hr>
+</section>
+<section id="qcc-control-chart-output" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="qcc-control-chart-output"><span class="header-section-number">1.7</span> <code>qcc()</code> Control Chart Output</h2>
+<pre><code>Process statistics
+               mean   std.dev
+          1.491111 0.1113587
+
+Control limits
+    LCL   UCL
+1.369 1.614</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Output</th>
+<th>Teacher’s Term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mean</code></td>
+<td>x̄̄ = grand mean (center line of X̄ chart)</td>
+</tr>
+<tr class="even">
+<td><code>std.dev</code></td>
+<td>σ̂ estimated from R or S chart</td>
+</tr>
+<tr class="odd">
+<td><code>LCL</code> / <code>UCL</code></td>
+<td>Lower/Upper control limits</td>
+</tr>
+<tr class="even">
+<td>Red plotted points</td>
+<td>Out-of-control signals</td>
+</tr>
+<tr class="odd">
+<td>Orange/yellow zones</td>
+<td>Warning zones (2σ)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>In control:</strong> “The process appears to be in statistical control.”<br>
+<strong>Out of control:</strong> “Point(s) [#] fall outside the 3σ control limits, indicating the process is out of statistical control.”</p>
+<hr>
+</section>
+<section id="process.capability-output" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="process.capability-output"><span class="header-section-number">1.8</span> <code>process.capability()</code> Output</h2>
+<pre><code>Process Capability Analysis
+
+          mean    std.dev
+     1.491111 0.09817419
+
+     Target         LSL         USL
+       1.500       1.300       1.700
+
+Cp    Cpk   Cpm
+2.26  2.22  2.25</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Output</th>
+<th>Teacher’s Term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Cp</code></td>
+<td>Process capability ratio — spread vs spec width</td>
+</tr>
+<tr class="even">
+<td><code>Cpk</code></td>
+<td>Process capability index — accounts for centering</td>
+</tr>
+<tr class="odd">
+<td><code>Cp ≥ 1.33</code></td>
+<td>“The process is capable of meeting specifications.”</td>
+</tr>
+<tr class="even">
+<td><code>Cpk &lt; Cp</code></td>
+<td>“The process is off-center.”</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="cor.test-output" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="cor.test-output"><span class="header-section-number">1.9</span> <code>cor.test()</code> Output</h2>
+<pre><code>Pearson's product-moment correlation
+
+t = 8.54, df = 30, p-value = 3.2e-09
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.743  0.938
+sample estimates:
+  cor 
+0.843</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Output</th>
+<th>Teacher’s Term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cor = 0.843</code></td>
+<td>r = 0.843 (Pearson correlation)</td>
+</tr>
+<tr class="even">
+<td><code>t = 8.54, df = 30</code></td>
+<td>T₀ = 8.54 for H₀: ρ = 0</td>
+</tr>
+<tr class="odd">
+<td><code>p-value = 3.2e-09</code></td>
+<td>p-value; &lt; α → significant linear relationship</td>
+</tr>
+<tr class="even">
+<td><code>95 percent confidence interval</code></td>
+<td>CI on ρ</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="r-diagnostic-plot-plotfit" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="r-diagnostic-plot-plotfit"><span class="header-section-number">1.10</span> R Diagnostic Plot <code>plot(fit)</code></h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 19%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plot #</th>
+<th>Name</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Residuals vs Fitted</td>
+<td>Random scatter around 0 → linearity + constant variance OK</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Normal Q-Q</td>
+<td>Points on line → normality OK</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Scale-Location</td>
+<td>Flat line → constant variance OK</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Residuals vs Leverage</td>
+<td>High Cook’s D → influential points</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="related" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="related"><span class="header-section-number">1.11</span> Related</h2>
+<ul>
+<li><a href="../../wiki/r-code/regression-r.html">regression-r</a></li>
+<li><a href="../../wiki/r-code/hypothesis-tests-r.html">hypothesis-tests-r</a></li>
+<li><a href="../../wiki/r-code/control-charts-r.html">control-charts-r</a></li>
+</ul>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/warrenrross\.github\.io\/Stats_Wiki_Dojo_plus\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [r-code, unit-2, unit-3]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">tier:</span><span class="co"> script</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">sources:</span><span class="co"> [Section3_Study_Guide.Rmd, L34-35_Study_Sheet.Rmd, L36-37_Study_Guide.Rmd]</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Teacher-Language Guide: Reading R Output</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>**Purpose:** Map every R output term to the statistical language your instructor expects in exam answers.</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hypothesis Test Conclusions (all tests)</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> p-value vs α <span class="pp">|</span> What to say <span class="pp">|</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------|------------|</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> p-value &lt; α <span class="pp">|</span> "Reject H₀ at α = X. There is **sufficient evidence** to conclude that <span class="co">[</span><span class="ot">H₁ in context</span><span class="co">]</span>." <span class="pp">|</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> p-value &gt; α <span class="pp">|</span> "Fail to reject H₀ at α = X. There is **insufficient evidence** to conclude that <span class="co">[</span><span class="ot">H₁ in context</span><span class="co">]</span>." <span class="pp">|</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>**Never say "accept H₀"** — always "fail to reject."</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## `t.test()` Output (1-sample or 2-sample)</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="in">    One Sample t-test</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="in">t = -2.34, df = 19, p-value = 0.031</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="in">alternative hypothesis: true mean is not equal to 50</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="in">95 percent confidence interval:</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in"> 47.21  49.85</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R Output <span class="pp">|</span> Teacher's Term <span class="pp">|</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|---------------|</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`t = -2.34`</span> <span class="pp">|</span> T₀ = −2.34 (test statistic t*) <span class="pp">|</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`df = 19`</span> <span class="pp">|</span> degrees of freedom (n − 1) <span class="pp">|</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`p-value = 0.031`</span> <span class="pp">|</span> p-value; compare to α <span class="pp">|</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`95 percent confidence interval`</span> <span class="pp">|</span> "We are 95% confident that μ is between 47.21 and 49.85" <span class="pp">|</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`alternative hypothesis`</span> <span class="pp">|</span> H₁ <span class="pp">|</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## `summary(lm())` — Regression Coefficients Table</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="in">Coefficients:</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="in">             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="in">(Intercept) 2627.822     44.184  59.488  &lt; 2e-16 ***</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="in">x            -37.154      2.550 -14.571  &lt; 2e-16 ***</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column <span class="pp">|</span> Teacher's Term <span class="pp">|</span> Usage <span class="pp">|</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|---------------|-------|</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Estimate`</span> <span class="pp">|</span> β̂ⱼ — least-squares estimate <span class="pp">|</span> Coefficient estimate; report with units <span class="pp">|</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Std. Error`</span> <span class="pp">|</span> se(β̂ⱼ) — standard error <span class="pp">|</span> Used in CI and t-test formulas <span class="pp">|</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`t value`</span> <span class="pp">|</span> T₀ — test statistic for H₀: βⱼ = 0 <span class="pp">|</span> Only valid if null IS zero <span class="pp">|</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Pr(&gt;|t|)`</span> <span class="pp">|</span> p-value (two-sided, null = 0) <span class="pp">|</span> Compare to α <span class="pp">|</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`***`</span> / <span class="in">`**`</span> / <span class="in">`*`</span> <span class="pp">|</span> Significance stars <span class="pp">|</span> Ignore for exams — use actual p-value <span class="pp">|</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>**Bottom of summary:**</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="in">Residual standard error: 14.08 on 18 degrees of freedom</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="in">Multiple R-squared:  0.9219,    Adjusted R-squared:  0.9175</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="in">F-statistic: 212.3 on 1 and 18 DF,  p-value: &lt; 2.2e-16</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R Output <span class="pp">|</span> Teacher's Term <span class="pp">|</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|---------------|</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Residual standard error: 14.08`</span> <span class="pp">|</span> σ̂ = 14.08 (estimate of σ) <span class="pp">|</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`on 18 degrees of freedom`</span> <span class="pp">|</span> df = n − p = n − 2 for SLR <span class="pp">|</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Multiple R-squared: 0.9219`</span> <span class="pp">|</span> R² = 0.9219; "92.19% of variation in Y is explained" <span class="pp">|</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Adjusted R-squared: 0.9175`</span> <span class="pp">|</span> R²_adj; use when comparing models <span class="pp">|</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`F-statistic: 212.3`</span> <span class="pp">|</span> F₀ = 212.3 <span class="pp">|</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`on 1 and 18 DF`</span> <span class="pp">|</span> df₁ = k = 1, df₂ = n − p = 18 <span class="pp">|</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`p-value: &lt; 2.2e-16`</span> <span class="pp">|</span> p-value for overall F-test <span class="pp">|</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## `anova(lm())` Output</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="in">Analysis of Variance Table</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="in">Response: y</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="in">          Df Sum Sq Mean Sq F value    Pr(&gt;F)    </span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="in">x          1  42113   42113  212.33 &lt; 2.2e-16 ***</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="in">Residuals 18   3570     198</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R Output <span class="pp">|</span> Teacher's Term <span class="pp">|</span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|---------------|</span></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Df`</span> (x row) <span class="pp">|</span> k = number of predictors <span class="pp">|</span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Df`</span> (Residuals) <span class="pp">|</span> n − p = error df <span class="pp">|</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Sum Sq`</span> (x) <span class="pp">|</span> SSR — Regression sum of squares <span class="pp">|</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Sum Sq`</span> (Residuals) <span class="pp">|</span> SSE — Error sum of squares <span class="pp">|</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Mean Sq`</span> (x) <span class="pp">|</span> MSR = SSR/k <span class="pp">|</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Mean Sq`</span> (Residuals) <span class="pp">|</span> MSE = σ̂² (error variance estimate) <span class="pp">|</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`F value`</span> <span class="pp">|</span> F₀ = MSR/MSE (use <span class="in">`summary()$fstatistic`</span> for MLR overall) <span class="pp">|</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Pr(&gt;F)`</span> <span class="pp">|</span> p-value for F-test on significance of regression <span class="pp">|</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## `confint()` Output</span></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="in">                 2.5 %    97.5 %</span></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="in">(Intercept)  2534.79   2720.85</span></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="in">x             -42.50    -31.81</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reading <span class="pp">|</span> Interpretation <span class="pp">|</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|---------------|</span></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Row <span class="in">`(Intercept)`</span> <span class="pp">|</span> 95% CI on β₀: (2534.79, 2720.85) <span class="pp">|</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Row <span class="in">`x`</span> <span class="pp">|</span> 95% CI on β₁: (−42.50, −31.81) <span class="pp">|</span></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0 NOT in CI for <span class="in">`x`</span> <span class="pp">|</span> Reject H₀: β₁ = 0; β₁ is significant <span class="pp">|</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0 IN CI for <span class="in">`x`</span> <span class="pp">|</span> Fail to reject H₀: β₁ = 0; β₁ is not significant <span class="pp">|</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>**Column name changes with confidence level:**</span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>90% → <span class="in">`"5 %"`</span> and <span class="in">`"95 %"`</span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>95% → <span class="in">`"2.5 %"`</span> and <span class="in">`"97.5 %"`</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>99% → <span class="in">`"0.5 %"`</span> and <span class="in">`"99.5 %"`</span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## `predict()` Output</span></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="in">    fit      lwr      upr</span></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="in">1  267.3   241.7   292.9</span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Output <span class="pp">|</span> CI on mean response <span class="pp">|</span> PI on future obs <span class="pp">|</span></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|--------------------|--------------------|</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fit`</span> <span class="pp">|</span> ŷ₀ = point estimate <span class="pp">|</span> Same <span class="pp">|</span></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`lwr`</span> <span class="pp">|</span> Lower bound <span class="pp">|</span> Lower bound (wider) <span class="pp">|</span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`upr`</span> <span class="pp">|</span> Upper bound <span class="pp">|</span> Upper bound (wider) <span class="pp">|</span></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>**Teacher's phrasing (CI):** "We are X% confident that the **mean** <span class="co">[</span><span class="ot">Y</span><span class="co">]</span> at x = <span class="co">[</span><span class="ot">x₀</span><span class="co">]</span> is between <span class="co">[</span><span class="ot">lwr</span><span class="co">]</span> and <span class="co">[</span><span class="ot">upr</span><span class="co">]</span>."</span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>**Teacher's phrasing (PI):** "We are X% confident that a **new individual** <span class="co">[</span><span class="ot">Y</span><span class="co">]</span> at x = <span class="co">[</span><span class="ot">x₀</span><span class="co">]</span> will fall between <span class="co">[</span><span class="ot">lwr</span><span class="co">]</span> and <span class="co">[</span><span class="ot">upr</span><span class="co">]</span>."</span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## `qcc()` Control Chart Output</span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="in">Process statistics</span></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="in">               mean   std.dev</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="in">          1.491111 0.1113587</span></span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="in">Control limits</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="in">    LCL   UCL</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="in">1.369 1.614</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Output <span class="pp">|</span> Teacher's Term <span class="pp">|</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|---------------|</span></span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`mean`</span> <span class="pp">|</span> x̄̄ = grand mean (center line of X̄ chart) <span class="pp">|</span></span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`std.dev`</span> <span class="pp">|</span> σ̂ estimated from R or S chart <span class="pp">|</span></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`LCL`</span> / <span class="in">`UCL`</span> <span class="pp">|</span> Lower/Upper control limits <span class="pp">|</span></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Red plotted points <span class="pp">|</span> Out-of-control signals <span class="pp">|</span></span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Orange/yellow zones <span class="pp">|</span> Warning zones (2σ) <span class="pp">|</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>**In control:** "The process appears to be in statistical control."  </span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>**Out of control:** "Point(s) <span class="co">[</span><span class="ot">#</span><span class="co">]</span> fall outside the 3σ control limits, indicating the process is out of statistical control."</span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## `process.capability()` Output</span></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="in">Process Capability Analysis</span></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="in">          mean    std.dev</span></span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="in">     1.491111 0.09817419</span></span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="in">     Target         LSL         USL</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="in">       1.500       1.300       1.700</span></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a><span class="in">Cp    Cpk   Cpm</span></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="in">2.26  2.22  2.25</span></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Output <span class="pp">|</span> Teacher's Term <span class="pp">|</span></span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|---------------|</span></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Cp`</span> <span class="pp">|</span> Process capability ratio — spread vs spec width <span class="pp">|</span></span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Cpk`</span> <span class="pp">|</span> Process capability index — accounts for centering <span class="pp">|</span></span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Cp ≥ 1.33`</span> <span class="pp">|</span> "The process is capable of meeting specifications." <span class="pp">|</span></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Cpk &lt; Cp`</span> <span class="pp">|</span> "The process is off-center." <span class="pp">|</span></span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## `cor.test()` Output</span></span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="in">Pearson's product-moment correlation</span></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="in">t = 8.54, df = 30, p-value = 3.2e-09</span></span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="in">alternative hypothesis: true correlation is not equal to 0</span></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a><span class="in">95 percent confidence interval:</span></span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="in"> 0.743  0.938</span></span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="in">sample estimates:</span></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="in">  cor </span></span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="in">0.843</span></span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Output <span class="pp">|</span> Teacher's Term <span class="pp">|</span></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|---------------|</span></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cor = 0.843`</span> <span class="pp">|</span> r = 0.843 (Pearson correlation) <span class="pp">|</span></span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`t = 8.54, df = 30`</span> <span class="pp">|</span> T₀ = 8.54 for H₀: ρ = 0 <span class="pp">|</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`p-value = 3.2e-09`</span> <span class="pp">|</span> p-value; &lt; α → significant linear relationship <span class="pp">|</span></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`95 percent confidence interval`</span> <span class="pp">|</span> CI on ρ <span class="pp">|</span></span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## R Diagnostic Plot `plot(fit)`</span></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Plot # <span class="pp">|</span> Name <span class="pp">|</span> What to look for <span class="pp">|</span></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|------|-----------------|</span></span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> Residuals vs Fitted <span class="pp">|</span> Random scatter around 0 → linearity + constant variance OK <span class="pp">|</span></span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> Normal Q-Q <span class="pp">|</span> Points on line → normality OK <span class="pp">|</span></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> Scale-Location <span class="pp">|</span> Flat line → constant variance OK <span class="pp">|</span></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> Residuals vs Leverage <span class="pp">|</span> High Cook's D → influential points <span class="pp">|</span></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related</span></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">regression-r</span><span class="co">](regression-r.md)</span></span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">hypothesis-tests-r</span><span class="co">](hypothesis-tests-r.md)</span></span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">control-charts-r</span><span class="co">](control-charts-r.md)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
