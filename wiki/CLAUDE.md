@@ -289,4 +289,3 @@ These decisions have been made and should not be revisited without deliberate in
 | Item | Status | Notes |
 |------|--------|-------|
 | Unit 5 quick reference .docx | Not built | `quick-reference-section4.md` exists but no print-ready Word version; build if exam prep requires it |
-| data-wrangling-r stub | Exists but not cross-linked | `r-code/data-wrangling-r.md` not referenced from taxonomy.md |

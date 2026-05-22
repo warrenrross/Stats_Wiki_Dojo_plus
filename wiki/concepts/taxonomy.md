@@ -134,5 +134,6 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 ---
 
 ## Related
+- [knowledge-dimensions](../reference/knowledge-dimensions.md) — theoretical grounding for the CPS framework (Anderson, Schema Theory, Cognitive Load, Threshold Concepts)
 - [which-test](which-test.md) — Tier 2 meta-procedure for test selection
 - [formula-sheet](../reference/formula-sheet.md) — cross-tier reference (untiered)

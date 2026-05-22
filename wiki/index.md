@@ -154,6 +154,7 @@ Quick-lookup pages spanning multiple tiers.
 | [anova-design-guide](reference/anova-design-guide.md) | Design decision table (CRD/RCBD/factorial/2^k), df by design, LSD/CI formulas, key distinctions |
 | [quick-reference-section4](reference/quick-reference-section4.md) | Compact Unit 5 formula sheet — all ANOVA tables, Fisher LSD, 2^k effects, R cheat sheet |
 | [ht-tests-overview](reference/ht-tests-overview.md) | Unit 2 all-tests summary table (a–j) with links to per-test pages; decision flow; z critical values |
+| [knowledge-dimensions](reference/knowledge-dimensions.md) | CPS framework theory — Anderson, Schema Theory, Cognitive Load, Threshold Concepts; implementation blueprint for knowledge graph–style wikis |
 
 ---
 
@@ -161,9 +162,9 @@ Quick-lookup pages spanning multiple tiers.
 
 | File | Purpose |
 |------|---------|
-| [taxonomy](concepts/taxonomy.md) | CPS page mapping — all 39 pages classified by tier with rationale; study guide for what to learn how |
-| knowledge-dimensions | Full theoretical grounding — Anderson, Schema Theory, Cognitive Load, Threshold Concepts |
+| [taxonomy](concepts/taxonomy.md) | CPS page mapping — all pages classified by tier with rationale; study guide for what to learn how |
+| [backlinks](backlinks.md) | Expected inbound links for hub pages — agent audit tool for backlink coverage |
 
 ---
 
-*Last updated: 2026-05-22 (session 7) — 4 previously-stub example pages created: hw1-examples (normal dist, descriptive stats), hw4-drill-examples (AirPassengers + Titanic data wrangling), two-sample-examples (pooled t, Welch t, paired t), regression-examples (WireBond SLR: model fitting, ANOVA table, non-zero null test, CI vs PI). Constructs: 5. Procedures: 29. Scripts: 19. Reference: 6.*
+*Last updated: 2026-05-22 (session 8) — knowledge-dimensions moved into wiki/reference/ and rendered in Quarto; backlinks.md created (agent audit tool); taxonomy updated with all current pages. Constructs: 5. Procedures: 29. Scripts: 19. Reference: 7.*

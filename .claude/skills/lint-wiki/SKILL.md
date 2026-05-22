@@ -133,6 +133,44 @@ Read `wiki/CLAUDE.md` and check whether anything listed there as "Not yet filled
 
 ---
 
+### 9. Asymmetric `## Related` sections (symmetry check)
+
+**Rule:** if page A's `## Related` section links to page B, page B must contain a return link to page A. Violations mean one page is linked orphaned in the graph.
+
+**How to find:**
+```bash
+# Extract all Related-section links: "source_page -> target_page"
+grep -rn "## Related" wiki/ --include="*.md" -l | while read source; do
+  # Get lines after "## Related" until next "##" heading
+  awk '/^## Related/{found=1; next} found && /^##/{exit} found && /\[.*\]\(.*\.md\)/{print FILENAME": "$0}' \
+    FILENAME="$source" "$source"
+done | grep -oP '\(([^)]+\.md)\)' | ...
+```
+
+In practice, check this manually or spot-check it: for each link in a `## Related` section, open the target page and verify it has a link back. Prioritize: example ↔ concept pairs, and procedure ↔ procedure siblings.
+
+**Report:** List any asymmetric pairs found: `A → B exists but B → A missing`.
+
+---
+
+### 10. `wiki/backlinks.md` spec check
+
+`wiki/backlinks.md` is the adjacency spec for hub pages (constructs and high-traffic pages). For each entry, verify that the listed source pages actually contain a link to the hub page.
+
+**How to find:** Read `wiki/backlinks.md`. For each table row, extract the source page path and hub page name, then:
+```bash
+# Example: check that confidence-intervals.md links to standard-error
+grep -l "standard-error" wiki/concepts/confidence-intervals.md
+```
+
+If a listed source page does NOT link to its hub, that's a missing backlink the spec says should exist.
+
+**Report:** List each spec violation as: `MISSING BACKLINK: [source-page] → [hub-page] (required by backlinks.md)`.
+
+Note: `wiki/backlinks.md` covers only asymmetric construct←procedure relationships. Same-tier sibling links are covered by check 9 (symmetry rule).
+
+---
+
 ## Report Format
 
 ```

@@ -1,6 +1,11 @@
+---
+tags: [reference]
+tier: reference
+sources: [original — Anderson 2001, Meyer & Land 2003, Sweller 1988]
+---
 # Knowledge Dimensions: A Taxonomy for Technical Learning Wikis
 
-> **What this document is:** A portable framework for organizing a wiki or knowledge base around any technical or STEM subject. It defines a three-tier taxonomy grounded in cognitive science, explains the structural decisions behind it, and gives an implementation blueprint for Obsidian-based wikis with an AI agent maintaining the content.
+> **What this document is:** A portable framework for organizing a wiki or knowledge base around any technical or STEM subject. It defines a three-tier taxonomy grounded in cognitive science, explains the structural decisions behind it, and gives an implementation blueprint for knowledge graph–style wikis maintained by an AI agent. The goal is the navigational richness of a linked knowledge graph (bidirectional links, hub pages, conceptual clustering) implemented in standard Markdown and Quarto rather than requiring a proprietary tool.
 
 ---
 
@@ -80,7 +85,7 @@ The **CPS Framework** (Construct → Procedure → Script) solves this by classi
 **Examples across domains:**
 
 | Domain | Script examples |
-|--------|--------------------|
+|--------|----------------|
 | Statistics | Fill in a partial ANOVA table, interpret residual diagnostic plots, read R regression output |
 | Physics | Free-body diagram procedure, significant-figures rules in a calculation chain |
 | Economics | Calculate consumer/producer surplus from a graph, draw a market shift |
@@ -167,7 +172,23 @@ Wiki implication: Tier 1 pages for threshold concepts should receive the most in
 
 ---
 
-## Implementation Blueprint for Obsidian + AI Agent
+## Implementation Blueprint for Knowledge Graph–Style Wikis with an AI Agent
+
+A knowledge graph wiki gives readers two navigation modes: a linear path (like a textbook) and a graph-based exploration (follow links to discover conceptual structure). Obsidian's `[[double-bracket]]` links natively build this graph, but they render as literal text in Quarto. This blueprint achieves the same graph structure using standard Markdown and Quarto conventions.
+
+### The Quarto Approach to Graph Navigation
+
+Instead of `[[page-name]]` wikilinks, every page uses **relative Markdown links** in a `## Related` section:
+
+```markdown
+## Related
+- [standard-error](../concepts/standard-error.md) — SE formula appears here
+- [regression-slr](../concepts/regression-slr.md) — uses this construct
+```
+
+Bidirectionality is maintained by convention: if page A links to page B, page B links back to A. A `wiki/backlinks.md` index specifies expected inbound links for hub pages (constructs) so an agent can audit coverage without scanning every file.
+
+The result is a navigable graph rendered as a standard static website — no proprietary tool required.
 
 ### Frontmatter Schema
 
@@ -175,7 +196,7 @@ Every content page carries a `tier:` field. The allowed values are `construct`, 
 
 ```yaml
 ---
-tags: [concept, section-name]
+tags: [concept, unit-X]
 tier: construct        # construct | procedure | script | reference
 sources: [source-1, source-2]
 ---
@@ -187,8 +208,7 @@ sources: [source-1, source-2]
 wiki-root/
 ├── CLAUDE.md              # Agent schema (includes CPS definitions)
 ├── index.md               # Page catalog, grouped by tier within section
-├── log.md                 # Append-only ingest log
-├── HANDOFF.md             # Processing queue between sessions
+├── backlinks.md           # Expected inbound links for hub pages (agent audit tool)
 │
 ├── concepts/              # Tier 1 (Constructs) and Tier 2 (Procedures)
 ├── examples/              # Tier 3 (Scripts — worked problems)
@@ -197,149 +217,6 @@ wiki-root/
 ```
 
 Note: Constructs and Procedures share `concepts/` because the distinction is captured in the `tier:` field, not the folder. This keeps the directory flat and avoids over-engineering the structure.
-
-### Page Templates by Tier
-
-**Tier 1 — Construct page:**
-
-```markdown
----
-tags: [concept, ...]
-tier: construct
-sources: [...]
----
-# Concept Name
-
-## In Plain English
-One paragraph: what this quantity *is*, not how to compute it. Answer: "Why does this exist?"
-
-## How the Formula Changes Shape
-Table showing all variants with context conditions:
-| Context | Formula | When |
-|---------|---------|------|
-
-## The Constant Core
-What stays the same across all variants. This is what to memorize.
-
-## Common Mistakes
-Confusions, wrong formula in wrong context, etc.
-
-## Related
-- [[procedure-that-uses-this]]
-```
-
-**Tier 2 — Procedure page:**
-
-```markdown
----
-tags: [concept, ...]
-tier: procedure
-sources: [...]
----
-# Procedure Name
-
-## In Plain English
-What inferential goal this achieves.
-
-## When To Use
-- Condition 1
-- Condition 2 (decision criteria vs. alternatives)
-
-## Constructs This Uses
-- [[construct-1]] — role it plays here
-- [[construct-2]] — role it plays here
-
-## Steps
-1. ...
-2. ...
-
-## Key Assumptions
-## Common Mistakes
-## Related
-```
-
-**Tier 3 — Script page (example/worked problem):**
-
-```markdown
----
-tags: [example, ...]
-tier: script
-sources: [...]
----
-# Script Name / Example Title
-
-## Trigger
-"Use this script when you see: ..."
-
-## Fixed Sequence
-1. Step 1 — what to do and why
-2. Step 2 — ...
-
-## Worked Example
-...
-
-## Answer Template
-State the conclusion in the domain's expected phrasing.
-```
-
-### CLAUDE.md Section to Add
-
-Add this section to the agent schema file so any AI agent can correctly classify new pages:
-
-```markdown
-## CPS Cognitive Tiers
-
-Every concept and example page carries a `tier:` frontmatter field. Assign as follows:
-
-- **construct** — a mathematical quantity or foundational principle with context-variable formula
-  variants. No decision logic, no steps. Examples: standard error, degrees of freedom, energy.
-  Ask: "Does this concept appear as a building block inside multiple other techniques?" If yes: construct.
-
-- **procedure** — an analytical technique that assembles 2+ constructs to achieve a specific goal,
-  and requires judgment about which variant to apply. Examples: t-test, regression, NPV analysis.
-  Ask: "Does learning this require knowing *when* to use it and *which* construct variant to apply?" If yes: procedure.
-
-- **script** — a fixed-sequence exam/task workflow where decisions are already collapsed.
-  Examples: filling a partial ANOVA table, drawing a free-body diagram, running a titration calculation.
-  Ask: "Is the whole task learnable by practicing the sequence until it's automatic?" If yes: script.
-
-- **reference** — cross-tier navigation aids (formula sheets, decision flowcharts, index pages).
-  These span multiple tiers and should not be classified into any one tier.
-```
-
-### Index Organization
-
-The `index.md` should group pages by tier within each subject section:
-
-```markdown
-## Subject Section Name
-
-### Tier 1 — Constructs
-- [[construct-1]] — one-line description
-- [[construct-2]] — one-line description
-
-### Tier 2 — Procedures
-- [[procedure-1]] — one-line description
-- [[procedure-2]] — one-line description
-
-### Tier 3 — Scripts
-- [[script-examples-1]] — one-line description
-```
-
----
-
-## Domain Suitability
-
-This model works well for any domain where:
-
-1. **Some concepts are genuinely cross-cutting** — they appear in multiple methods with variant formulas (standard error in statistics; force in physics; opportunity cost in economics)
-2. **Techniques have decision preconditions** — you must know *when* to apply them, not just *how*
-3. **Exam or task performance requires automated workflows** — there are recurring task types that benefit from scripted practice
-
-It works less well for:
-- Purely narrative subjects (history, literature) where knowledge is mostly declarative and context-dependent rather than procedural
-- Early introductory material where everything is new vocabulary and the distinctions between tiers aren't yet visible
-- Research wikis where the goal is synthesis rather than mastery of established techniques
 
 ---
 
@@ -361,8 +238,14 @@ It works less well for:
 
 ---
 
+## Related
+- [taxonomy](../concepts/taxonomy.md) — the full CPS page map for this wiki; applies this framework to all 64 pages
+
+---
+
 ## Changelog
 
 | Date | Change |
 |------|--------|
 | 2026-04-14 | Initial framework defined for INEG Stats wiki |
+| 2026-05-22 | Moved from project root into wiki/reference/ for Quarto rendering |
