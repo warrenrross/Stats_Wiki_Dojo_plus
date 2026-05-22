@@ -30,11 +30,15 @@ A Quarto website for INEG 2314H — Statistical Methods. It serves as a living t
 
 ## Local Skills
 
-Project-specific slash commands stored in `.claude/skills/`:
+Project-specific slash commands stored in `.claude/skills/`. Full catalog and agent-agnostic instructions are in [AGENTS.md](AGENTS.md).
 
 | Skill | Trigger | What it does |
 |-------|---------|--------------|
-| `ingest-examples` | `/ingest-examples [file or description]` | Reads a source R/homework file from `../Section*/Drill/` and creates a `wiki/examples/` page using the standard template; updates `wiki/index.md` |
+| `get-familiar` | `/get-familiar` | Reads all docs and gives a grounded project summary — use at session start |
+| `ingest-examples` | `/ingest-examples [file]` | Reads a source R/homework file from `../Section*/Drill/` and creates a `wiki/examples/` page; updates `wiki/index.md` |
+| `lint-wiki` | `/lint-wiki` | Audits wiki for missing files, orphan pages, bracket links, missing tier/tag frontmatter |
+| `deploy` | `/deploy` | Renders the site and pushes to gh-pages |
+| `wrap-up` | `/wrap-up` | Updates CLAUDE.md session history, saves memory, flags untracked files |
 
 ---
 
