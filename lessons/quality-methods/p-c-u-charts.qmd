@@ -51,17 +51,22 @@ cat("Out-of-control points:", p_chart$violations$beyond.limits, "\n")
 ## R Example: c-Chart and u-Chart
 
 ```{r}
-#| label: c-u-charts
+#| label: c-chart
 
-data("circuit")  # x = defects, size = inspection area
-head(circuit)
+# c-chart: fixed inspection unit (e.g. 25 printed circuit boards per shift)
+# Simulated defect counts — each subgroup inspects exactly 1 unit
+set.seed(5)
+defects <- c(6, 4, 8, 5, 3, 7, 9, 2, 6, 5, 8, 4, 7, 6, 3, 5, 8, 6, 4, 7)
+c_chart <- qcc(data = defects, type = "c", title = "c-Chart — Circuit Boards")
+cat("\nc̄ (center):", round(c_chart$center, 3), "\n")
+cat("UCL:", round(c_chart$limits[2], 3), "\n")
+```
 
-# c-chart (fixed sample size)
-c_chart <- qcc(data = circuit$x[circuit$size == 1],
-               type = "c",
-               title = "c-Chart — Circuit Boards")
+```{r}
+#| label: u-chart
 
-# u-chart (variable area)
+# u-chart: variable inspection area
+data("circuit")
 u_chart <- qcc(data = circuit$x, type = "u",
                sizes = circuit$size,
                title = "u-Chart — Circuit Boards")

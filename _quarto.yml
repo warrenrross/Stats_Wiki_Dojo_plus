@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
+    - "wiki/**/*.md"
+    - "lessons/**/*.qmd"
+    - "dojo/**/*.qmd"
 
 website:
   title: "INEG 2314H — Statistical Methods"
