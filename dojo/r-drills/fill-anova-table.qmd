@@ -2,6 +2,8 @@
 title: "Drill: Fill an ANOVA Table"
 categories: [r, drill, coding-dojo]
 tier-focus: script
+filters:
+  - webr
 ---
 
 # Drill: Fill an ANOVA Table
@@ -33,7 +35,9 @@ Use this drill when you see: a partial ANOVA table with some cells blank, and yo
 
 ## Worked Example: Regression (Scenario B — given F₀ and σ̂²)
 
-```{r}
+Enter the given values and click **Run Code** to fill the table.
+
+```{webr-r}
 #| label: regression-reconstruction
 
 # Given: n=20, k=2, F₀=15.0, σ̂²=MSE=6.5
@@ -65,7 +69,7 @@ cat(sprintf("R²_adj = %.4f\n", R2_adj))
 
 ## Worked Example: DOE RCBD (given MS_Factor and F₀)
 
-```{r}
+```{webr-r}
 #| label: doe-reconstruction
 
 # Given: a=4 treatments, b=5 blocks, MS_Factor=115.2067, F₀=3.498

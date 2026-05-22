@@ -162,7 +162,7 @@ Quick-lookup format. Minimal prose. Tables, lists, flowcharts.
 - Concept pages: noun phrases (`confidence-intervals.md`)
 - Example pages: `topic-examples.md` (e.g., `two-sample-examples.md`)
 - R code pages: `topic-r.md` (e.g., `regression-r.md`)
-- Obsidian links: `[[filename-without-extension]]`
+- Obsidian links: **DO NOT USE `[[wikilinks]]`** — all 59 wiki pages were converted to relative Markdown links on 2026-05-21. New pages must use `[page-name](relative/path.md)` syntax. The `[[...]]` format is not supported by Quarto and will render as literal text.
 
 ---
 

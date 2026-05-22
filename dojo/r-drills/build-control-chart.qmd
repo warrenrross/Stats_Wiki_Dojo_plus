@@ -2,6 +2,11 @@
 title: "Drill: Build a Control Chart"
 categories: [r, drill, coding-dojo]
 tier-focus: script
+filters:
+  - webr
+webr:
+  packages:
+    - qcc
 ---
 
 # Drill: Build a Control Chart
@@ -75,9 +80,12 @@ print(pc, digits = 6)
 
 ## Practice Variation: p-Chart
 
-```{r}
-#| label: p-chart
-#| fig-cap: "p-Chart — fraction defective"
+Run the p-chart interactively. Edit the `qcc()` call to explore different chart options.
+
+```{webr-r}
+#| label: p-chart-interactive
+
+library(qcc)
 
 data("orangejuice")
 

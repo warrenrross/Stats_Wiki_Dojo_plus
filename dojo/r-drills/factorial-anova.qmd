@@ -2,6 +2,15 @@
 title: "Drill: Factorial ANOVA in R"
 categories: [r, drill, coding-dojo]
 tier-focus: script
+filters:
+  - webr
+webr:
+  packages:
+    - agricolae
+    - ggplot2
+    - tibble
+    - dplyr
+    - tidyr
 ---
 
 # Drill: Factorial ANOVA in R
@@ -117,6 +126,46 @@ cat("\nLSD for Cu marginal means:", round(LSD_cu, 4), "\n")
 
 # Marginal means for Cu
 tapply(df$warping, df$cu, mean) |> round(3) |> print()
+```
+
+## Your Turn
+
+Modify factor levels, swap the interaction term, or try your own response values. Click **Run Code** to fit.
+
+```{webr-r}
+#| label: sandbox
+
+library(tibble)
+library(tidyr)
+library(dplyr)
+library(agricolae)
+
+df_wide <- tribble(
+  ~temp, ~cu,  ~R1,  ~R2,
+  "50",  "40",  17,   20,   "50",  "60",  12,    9,
+  "50",  "80",  16,   12,   "50", "100",  21,   17,
+  "75",  "40",  12,   13,   "75",  "60",  18,   21,
+  "75",  "80",  10,   12,   "75", "100",  24,   21,
+  "100", "40",  14,   15,  "100",  "60",  18,   20,
+  "100", "80",  14,   11,  "100","100",  23,   22,
+  "125", "40",  19,   17,  "125",  "60",  23,   20,
+  "125", "80",  19,   16,  "125","100",  24,   28
+)
+
+df <- df_wide |>
+  pivot_longer(cols = c(R1, R2), names_to = "rep", values_to = "warping") |>
+  mutate(temp = factor(temp), cu = factor(cu))
+
+fit <- aov(warping ~ temp * cu, data = df)
+aov_tbl <- summary(fit)[[1]]
+rownames(aov_tbl) <- trimws(rownames(aov_tbl))
+print(aov_tbl)
+
+# LSD on Cu (change to temp for the other factor)
+MSE  <- aov_tbl["Residuals", "Mean Sq"]
+df_E <- aov_tbl["Residuals", "Df"]
+lsd_result <- LSD.test(fit, "cu", DFerror = df_E, MSerror = MSE)
+print(lsd_result$groups)
 ```
 
 ## Reflection Questions

@@ -10,3 +10,5 @@ __pycache__/
 _site/
 wiki/**/*.html
 wiki/**/*.knit.md
+
+# _freeze/ is intentionally NOT ignored — commit it so GitHub Pages CI works without R

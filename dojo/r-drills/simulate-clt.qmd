@@ -2,6 +2,12 @@
 title: "Drill: Simulate the CLT"
 categories: [r, drill, coding-dojo]
 tier-focus: script
+filters:
+  - webr
+webr:
+  packages:
+    - ggplot2
+    - tibble
 ---
 
 # Drill: Simulate the Central Limit Theorem
@@ -73,22 +79,31 @@ tibble(xbar = xbars) |>
 
 ## Practice Variation
 
-```{r}
-#| label: practice
+Change `n_samp_new` below and click **Run Code** to see how the sampling distribution shape changes with sample size.
 
-# Change these parameters and re-run:
+```{webr-r}
+#| label: practice-interactive
+
+library(ggplot2)
+library(tibble)
+
+pop_rate <- 1/20; pop_mean <- 20; pop_sd <- 20
+n_sim <- 5000
+
 n_samp_new <- 5    # try 5, 10, 30, 100
 
 xbars_new <- replicate(n_sim, mean(rexp(n_samp_new, rate = pop_rate)))
 se_new    <- pop_sd / sqrt(n_samp_new)
 
+cat("SE = σ/√n =", round(se_new, 4), "\n")
+
 tibble(xbar = xbars_new) |>
   ggplot(aes(x = xbar)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 60,
+  geom_histogram(aes(y = after_stat(density)), bins = 50,
                  fill = "coral", color = "white", alpha = 0.8) +
   stat_function(fun = dnorm, args = list(mean = pop_mean, sd = se_new),
                 color = "navy", linewidth = 1.2) +
-  labs(title = sprintf("Sampling dist of x̄: n = %d", n_samp_new),
+  labs(title = sprintf("Sampling dist of x̄: n = %d, SE = %.2f", n_samp_new, se_new),
        x = "Sample mean", y = "Density") +
   theme_bw()
 ```
