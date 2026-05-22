@@ -79,8 +79,8 @@ $$\text{formula here}$$
 - Mistake 1
 
 ## Related
-- [[other-concept]]
-- [[example-page]]
+- [other-concept](concepts/other-concept.md)
+- [example-page](examples/example-page.md)
 ```
 
 ### 2. Worked Example Page (`examples/topic-examples.md`)
@@ -162,7 +162,7 @@ Quick-lookup format. Minimal prose. Tables, lists, flowcharts.
 - Concept pages: noun phrases (`confidence-intervals.md`)
 - Example pages: `topic-examples.md` (e.g., `two-sample-examples.md`)
 - R code pages: `topic-r.md` (e.g., `regression-r.md`)
-- Obsidian links: **DO NOT USE `[[wikilinks]]`** — all 59 wiki pages were converted to relative Markdown links on 2026-05-21. New pages must use `[page-name](relative/path.md)` syntax. The `[[...]]` format is not supported by Quarto and will render as literal text.
+- Cross-references: use relative Markdown links — `[page-name](relative/path.md)`. From within a subdirectory, same-directory links are just `[page-name](page-name.md)`; cross-directory links use `../other-dir/page-name.md`.
 
 ---
 
@@ -251,7 +251,7 @@ Every content page carries a `tier:` frontmatter field. Assign as follows:
 
 - **reference** — cross-tier navigation aids (formula sheets, flowcharts). No tier assigned.
 
-See `[taxonomy](concepts/taxonomy.md)` for the full page mapping and `[[knowledge-dimensions]]` for theoretical grounding.
+See `[taxonomy](concepts/taxonomy.md)` for the full page mapping.
 
 ---
 
@@ -272,7 +272,7 @@ These decisions have been made and should not be revisited without deliberate in
 | Decision | Rationale |
 |----------|-----------|
 | CPS tier model live (2026-04-22) | `tier:` field in all 39 content pages; new pages must get a tier at creation time — do not create pages without a tier |
-| `concepts/taxonomy.md` is tier: reference | It spans all tiers; lives in concepts/ for Obsidian navigation, not because it is a concept page |
+| `concepts/taxonomy.md` is tier: reference | It spans all tiers; lives in concepts/ for navigational convenience, not because it is a concept page |
 | `concepts/` holds both Constructs and Procedures | Tier captured in frontmatter, not directory — keeps folder structure flat |
 | Quick reference is Section 3 only | `reference/quick-reference-section3.md` + `.docx` covers Sections 1–3. Section 4 has `quick-reference-section4.md` (markdown only; no .docx built yet) |
 | Two misplaced empty stubs at wiki root | `process-capability.md` and `regression-examples.md` in root are empty 1-line files — orphaned stubs, harmless, leave unless actively cleaning up |

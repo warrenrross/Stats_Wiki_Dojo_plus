@@ -61,7 +61,7 @@ quarto publish gh-pages
 |----------|-----------|
 | `wiki/**/*.md` files rendered by Quarto | Quarto handles `.md` as plain markdown; wiki pages have no R code so no `.qmd` needed |
 | `freeze: auto` in `_quarto.yml` | R chunks cached to `_freeze/`; commit `_freeze/` to git so CI/GitHub Pages doesn't need R installed |
-| `[[wikilinks]]` → relative Markdown links | Obsidian syntax unsupported by Quarto; converted via `fix_wikilinks.py` (now deleted); do not use `[[...]]` in any Quarto-rendered file |
+| Relative Markdown links throughout | All wiki cross-references use `[text](relative/path.md)`; do not use `[[...]]` bracket syntax in any Quarto-rendered file |
 | CPS tier model (`tier-focus:` frontmatter) | construct / procedure / script tiers drive lesson framing; see `wiki/concepts/taxonomy.md` |
 | `pacman::p_load()` for all packages | Used consistently throughout all R code; do not switch to `library()` |
 | Root design docs excluded via `.quartoignore` + `render:` list | `knowledge-dimensions.md`, `living_textbook.md`, `llm-wiki.md`, `quarto_site_scaffold.md`, `CLAUDE_CODE_SPEC.md` are not rendered |
@@ -163,5 +163,5 @@ Or simply run `quarto publish gh-pages` — now that the branch exists, it will 
 
 | Date | Work Done |
 |------|-----------|
-| 2026-05-21 | Full scaffold: GitHub repo created, Quarto installed (1.9.37), site scaffolded from Stats_Notes, render errors fixed (SCSS marker, c-chart data, root .md exclusion), 59 wiki files converted from `[[wikilinks]]` to relative Markdown links, 5 dojo drill files created, preview confirmed working |
+| 2026-05-21 | Full scaffold: GitHub repo created, Quarto installed (1.9.37), site scaffolded from Stats_Notes, render errors fixed (SCSS marker, c-chart data, root .md exclusion), wiki cross-references converted to relative Markdown links, 5 dojo drill files created, preview confirmed working |
 | 2026-05-21 | WebR added to all 5 dojo pages (quarto-webr 0.4.4); _freeze/ committed; site deployed to GitHub Pages at https://warrenrross.github.io/Stats_Wiki_Dojo_plus/ |

@@ -57,9 +57,9 @@ The worked example sections on each dojo page are pre-rendered server-side (stat
 
 R code in the lessons is executed at build time and the results are cached in `_freeze/`. This means the deployed site never needs R installed — GitHub Pages serves the pre-computed output. If you edit a lesson `.qmd` locally, Quarto will detect the change and re-execute only that file when you run `quarto render`.
 
-### No Obsidian wikilinks
+### Relative Markdown links throughout
 
-The wiki pages are plain Markdown rendered by Quarto. All cross-references use standard relative Markdown links (`[page name](../concepts/page.md)`), not Obsidian-style `[[wikilinks]]`. If you add new wiki pages, use relative paths.
+All cross-references in the wiki use standard relative Markdown links: `[page name](../concepts/page.md)`. If you add new wiki pages, use relative paths from the source file's location.
 
 ---
 
