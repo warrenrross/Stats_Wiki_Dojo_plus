@@ -148,3 +148,5 @@ Output is identical. Stick with `melt()` to stay consistent with existing course
 - [anova-r](anova-r.md) — full CRD and RCBD templates using melt()
 - [factorial-anova-r](factorial-anova-r.md) — factorial scripts use gather() instead of melt()
 - [crd-examples](../examples/crd-examples.md) — unbalanced import pattern with melt() + filter(!is.na())
+- [hw4-drill-examples](../examples/hw4-drill-examples.md) — tsibble and uncount() patterns for time series and frequency tables
+- [taxonomy](../concepts/taxonomy.md) — tier guide: this page is Tier 3 / Script

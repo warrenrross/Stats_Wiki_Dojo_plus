@@ -90,6 +90,10 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 
 | Page | Trigger Scenario |
 |------|-----------------|
+| [hw1-examples](../examples/hw1-examples.md) | "Find P(X > x) / compute quantile / sample mean, sd, variance" |
+| [hw4-drill-examples](../examples/hw4-drill-examples.md) | "Tidy a time series / uncount a frequency table / reshape with tsibble" |
+| [two-sample-examples](../examples/two-sample-examples.md) | "Compare two group means / choose pooled vs Welch t / paired t-test" |
+| [regression-examples](../examples/regression-examples.md) | "Fit SLR / read lm() output / complete ANOVA table / non-zero null β₁ test" |
 | [regression-ci-examples](../examples/regression-ci-examples.md) | "Find CI on β₁ / CI on mean response / PI on a new obs" |
 | [model-adequacy-examples](../examples/model-adequacy-examples.md) | "Diagnose residual plots and check assumptions" |
 | [anova-table-examples](../examples/anova-table-examples.md) | "Complete the partial ANOVA / regression summary table" |
@@ -109,6 +113,7 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 | [control-charts-r](../r-code/control-charts-r.md) | qcc package charts and process.capability() |
 | [reading-r-output](../r-code/reading-r-output.md) | Translate every R output term to teacher phrasing |
 | [anova-r](../r-code/anova-r.md) | CRD and RCBD templates, scalar extraction |
+| [data-wrangling-r](../r-code/data-wrangling-r.md) | Wide-to-long reshaping with melt(); NA handling for unbalanced layouts |
 | [factorial-anova-r](../r-code/factorial-anova-r.md) | Multi-factor and 2^k patterns, DanielPlot() |
 
 ---
@@ -129,6 +134,5 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 ---
 
 ## Related
-- [[knowledge-dimensions]] — full theoretical grounding (Anderson, Schema Theory, Cognitive Load)
 - [which-test](which-test.md) — Tier 2 meta-procedure for test selection
 - [formula-sheet](../reference/formula-sheet.md) — cross-tier reference (untiered)
