@@ -137,7 +137,7 @@ $$T_0 = \frac{2627.82 - 2500}{44.18} = 2.89 > t_{0.025, 18} = 2.101 \Rightarrow 
 ---
 
 ## Key Assumptions
-Same as [[regression-slr]] — normality, constant variance, independence, linearity.
+Same as [regression-slr](regression-slr.md) — normality, constant variance, independence, linearity.
 
 ## Common Mistakes
 - Using `t value` from summary table for non-zero null hypotheses
@@ -154,9 +154,9 @@ The coffee project uses MLR with k = 4 predictors (temp, rainfall, population, o
 - **Non-zero null:** If testing whether, say, β_rainfall > 0.5, compute T₀ = (β̂_rainfall − 0.5) / SE manually — the software t-column always tests null = 0.
 
 ## Related
-- [[regression-slr]]
-- [[regression-mlr]]
-- [[regression-ci]]
-- [[which-test]]
-- [[hypothesis-testing-overview]] — regression t-tests and F-test follow the same 7-step framework
-- [[ss-decomposition]] — F-test numerator and denominator both come from the SS partition
+- [regression-slr](regression-slr.md)
+- [regression-mlr](regression-mlr.md)
+- [regression-ci](regression-ci.md)
+- [which-test](which-test.md)
+- [hypothesis-testing-overview](hypothesis-testing-overview.md) — regression t-tests and F-test follow the same 7-step framework
+- [ss-decomposition](ss-decomposition.md) — F-test numerator and denominator both come from the SS partition

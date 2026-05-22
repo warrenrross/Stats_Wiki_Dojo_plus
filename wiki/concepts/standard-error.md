@@ -94,10 +94,10 @@ For regression, MSE plays the role of σ² (it's the variance estimate from resi
 
 ## Related
 
-- [[degrees-of-freedom]] — which df goes with each SE
-- [[variance-estimation]] — how σ² (and hence MSE) gets estimated
-- [[confidence-intervals]] — CI formulas using these SEs
-- [[hypothesis-testing-overview]] — test statistics using these SEs
-- [[two-sample-tests]] — pooled and Welch SE details
-- [[regression-ci]] — regression-specific interval formulas
-- [[regression-slr]] — SLR slope and intercept SEs are worked examples of the universal formula
+- [degrees-of-freedom](degrees-of-freedom.md) — which df goes with each SE
+- [variance-estimation](variance-estimation.md) — how σ² (and hence MSE) gets estimated
+- [confidence-intervals](confidence-intervals.md) — CI formulas using these SEs
+- [hypothesis-testing-overview](hypothesis-testing-overview.md) — test statistics using these SEs
+- [two-sample-tests](two-sample-tests.md) — pooled and Welch SE details
+- [regression-ci](regression-ci.md) — regression-specific interval formulas
+- [regression-slr](regression-slr.md) — SLR slope and intercept SEs are worked examples of the universal formula

@@ -5,7 +5,7 @@ sources: [L36-37_App_HWQ1.Rmd, L36-37_App_HWQ2.Rmd, L36-37_App_HWQ3.Rmd, L36-37_
 ---
 # Examples: Confidence and Prediction Intervals in Regression
 
-See also: [[regression-ci]], [[regression-r]]
+See also: [regression-ci](../concepts/regression-ci.md), [regression-r](../r-code/regression-r.md)
 
 ---
 

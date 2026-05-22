@@ -122,11 +122,11 @@ In R: `agricolae::LSD.test(fit, "FactorB", group = TRUE)`
 - Confusing df_error = ab(n−1) with df_error = (a−1)(b−1); the latter is RCBD (no replication within cells)
 
 ## Related
-- [[crd-one-way-anova]] — single-factor version
-- [[rcbd-blocking]] — one factor of interest + one nuisance (blocking) factor; uses `+` not `*`
-- [[2k-factorial-design]] — special case: all factors at exactly 2 levels
-- [[factorial-anova-r]] — R code for 2-factor through 4-factor designs
-- [[factorial-examples]] — worked example with the aircraft primer paint dataset
-- [[fwl-theorem]] — how FWL connects factorial regression coefficients to observational partial correlation
-- [[random-effects-model]] — factorial factors can be treated as random when levels are sampled from a population
-- [[ss-decomposition]] — factorial ANOVA splits SS_Model into A, B, AB components
+- [crd-one-way-anova](crd-one-way-anova.md) — single-factor version
+- [rcbd-blocking](rcbd-blocking.md) — one factor of interest + one nuisance (blocking) factor; uses `+` not `*`
+- [2k-factorial-design](2k-factorial-design.md) — special case: all factors at exactly 2 levels
+- [factorial-anova-r](../r-code/factorial-anova-r.md) — R code for 2-factor through 4-factor designs
+- [factorial-examples](../examples/factorial-examples.md) — worked example with the aircraft primer paint dataset
+- [fwl-theorem](fwl-theorem.md) — how FWL connects factorial regression coefficients to observational partial correlation
+- [random-effects-model](random-effects-model.md) — factorial factors can be treated as random when levels are sampled from a population
+- [ss-decomposition](ss-decomposition.md) — factorial ANOVA splits SS_Model into A, B, AB components

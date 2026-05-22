@@ -5,7 +5,7 @@ sources: [L34&35P HT in Linear Regression, L36&37P CI in Regression, regression-
 ---
 # Examples: Completing ANOVA and Summary Tables
 
-See also: [[regression-ht]], [[regression-slr]], [[regression-mlr]], [[reading-r-output]]
+See also: [regression-ht](../concepts/regression-ht.md), [regression-slr](../concepts/regression-slr.md), [regression-mlr](../concepts/regression-mlr.md), [reading-r-output](../r-code/reading-r-output.md)
 
 > **Exam focus:** You will NOT calculate from raw data. You WILL be given a partial table from R output and asked to fill in blanks, compute σ̂, interpret, and make recommendations.
 
@@ -561,14 +561,14 @@ Derive:
   SS_Total  = SS_Factor + SS_Blocks + SS_E
 ```
 
-See also: [[rcbd-blocking]] for the RCBD ANOVA structure; compare [[regression-ht]] for the regression version of this pattern.
+See also: [rcbd-blocking](../concepts/rcbd-blocking.md) for the RCBD ANOVA structure; compare [regression-ht](../concepts/regression-ht.md) for the regression version of this pattern.
 
 ---
 
 ## Related
-- [[regression-ht]]
-- [[regression-slr]]
-- [[regression-mlr]]
-- [[reading-r-output]]
-- [[rcbd-blocking]]
-- [[crd-one-way-anova]]
+- [regression-ht](../concepts/regression-ht.md)
+- [regression-slr](../concepts/regression-slr.md)
+- [regression-mlr](../concepts/regression-mlr.md)
+- [reading-r-output](../r-code/reading-r-output.md)
+- [rcbd-blocking](../concepts/rcbd-blocking.md)
+- [crd-one-way-anova](../concepts/crd-one-way-anova.md)

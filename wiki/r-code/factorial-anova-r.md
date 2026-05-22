@@ -240,4 +240,4 @@ Teacher's phrasing: "Based on the Daniel plot, effects A, B, and AB appear signi
 - **`aov()` with `*`**: always for factorial ANOVA — produces the standard ANOVA table
 - **`lm()` with ±1 coded columns**: use when asked for regression equation, coefficient estimates, or when effect ↔ coefficient conversion is needed
 - **`DanielPlot()`**: only for unreplicated 2^k designs (n=1 per treatment combination)
-- For CRD / RCBD: see [[anova-r]]
+- For CRD / RCBD: see [anova-r](anova-r.md)

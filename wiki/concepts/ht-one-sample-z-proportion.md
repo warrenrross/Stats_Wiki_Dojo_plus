@@ -57,6 +57,6 @@ $$n = \left[\frac{z_\alpha\sqrt{p_0(1-p_0)} + z_\beta\sqrt{p(1-p)}}{p - p_0}\rig
 - Forgetting to check the np₀ ≥ 5 condition before applying the normal approximation
 
 ## Related
-- [[proportions]] — broader coverage including two-proportion tests
-- [[hypothesis-tests-r]] — `prop.test(x, n, p = p0, alternative = "...")`
-- [[ht-tests-overview]] — full test selection table
+- [proportions](proportions.md) — broader coverage including two-proportion tests
+- [hypothesis-tests-r](../r-code/hypothesis-tests-r.md) — `prop.test(x, n, p = p0, alternative = "...")`
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table

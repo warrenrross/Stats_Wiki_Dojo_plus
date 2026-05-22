@@ -190,7 +190,7 @@ This is a common exam question type: "What things are necessary but not sufficie
 | Outlier | Investigate context — is it a data error? Report it. |
 | Influential point | Refit without it and compare; report both |
 
-See [[correlation-transformations]] for transformation details.
+See [correlation-transformations](correlation-transformations.md) for transformation details.
 
 ---
 
@@ -228,6 +228,6 @@ Residual diagnostics are **required before interpreting any regression results**
 - With n ≈ 1500, the Q-Q plot will be reliable; minor deviations from normality are less critical at large n due to CLT, but non-constant variance affects CIs and p-values regardless of n
 
 ## Related
-- [[regression-slr]]
-- [[regression-mlr]]
-- [[correlation-transformations]]
+- [regression-slr](regression-slr.md)
+- [regression-mlr](regression-mlr.md)
+- [correlation-transformations](correlation-transformations.md)

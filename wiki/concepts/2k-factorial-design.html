@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>k-factorial-design – INEG 2314H — Statistical Methods</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cb9eb8060de154f7129409f226e8d1c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">INEG 2314H — Statistical Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../syllabus-path.html"> 
+<span class="menu-text">Linear Path</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lessons/index.html"> 
+<span class="menu-text">Lessons</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dojo/index.html"> 
+<span class="menu-text">Coding Dojo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../graph-navigation.html"> 
+<span class="menu-text">Knowledge Graph</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../wiki/index.html"> 
+<span class="menu-text">Wiki Index</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">INEG 2314H — Statistical Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Resource</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Suggested Linear Path</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../graph-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge Graph Navigation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lessons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/sampling-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling Distributions and the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/standard-error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standard Error — The Universal Reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Confidence Intervals</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Inference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing — The 7-Step Framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/t-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One- and Two-Sample t-Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One-Way ANOVA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple Linear Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Diagnostics and Adequacy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Quality Methods</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/control-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Chart Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/xbar-r-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">X̄/R and X̄/S Charts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/p-c-u-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">p, c, and u Charts</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Experimental Design</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/crd-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRD and One-Way ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/factorial-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Factorial ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/two-k-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2^k Factorial Designs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Coding Dojo</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coding Dojo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/simulate-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Simulate the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fit-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fit and Interpret a Regression Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/build-control-chart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Build a Control Chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fill-anova-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fill an ANOVA Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/factorial-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Factorial ANOVA in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#k-factorial-design" id="toc-k-factorial-design" class="nav-link active" data-scroll-target="#k-factorial-design"><span class="header-section-number">1</span> 2^k Factorial Design</a>
+  <ul class="collapse">
+  <li><a href="#in-plain-english" id="toc-in-plain-english" class="nav-link" data-scroll-target="#in-plain-english"><span class="header-section-number">1.1</span> In Plain English</a></li>
+  <li><a href="#when-to-use" id="toc-when-to-use" class="nav-link" data-scroll-target="#when-to-use"><span class="header-section-number">1.2</span> When To Use</a></li>
+  <li><a href="#formulas" id="toc-formulas" class="nav-link" data-scroll-target="#formulas"><span class="header-section-number">1.3</span> Formula(s)</a>
+  <ul class="collapse">
+  <li><a href="#coding" id="toc-coding" class="nav-link" data-scroll-target="#coding"><span class="header-section-number">1.3.1</span> ±1 Coding</a></li>
+  <li><a href="#effect-estimation" id="toc-effect-estimation" class="nav-link" data-scroll-target="#effect-estimation"><span class="header-section-number">1.3.2</span> Effect Estimation</a></li>
+  <li><a href="#contrast-ss" id="toc-contrast-ss" class="nav-link" data-scroll-target="#contrast-ss"><span class="header-section-number">1.3.3</span> Contrast → SS</a></li>
+  <li><a href="#degrees-of-freedom-summary" id="toc-degrees-of-freedom-summary" class="nav-link" data-scroll-target="#degrees-of-freedom-summary"><span class="header-section-number">1.3.4</span> Degrees of Freedom Summary</a></li>
+  <li><a href="#linear-model-regression-approach" id="toc-linear-model-regression-approach" class="nav-link" data-scroll-target="#linear-model-regression-approach"><span class="header-section-number">1.3.5</span> Linear Model (Regression Approach)</a></li>
+  <li><a href="#two-analysis-approaches-in-r" id="toc-two-analysis-approaches-in-r" class="nav-link" data-scroll-target="#two-analysis-approaches-in-r"><span class="header-section-number">1.3.6</span> Two Analysis Approaches in R</a></li>
+  <li><a href="#unreplicated-designs-n-1-k-4" id="toc-unreplicated-designs-n-1-k-4" class="nav-link" data-scroll-target="#unreplicated-designs-n-1-k-4"><span class="header-section-number">1.3.7</span> Unreplicated Designs (n = 1, k ≥ 4)</a></li>
+  <li><a href="#r-vs.-book-minitab-coefficients" id="toc-r-vs.-book-minitab-coefficients" class="nav-link" data-scroll-target="#r-vs.-book-minitab-coefficients"><span class="header-section-number">1.3.8</span> R vs.&nbsp;Book (Minitab) Coefficients</a></li>
+  </ul></li>
+  <li><a href="#key-assumptions" id="toc-key-assumptions" class="nav-link" data-scroll-target="#key-assumptions"><span class="header-section-number">1.4</span> Key Assumptions</a></li>
+  <li><a href="#common-mistakes" id="toc-common-mistakes" class="nav-link" data-scroll-target="#common-mistakes"><span class="header-section-number">1.5</span> Common Mistakes</a></li>
+  <li><a href="#related" id="toc-related" class="nav-link" data-scroll-target="#related"><span class="header-section-number">1.6</span> Related</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+
+
+
+
+<section id="k-factorial-design" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 2^k Factorial Design</h1>
+<section id="in-plain-english" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="in-plain-english"><span class="header-section-number">1.1</span> In Plain English</h2>
+<p>When you have k factors and each one is tested at exactly 2 levels (low/−1 and high/+1), the complete design has 2^k runs per replicate. This makes it efficient for <strong>screening</strong> — quickly identifying which of many factors actually matter — and for estimating <strong>main effects and interactions</strong> with a minimum of runs.</p>
+<p>The ±1 coding is not cosmetic: it creates orthogonal contrasts, meaning all effect estimates are independent of each other.</p>
+</section>
+<section id="when-to-use" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="when-to-use"><span class="header-section-number">1.2</span> When To Use</h2>
+<ul>
+<li>k factors, each at exactly 2 levels (quantitative or qualitative — High/Low, On/Off)</li>
+<li>Goal is screening (finding important factors) or initial characterization</li>
+<li>When k ≥ 4, often run as a <strong>single replicate</strong> (no replication) to limit cost</li>
+</ul>
+</section>
+<section id="formulas" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="formulas"><span class="header-section-number">1.3</span> Formula(s)</h2>
+<section id="coding" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="coding"><span class="header-section-number">1.3.1</span> ±1 Coding</h3>
+<p>Low level → −1; High level → +1. The interaction column is the <strong>product</strong> of the main effect columns.</p>
+<p><strong>2^2 design sign table:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Treatment</th>
+<th>A</th>
+<th>B</th>
+<th>AB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(1)</td>
+<td>−</td>
+<td>−</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>a</td>
+<td>+</td>
+<td>−</td>
+<td>−</td>
+</tr>
+<tr class="odd">
+<td>b</td>
+<td>−</td>
+<td>+</td>
+<td>−</td>
+</tr>
+<tr class="even">
+<td>ab</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2^3 design</strong> has 8 runs (cube vertices); sign table has columns I, A, B, AB, C, AC, BC, ABC.</p>
+</section>
+<section id="effect-estimation" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="effect-estimation"><span class="header-section-number">1.3.2</span> Effect Estimation</h3>
+<p><span class="math display">\[\text{Effect}_A = \frac{1}{n \cdot 2^{k-1}} \cdot \text{Contrast}_A = \bar{y}_{A+} - \bar{y}_{A-}\]</span></p>
+<p>The effect is the <strong>difference in means</strong> between high and low levels of A, averaged over all combinations of other factors.</p>
+</section>
+<section id="contrast-ss" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="contrast-ss"><span class="header-section-number">1.3.3</span> Contrast → SS</h3>
+<p><span class="math display">\[SS = \frac{(\text{Contrast})^2}{n \cdot 2^k}\]</span></p>
+<p>Each main effect and interaction has <strong>df = 1</strong>.</p>
+</section>
+<section id="degrees-of-freedom-summary" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="degrees-of-freedom-summary"><span class="header-section-number">1.3.4</span> Degrees of Freedom Summary</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>df</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Each effect (A, B, AB, …)</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>All 2^k − 1 effects combined</td>
+<td>2^k − 1</td>
+</tr>
+<tr class="odd">
+<td>SSTotal</td>
+<td>n·2^k − 1</td>
+</tr>
+<tr class="even">
+<td>SSError (with replication)</td>
+<td>2^k·(n−1)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="linear-model-regression-approach" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="linear-model-regression-approach"><span class="header-section-number">1.3.5</span> Linear Model (Regression Approach)</h3>
+<p><span class="math display">\[Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1 x_2 + \varepsilon\]</span></p>
+<p>where x₁, x₂ ∈ {−1, +1}.</p>
+<p><strong>Critical relationship:</strong> <span class="math display">\[\hat{\beta} = \frac{\text{Effect}}{2} = \frac{\bar{y}_+ - \bar{y}_-}{2}\]</span></p>
+<p><strong>Exam trap:</strong> The <code>lm()</code> coefficient from R = Effect/2 = β̂. If asked for the <strong>effect</strong>, <strong>double</strong> the R coefficient.</p>
+<p>The book (Minitab definition) reports Coef = Effect/2 (same as R), but β₀ in Minitab differs from R’s intercept — don’t try to match β₀ between R and Minitab.</p>
+</section>
+<section id="two-analysis-approaches-in-r" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="two-analysis-approaches-in-r"><span class="header-section-number">1.3.6</span> Two Analysis Approaches in R</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>R call</th>
+<th>Output</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td><code>lm(obs ~ A + B + AB)</code></td>
+<td>Coefficients = Effect/2; t-tests per term</td>
+<td>Asked for regression equation or coefficient estimates</td>
+</tr>
+<tr class="even">
+<td>ANOVA</td>
+<td><code>aov(obs ~ A * B)</code></td>
+<td>F-tests, SS, MS per source</td>
+<td>Asked for ANOVA table</td>
+</tr>
+</tbody>
+</table>
+<p>Both give the same SS; they’re two views of the same analysis.</p>
+</section>
+<section id="unreplicated-designs-n-1-k-4" class="level3" data-number="1.3.7">
+<h3 data-number="1.3.7" class="anchored" data-anchor-id="unreplicated-designs-n-1-k-4"><span class="header-section-number">1.3.7</span> Unreplicated Designs (n = 1, k ≥ 4)</h3>
+<p>When n=1 (single replicate), df_error = 0 — the F-test is <strong>undefined</strong>. The solution:</p>
+<ol type="1">
+<li><strong>Sparsity of effects principle:</strong> Only a few effects are large; most high-order interactions are negligible</li>
+<li><strong>Pool high-order interactions</strong> as an estimate of error, OR</li>
+<li><strong>Daniel plot</strong> (normal probability plot of effects): Real effects fall off the straight line; noise effects cluster near the line</li>
+</ol>
+<p><code>FrF2::DanielPlot(lmmodel)</code> in R — effects far from the normal probability line are flagged as significant.</p>
+<section id="lenths-pse-and-me-formal-threshold-for-unreplicated-2k" class="level4" data-number="1.3.7.1">
+<h4 data-number="1.3.7.1" class="anchored" data-anchor-id="lenths-pse-and-me-formal-threshold-for-unreplicated-2k"><span class="header-section-number">1.3.7.1</span> Lenth’s PSE and ME (Formal Threshold for Unreplicated 2^k)</h4>
+<p>When you need a numerical cutoff rather than just a graphical read:</p>
+<p><span class="math display">\[s_0 = 1.5 \times \text{median}(|effects|)\]</span> <span class="math display">\[PSE = 1.5 \times \text{median}(|effects| \text{ where } |e| &lt; 2.5 s_0)\]</span> <span class="math display">\[ME = t_{\alpha/2,\; m/3} \times PSE\]</span></p>
+<p>where m = total number of effects (m = 2^k − 1). For a 2^4 design: m = 15, df = m/3 = 5, so ME = t_{0.025,5} × PSE ≈ 2.571 × PSE. An effect with |e| ≥ ME is flagged significant. <code>FrF2::DanielPlot()</code> automates this calculation.</p>
+</section>
+<section id="effect-extraction-from-lm-when-using-colon-notation" class="level4" data-number="1.3.7.2">
+<h4 data-number="1.3.7.2" class="anchored" data-anchor-id="effect-extraction-from-lm-when-using-colon-notation"><span class="header-section-number">1.3.7.2</span> Effect Extraction from <code>lm()</code> When Using Colon-Notation</h4>
+<p>When <code>lm(y ~ A*B*C*D)</code> is used, R names interactions as <code>A:B</code>, <code>A:C</code>, etc. (with surrounding whitespace). To extract effects reliably:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build named vectors to map colon-notation → short labels</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>effect_terms  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A:B"</span>, <span class="st">"A:C"</span>, <span class="st">"B:D"</span>, ...)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>effect_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"AB"</span>,  <span class="st">"AC"</span>,  <span class="st">"BD"</span>,  ...)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>coef_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_lm)<span class="sc">$</span>coefficients</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>effects  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> coef_tbl[effect_terms, <span class="st">"Estimate"</span>]   <span class="co"># Effect = 2 × coefficient</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(effects) <span class="ot">&lt;-</span> effect_labels</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Alternatively, <strong>pre-compute interaction columns</strong> in the data frame using <code>mutate()</code> (<code>AB = A*B</code>) and use plain names in the <code>lm()</code> formula — avoids the colon-notation lookup entirely and is less error-prone.</p>
+</section>
+<section id="r-pattern-single-replicate-n-1" class="level4" data-number="1.3.7.3">
+<h4 data-number="1.3.7.3" class="anchored" data-anchor-id="r-pattern-single-replicate-n-1"><span class="header-section-number">1.3.7.3</span> R Pattern: Single Replicate (n = 1)</h4>
+<p>Do NOT use <code>aov()</code> when n=1 — df_error = 0 and F-tests are undefined. Use a saturated <code>lm()</code> instead:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2^5 with n=1: pre-compute all interaction columns, then fit saturated model</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AB=</span>A<span class="sc">*</span>B, <span class="at">AC=</span>A<span class="sc">*</span>C, <span class="at">AD=</span>A<span class="sc">*</span>D, <span class="at">AE=</span>A<span class="sc">*</span>E,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">BC=</span>B<span class="sc">*</span>C, <span class="at">BD=</span>B<span class="sc">*</span>D, <span class="at">BE=</span>B<span class="sc">*</span>E,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">CD=</span>C<span class="sc">*</span>D, <span class="at">CE=</span>C<span class="sc">*</span>E, <span class="at">DE=</span>D<span class="sc">*</span>E, ...)  <span class="co"># as needed</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(obs <span class="sc">~</span> A<span class="sc">+</span>B<span class="sc">+</span>C<span class="sc">+</span>D<span class="sc">+</span>E<span class="sc">+</span>AB<span class="sc">+</span>AC<span class="sc">+</span>AD<span class="sc">+</span>AE<span class="sc">+</span>BC<span class="sc">+</span>BD<span class="sc">+</span>BE<span class="sc">+</span>CD<span class="sc">+</span>CE<span class="sc">+</span>DE, <span class="at">data=</span>df)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>coef_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_lm)<span class="sc">$</span>coefficients</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>effects  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> coef_tbl[effect_terms, <span class="st">"Estimate"</span>]   <span class="co"># Effect = 2 × coef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Key nuclear pump results (2^5, n=1):</strong> A=75.25, B=−48.75, C=158.00, D=−19.63, E=−35.25, AC=57.75, CE=−61.75.</p>
+</section>
+<section id="r-pattern-two-replicate-n-2" class="level4" data-number="1.3.7.4">
+<h4 data-number="1.3.7.4" class="anchored" data-anchor-id="r-pattern-two-replicate-n-2"><span class="header-section-number">1.3.7.4</span> R Pattern: Two-Replicate (n = 2)</h4>
+<p>When data has R1/R2 columns, pivot to long format first, then use <code>aov()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dft <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(R1, R2), <span class="at">names_to =</span> <span class="st">"Rep"</span>, <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>Response), as.factor)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">aov</span>(Response <span class="sc">~</span> A <span class="sc">*</span> B <span class="sc">*</span> C, <span class="at">data =</span> dft)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>aov_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)[[<span class="dv">1</span>]]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(aov_tbl) <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">rownames</span>(aov_tbl))   <span class="co"># MANDATORY — R pads names with spaces</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Key cutting tool results (2^3, n=2):</strong> F_B=11.53 sig, F_C=8.36 sig, F_AC=23.10 sig; F_A=0.54 not sig.</p>
+</section>
+<section id="three-replicate-pattern-pivot_longer-with-3-columns" class="level4" data-number="1.3.7.5">
+<h4 data-number="1.3.7.5" class="anchored" data-anchor-id="three-replicate-pattern-pivot_longer-with-3-columns"><span class="header-section-number">1.3.7.5</span> Three-Replicate Pattern (pivot_longer with 3 columns)</h4>
+<p>Same as two-replicate but with <code>cols = c(R1, R2, R3)</code>. The extra replicate improves power but the workflow is identical.</p>
+</section>
+<section id="setwd-pattern-for-drill-scripts" class="level4" data-number="1.3.7.6">
+<h4 data-number="1.3.7.6" class="anchored" data-anchor-id="setwd-pattern-for-drill-scripts"><span class="header-section-number">1.3.7.6</span> setwd Pattern for Drill Scripts</h4>
+<p>HWK scripts in <code>Section_4/Drills/</code> reference CSV/xlsx files by relative path. Add this after <code>p_load()</code> to auto-set working directory when opened in RStudio:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (rstudioapi<span class="sc">::</span><span class="fu">isAvailable</span>()) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Without this, running from a project root causes “file not found” for data files.</p>
+</section>
+</section>
+<section id="r-vs.-book-minitab-coefficients" class="level3" data-number="1.3.8">
+<h3 data-number="1.3.8" class="anchored" data-anchor-id="r-vs.-book-minitab-coefficients"><span class="header-section-number">1.3.8</span> R vs.&nbsp;Book (Minitab) Coefficients</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>R (<code>lm()</code> coefficient)</th>
+<th>Book / Minitab Coef</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Value</td>
+<td>Effect / 2</td>
+<td>Effect / 2</td>
+</tr>
+<tr class="even">
+<td>Same?</td>
+<td>Yes — they match</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>β₀</td>
+<td>R intercept ≠ Minitab constant</td>
+<td>Not directly comparable</td>
+</tr>
+</tbody>
+</table>
+<p>The R coefficients are the same as Minitab’s “Coef” column, but not Minitab’s “Effect” column (which is 2× larger). The ANOVA tables are identical.</p>
+</section>
+</section>
+<section id="key-assumptions" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="key-assumptions"><span class="header-section-number">1.4</span> Key Assumptions</h2>
+<ol type="1">
+<li>±1 coding is applied correctly (pre-computed interaction columns in data)</li>
+<li>Normality and constant variance (same as any ANOVA)</li>
+<li>For unreplicated designs: sparsity of effects — only a few effects are real</li>
+</ol>
+</section>
+<section id="common-mistakes" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="common-mistakes"><span class="header-section-number">1.5</span> Common Mistakes</h2>
+<ul>
+<li>Reading <code>lm()</code> coefficient as the effect — it is the effect <strong>divided by 2</strong>; if asked for the effect, multiply the R coefficient by 2</li>
+<li>Trying to F-test an unreplicated design without pooling — df_error = 0 and the test fails; use <code>lm()</code> + DanielPlot or Lenth’s ME instead</li>
+<li>Using the no-gather pattern: for 2^k designs with no replication, the data already has one row per treatment combination — <strong>do not <code>gather()</code></strong> (comment in 6-2kFD 5Factor.R: <code>## no replications = no gather</code>)</li>
+<li>Confusing the ±1 coded AB interaction column (product of A and B columns) with a separate variable that needs manual coding — <code>aov(obs ~ A * B)</code> handles this automatically when A and B are already ±1 factors</li>
+<li><strong>Null result ≠ no real effect</strong> — high within-cell variance (large MS_Error) can make even a real biological or physical effect non-significant. Root vole experiment (2^2, n=3): within-cell SD ≈ 58 in no-predator cells vs ≈ 18 in predator cells → MS_Error = 1835, F_Pred = 5.08 non-significant at α = 0.05. A power-insufficient study can fail to detect real effects.</li>
+<li><strong>Borderline F requires exact comparison</strong> — never judge an F value qualitatively. F_Pred = 5.08 vs F_crit(1,8) = 5.318 → not significant. The 0.23-unit gap matters. Always compute or look up F_crit and compare directly.</li>
+<li><strong>Heteroscedasticity tied to a factor level</strong> — if one treatment-level has SD ≈ 3× the others, constant variance is violated. Root vole: max/min cell SD ratio ≈ 3.3×. Check residual vs fitted plot and note which cell/level is driving the inequality.</li>
+</ul>
+</section>
+<section id="related" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="related"><span class="header-section-number">1.6</span> Related</h2>
+<ul>
+<li>[[factorial-anova]] — general factorial for any number of levels</li>
+<li>[[factorial-anova-r]] — R code including <code>DanielPlot()</code> and the 4-model hierarchy</li>
+<li>[[2k-factorial-examples]] — worked 2^2 and 2^3 examples with effect calculations</li>
+<li>[[anova-design-guide]] — design selection guide</li>
+<li>[[ss-decomposition]] — each 2^k effect gets one SS row in this framework</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/warrenrross\.github\.io\/Stats_Wiki_Dojo_plus\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [concept, section-4]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">tier:</span><span class="co"> procedure</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">sources:</span><span class="co"> [L48-50P 2kFD, 4-2kFD 2Factor.R, 5-2kFD 3Factor.R, 6-2kFD 5Factor.R]</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2^k Factorial Design</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## In Plain English</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>When you have k factors and each one is tested at exactly 2 levels (low/−1 and high/+1), the complete design has 2^k runs per replicate. This makes it efficient for **screening** — quickly identifying which of many factors actually matter — and for estimating **main effects and interactions** with a minimum of runs.</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>The ±1 coding is not cosmetic: it creates orthogonal contrasts, meaning all effect estimates are independent of each other.</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## When To Use</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>k factors, each at exactly 2 levels (quantitative or qualitative — High/Low, On/Off)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal is screening (finding important factors) or initial characterization</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When k ≥ 4, often run as a **single replicate** (no replication) to limit cost</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Formula(s)</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### ±1 Coding</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>Low level → −1; High level → +1. The interaction column is the **product** of the main effect columns.</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>**2^2 design sign table:**</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Treatment <span class="pp">|</span> A <span class="pp">|</span> B <span class="pp">|</span> AB <span class="pp">|</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------|---|---|----|</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> (1) <span class="pp">|</span> − <span class="pp">|</span> − <span class="pp">|</span> + <span class="pp">|</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> a <span class="pp">|</span> + <span class="pp">|</span> − <span class="pp">|</span> − <span class="pp">|</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> b <span class="pp">|</span> − <span class="pp">|</span> + <span class="pp">|</span> − <span class="pp">|</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ab <span class="pp">|</span> + <span class="pp">|</span> + <span class="pp">|</span> + <span class="pp">|</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>**2^3 design** has 8 runs (cube vertices); sign table has columns I, A, B, AB, C, AC, BC, ABC.</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect Estimation</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>$$\text{Effect}_A = \frac{1}{n \cdot 2^{k-1}} \cdot \text{Contrast}_A = \bar{y}_{A+} - \bar{y}_{A-}$$</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>The effect is the **difference in means** between high and low levels of A, averaged over all combinations of other factors.</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Contrast → SS</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>$$SS = \frac{(\text{Contrast})^2}{n \cdot 2^k}$$</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>Each main effect and interaction has **df = 1**.</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Degrees of Freedom Summary</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source <span class="pp">|</span> df <span class="pp">|</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|----|</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Each effect (A, B, AB, …) <span class="pp">|</span> 1 <span class="pp">|</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> All 2^k − 1 effects combined <span class="pp">|</span> 2^k − 1 <span class="pp">|</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSTotal <span class="pp">|</span> n·2^k − 1 <span class="pp">|</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSError (with replication) <span class="pp">|</span> 2^k·(n−1) <span class="pp">|</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linear Model (Regression Approach)</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>$$Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1 x_2 + \varepsilon$$</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>where x₁, x₂ ∈ {−1, +1}.</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>**Critical relationship:**</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>$$\hat{\beta} = \frac{\text{Effect}}{2} = \frac{\bar{y}_+ - \bar{y}_-}{2}$$</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>**Exam trap:** The `lm()` coefficient from R = Effect/2 = β̂. If asked for the **effect**, **double** the R coefficient.</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>The book (Minitab definition) reports Coef = Effect/2 (same as R), but β₀ in Minitab differs from R's intercept — don't try to match β₀ between R and Minitab.</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Two Analysis Approaches in R</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Approach <span class="pp">|</span> R call <span class="pp">|</span> Output <span class="pp">|</span> Use when <span class="pp">|</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|--------|--------|----------|</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> <span class="in">`lm(obs ~ A + B + AB)`</span> <span class="pp">|</span> Coefficients = Effect/2; t-tests per term <span class="pp">|</span> Asked for regression equation or coefficient estimates <span class="pp">|</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ANOVA <span class="pp">|</span> <span class="in">`aov(obs ~ A * B)`</span> <span class="pp">|</span> F-tests, SS, MS per source <span class="pp">|</span> Asked for ANOVA table <span class="pp">|</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>Both give the same SS; they're two views of the same analysis.</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### Unreplicated Designs (n = 1, k ≥ 4)</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>When n=1 (single replicate), df_error = 0 — the F-test is **undefined**. The solution:</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Sparsity of effects principle:** Only a few effects are large; most high-order interactions are negligible</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Pool high-order interactions** as an estimate of error, OR</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Daniel plot** (normal probability plot of effects): Real effects fall off the straight line; noise effects cluster near the line</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="in">`FrF2::DanielPlot(lmmodel)`</span> in R — effects far from the normal probability line are flagged as significant.</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Lenth's PSE and ME (Formal Threshold for Unreplicated 2^k)</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>When you need a numerical cutoff rather than just a graphical read:</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>$$s_0 = 1.5 \times \text{median}(|effects|)$$</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>$$PSE = 1.5 \times \text{median}(|effects| \text{ where } |e| &lt; 2.5 s_0)$$</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>$$ME = t_{\alpha/2,\; m/3} \times PSE$$</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>where m = total number of effects (m = 2^k − 1). For a 2^4 design: m = 15, df = m/3 = 5, so ME = t_{0.025,5} × PSE ≈ 2.571 × PSE. An effect with |e| ≥ ME is flagged significant. <span class="in">`FrF2::DanielPlot()`</span> automates this calculation.</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Effect Extraction from `lm()` When Using Colon-Notation</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>When <span class="in">`lm(y ~ A*B*C*D)`</span> is used, R names interactions as <span class="in">`A:B`</span>, <span class="in">`A:C`</span>, etc. (with surrounding whitespace). To extract effects reliably:</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Build named vectors to map colon-notation → short labels</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>effect_terms  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A:B"</span>, <span class="st">"A:C"</span>, <span class="st">"B:D"</span>, ...)</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>effect_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"AB"</span>,  <span class="st">"AC"</span>,  <span class="st">"BD"</span>,  ...)</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>coef_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_lm)<span class="sc">$</span>coefficients</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>effects  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> coef_tbl[effect_terms, <span class="st">"Estimate"</span>]   <span class="co"># Effect = 2 × coefficient</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(effects) <span class="ot">&lt;-</span> effect_labels</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>Alternatively, **pre-compute interaction columns** in the data frame using <span class="in">`mutate()`</span> (<span class="in">`AB = A*B`</span>) and use plain names in the <span class="in">`lm()`</span> formula — avoids the colon-notation lookup entirely and is less error-prone.</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R Pattern: Single Replicate (n = 1)</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>Do NOT use <span class="in">`aov()`</span> when n=1 — df_error = 0 and F-tests are undefined. Use a saturated <span class="in">`lm()`</span> instead:</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="co"># 2^5 with n=1: pre-compute all interaction columns, then fit saturated model</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AB=</span>A<span class="sc">*</span>B, <span class="at">AC=</span>A<span class="sc">*</span>C, <span class="at">AD=</span>A<span class="sc">*</span>D, <span class="at">AE=</span>A<span class="sc">*</span>E,</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>         <span class="at">BC=</span>B<span class="sc">*</span>C, <span class="at">BD=</span>B<span class="sc">*</span>D, <span class="at">BE=</span>B<span class="sc">*</span>E,</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>         <span class="at">CD=</span>C<span class="sc">*</span>D, <span class="at">CE=</span>C<span class="sc">*</span>E, <span class="at">DE=</span>D<span class="sc">*</span>E, ...)  <span class="co"># as needed</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(obs <span class="sc">~</span> A<span class="sc">+</span>B<span class="sc">+</span>C<span class="sc">+</span>D<span class="sc">+</span>E<span class="sc">+</span>AB<span class="sc">+</span>AC<span class="sc">+</span>AD<span class="sc">+</span>AE<span class="sc">+</span>BC<span class="sc">+</span>BD<span class="sc">+</span>BE<span class="sc">+</span>CD<span class="sc">+</span>CE<span class="sc">+</span>DE, <span class="at">data=</span>df)</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>coef_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_lm)<span class="sc">$</span>coefficients</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>effects  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> coef_tbl[effect_terms, <span class="st">"Estimate"</span>]   <span class="co"># Effect = 2 × coef</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>**Key nuclear pump results (2^5, n=1):** A=75.25, B=−48.75, C=158.00, D=−19.63, E=−35.25, AC=57.75, CE=−61.75.</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R Pattern: Two-Replicate (n = 2)</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>When data has R1/R2 columns, pivot to long format first, then use <span class="in">`aov()`</span>:</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>dft <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(R1, R2), <span class="at">names_to =</span> <span class="st">"Rep"</span>, <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>Response), as.factor)</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">aov</span>(Response <span class="sc">~</span> A <span class="sc">*</span> B <span class="sc">*</span> C, <span class="at">data =</span> dft)</span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>aov_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)[[<span class="dv">1</span>]]</span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(aov_tbl) <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">rownames</span>(aov_tbl))   <span class="co"># MANDATORY — R pads names with spaces</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>**Key cutting tool results (2^3, n=2):** F_B=11.53 sig, F_C=8.36 sig, F_AC=23.10 sig; F_A=0.54 not sig.</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Three-Replicate Pattern (pivot_longer with 3 columns)</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>Same as two-replicate but with <span class="in">`cols = c(R1, R2, R3)`</span>. The extra replicate improves power but the workflow is identical.</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="fu">#### setwd Pattern for Drill Scripts</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>HWK scripts in <span class="in">`Section_4/Drills/`</span> reference CSV/xlsx files by relative path. Add this after <span class="in">`p_load()`</span> to auto-set working directory when opened in RStudio:</span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (rstudioapi<span class="sc">::</span><span class="fu">isAvailable</span>()) {</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>Without this, running from a project root causes "file not found" for data files.</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="fu">### R vs. Book (Minitab) Coefficients</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> R (<span class="in">`lm()`</span> coefficient) <span class="pp">|</span> Book / Minitab Coef <span class="pp">|</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>-<span class="pp">|------------------------|---------------------|</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Value <span class="pp">|</span> Effect / 2 <span class="pp">|</span> Effect / 2 <span class="pp">|</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Same? <span class="pp">|</span> Yes — they match <span class="pp">|</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> β₀ <span class="pp">|</span> R intercept ≠ Minitab constant <span class="pp">|</span> Not directly comparable <span class="pp">|</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>The R coefficients are the same as Minitab's "Coef" column, but not Minitab's "Effect" column (which is 2× larger). The ANOVA tables are identical.</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Assumptions</span></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>±1 coding is applied correctly (pre-computed interaction columns in data)</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Normality and constant variance (same as any ANOVA)</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>For unreplicated designs: sparsity of effects — only a few effects are real</span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Mistakes</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reading <span class="in">`lm()`</span> coefficient as the effect — it is the effect **divided by 2**; if asked for the effect, multiply the R coefficient by 2</span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trying to F-test an unreplicated design without pooling — df_error = 0 and the test fails; use <span class="in">`lm()`</span> + DanielPlot or Lenth's ME instead</span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using the no-gather pattern: for 2^k designs with no replication, the data already has one row per treatment combination — **do not `gather()`** (comment in 6-2kFD 5Factor.R: <span class="in">`## no replications = no gather`</span>)</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confusing the ±1 coded AB interaction column (product of A and B columns) with a separate variable that needs manual coding — <span class="in">`aov(obs ~ A * B)`</span> handles this automatically when A and B are already ±1 factors</span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Null result ≠ no real effect** — high within-cell variance (large MS_Error) can make even a real biological or physical effect non-significant. Root vole experiment (2^2, n=3): within-cell SD ≈ 58 in no-predator cells vs ≈ 18 in predator cells → MS_Error = 1835, F_Pred = 5.08 non-significant at α = 0.05. A power-insufficient study can fail to detect real effects.</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Borderline F requires exact comparison** — never judge an F value qualitatively. F_Pred = 5.08 vs F_crit(1,8) = 5.318 → not significant. The 0.23-unit gap matters. Always compute or look up F_crit and compare directly.</span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Heteroscedasticity tied to a factor level** — if one treatment-level has SD ≈ 3× the others, constant variance is violated. Root vole: max/min cell SD ratio ≈ 3.3×. Check residual vs fitted plot and note which cell/level is driving the inequality.</span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related</span></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">factorial-anova</span><span class="co">](factorial-anova.md)</span> — general factorial for any number of levels</span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">factorial-anova-r</span><span class="co">](../r-code/factorial-anova-r.md)</span> — R code including <span class="in">`DanielPlot()`</span> and the 4-model hierarchy</span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">2k-factorial-examples</span><span class="co">](../examples/2k-factorial-examples.md)</span> — worked 2^2 and 2^3 examples with effect calculations</span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">anova-design-guide</span><span class="co">](../reference/anova-design-guide.md)</span> — design selection guide</span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ss-decomposition</span><span class="co">](ss-decomposition.md)</span> — each 2^k effect gets one SS row in this framework</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

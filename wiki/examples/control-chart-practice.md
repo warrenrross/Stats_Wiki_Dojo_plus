@@ -5,7 +5,7 @@ sources: [ControlCharts_Assessment.docx, Control_Chart_Practice_V2.docx, control
 ---
 # Practice Problems: Control Charts
 
-See also: [[control-charts]], [[process-capability]], [[control-chart-examples]], [[control-charts-r]]
+See also: [control-charts](../concepts/control-charts.md), [process-capability](../concepts/process-capability.md), [control-chart-examples](control-chart-examples.md), [control-charts-r](../r-code/control-charts-r.md)
 
 > **Exam format:** Hand-calculated. Each problem includes a partial constants or reference table — read the scenario to identify which row applies, then use those values to compute limits or capability indices. No R code required.
 

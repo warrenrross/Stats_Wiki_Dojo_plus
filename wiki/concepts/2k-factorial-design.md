@@ -182,8 +182,8 @@ The R coefficients are the same as Minitab's "Coef" column, but not Minitab's "E
 - **Heteroscedasticity tied to a factor level** — if one treatment-level has SD ≈ 3× the others, constant variance is violated. Root vole: max/min cell SD ratio ≈ 3.3×. Check residual vs fitted plot and note which cell/level is driving the inequality.
 
 ## Related
-- [[factorial-anova]] — general factorial for any number of levels
-- [[factorial-anova-r]] — R code including `DanielPlot()` and the 4-model hierarchy
-- [[2k-factorial-examples]] — worked 2^2 and 2^3 examples with effect calculations
-- [[anova-design-guide]] — design selection guide
-- [[ss-decomposition]] — each 2^k effect gets one SS row in this framework
+- [factorial-anova](factorial-anova.md) — general factorial for any number of levels
+- [factorial-anova-r](../r-code/factorial-anova-r.md) — R code including `DanielPlot()` and the 4-model hierarchy
+- [2k-factorial-examples](../examples/2k-factorial-examples.md) — worked 2^2 and 2^3 examples with effect calculations
+- [anova-design-guide](../reference/anova-design-guide.md) — design selection guide
+- [ss-decomposition](ss-decomposition.md) — each 2^k effect gets one SS row in this framework

@@ -55,6 +55,6 @@ $$\bar{d} - t_{\alpha/2,\,n-1}\frac{S_D}{\sqrt{n}} \leq \mu_D \leq \bar{d} + t_{
 - Forgetting to define D direction consistently (X₁ − X₂ vs X₂ − X₁ changes the sign of T₀)
 
 ## Related
-- [[ht-two-sample-t-means]] — use when observations are independent
-- [[hypothesis-tests-r]] — `t.test(x, y, paired = TRUE)`
-- [[ht-tests-overview]] — full test selection table
+- [ht-two-sample-t-means](ht-two-sample-t-means.md) — use when observations are independent
+- [hypothesis-tests-r](../r-code/hypothesis-tests-r.md) — `t.test(x, y, paired = TRUE)`
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table

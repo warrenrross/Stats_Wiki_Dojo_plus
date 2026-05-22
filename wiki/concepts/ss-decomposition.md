@@ -52,19 +52,19 @@ MS = SS / df converts from a total squared deviation to a per-degree-of-freedom 
 
 ## Common Mistakes
 
-- **Treating sequential `anova()` rows in MLR as SS_Model components** — they are Type I (sequential) SS, not the unique contribution of each predictor. They sum to SS_Model only when predictors are orthogonal. See [[regression-mlr]] and [[fwl-theorem]].
+- **Treating sequential `anova()` rows in MLR as SS_Model components** — they are Type I (sequential) SS, not the unique contribution of each predictor. They sum to SS_Model only when predictors are orthogonal. See [regression-mlr](regression-mlr.md) and [fwl-theorem](fwl-theorem.md).
 - **Confusing SS_R (regression) with SS_E (error)** — R uses "Residuals" for error and predictor name rows for model terms; do not read them backwards.
 - **Forgetting that df partitions exactly like SS** — if you add a block factor, you lose (b−1) df from SS_Error and gain (b−1) df in SS_Blocks. The total df is unchanged.
 - **Treating R² and adjusted R² as interchangeable** — R² always increases when predictors are added (SS_Error can only shrink); adjusted R² penalizes for extra df and is the correct comparison metric for MLR.
 
 ## Related
 
-- [[regression-slr]] — worked SLR example of the decomposition (SS_T = SS_R + SS_E)
-- [[regression-ht]] — F-test is the ratio of mean squares from this decomposition
-- [[regression-mlr]] — R² and the ANOVA table structure derive from this identity
-- [[crd-one-way-anova]] — ANOVA Identity section on that page names this construct
-- [[rcbd-blocking]] — adds SS_Blocks as a third partition component
-- [[factorial-anova]] — splits SS_Model into A, B, AB interaction components
-- [[2k-factorial-design]] — each 2^k effect gets its own SS row
-- [[degrees-of-freedom]] — df partitions exactly as SS does: df_T = df_Model + df_Error
-- [[variance-estimation]] — MS is a variance estimate; same conceptual framework
+- [regression-slr](regression-slr.md) — worked SLR example of the decomposition (SS_T = SS_R + SS_E)
+- [regression-ht](regression-ht.md) — F-test is the ratio of mean squares from this decomposition
+- [regression-mlr](regression-mlr.md) — R² and the ANOVA table structure derive from this identity
+- [crd-one-way-anova](crd-one-way-anova.md) — ANOVA Identity section on that page names this construct
+- [rcbd-blocking](rcbd-blocking.md) — adds SS_Blocks as a third partition component
+- [factorial-anova](factorial-anova.md) — splits SS_Model into A, B, AB interaction components
+- [2k-factorial-design](2k-factorial-design.md) — each 2^k effect gets its own SS row
+- [degrees-of-freedom](degrees-of-freedom.md) — df partitions exactly as SS does: df_T = df_Model + df_Error
+- [variance-estimation](variance-estimation.md) — MS is a variance estimate; same conceptual framework

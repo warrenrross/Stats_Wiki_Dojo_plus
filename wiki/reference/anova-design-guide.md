@@ -76,8 +76,8 @@ $$\text{Effect} = \frac{\text{Contrast}}{n \cdot 2^{k-1}} \qquad SS = \frac{(\te
 - ANOVA tables are identical between R and Minitab
 
 ## Related
-- [[crd-one-way-anova]] — CRD concept
-- [[rcbd-blocking]] — RCBD concept
-- [[factorial-anova]] — factorial concept
-- [[2k-factorial-design]] — 2^k concept
-- [[quick-reference-section4]] — compact formula sheet
+- [crd-one-way-anova](../concepts/crd-one-way-anova.md) — CRD concept
+- [rcbd-blocking](../concepts/rcbd-blocking.md) — RCBD concept
+- [factorial-anova](../concepts/factorial-anova.md) — factorial concept
+- [2k-factorial-design](../concepts/2k-factorial-design.md) — 2^k concept
+- [quick-reference-section4](quick-reference-section4.md) — compact formula sheet

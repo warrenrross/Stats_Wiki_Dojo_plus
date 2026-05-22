@@ -147,6 +147,6 @@ Answer: List the 1–3 effects that fall noticeably off the line. Refit the mode
 ---
 
 ## Related
-- [[2k-factorial-design]] — concept and formula page
-- [[factorial-anova-r]] — R code including `DanielPlot()` pattern
-- [[factorial-examples]] — 2-factor and 3-factor with replication
+- [2k-factorial-design](../concepts/2k-factorial-design.md) — concept and formula page
+- [factorial-anova-r](../r-code/factorial-anova-r.md) — R code including `DanielPlot()` pattern
+- [factorial-examples](factorial-examples.md) — 2-factor and 3-factor with replication

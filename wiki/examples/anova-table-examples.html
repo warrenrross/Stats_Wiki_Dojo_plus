@@ -1,0 +1,2454 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>anova-table-examples – INEG 2314H — Statistical Methods</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cb9eb8060de154f7129409f226e8d1c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">INEG 2314H — Statistical Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../syllabus-path.html"> 
+<span class="menu-text">Linear Path</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lessons/index.html"> 
+<span class="menu-text">Lessons</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dojo/index.html"> 
+<span class="menu-text">Coding Dojo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../graph-navigation.html"> 
+<span class="menu-text">Knowledge Graph</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../wiki/index.html"> 
+<span class="menu-text">Wiki Index</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">INEG 2314H — Statistical Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Resource</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Suggested Linear Path</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../graph-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge Graph Navigation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lessons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/sampling-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling Distributions and the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/standard-error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standard Error — The Universal Reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Confidence Intervals</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Inference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing — The 7-Step Framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/t-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One- and Two-Sample t-Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One-Way ANOVA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple Linear Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Diagnostics and Adequacy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Quality Methods</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/control-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Chart Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/xbar-r-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">X̄/R and X̄/S Charts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/p-c-u-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">p, c, and u Charts</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Experimental Design</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/crd-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRD and One-Way ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/factorial-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Factorial ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/two-k-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2^k Factorial Designs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Coding Dojo</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coding Dojo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/simulate-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Simulate the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fit-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fit and Interpret a Regression Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/build-control-chart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Build a Control Chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fill-anova-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fill an ANOVA Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/factorial-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Factorial ANOVA in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#examples-completing-anova-and-summary-tables" id="toc-examples-completing-anova-and-summary-tables" class="nav-link active" data-scroll-target="#examples-completing-anova-and-summary-tables"><span class="header-section-number">1</span> Examples: Completing ANOVA and Summary Tables</a>
+  <ul class="collapse">
+  <li><a href="#the-master-relationships-memorize-these" id="toc-the-master-relationships-memorize-these" class="nav-link" data-scroll-target="#the-master-relationships-memorize-these"><span class="header-section-number">1.1</span> The Master Relationships (memorize these)</a>
+  <ul class="collapse">
+  <li><a href="#anova-table" id="toc-anova-table" class="nav-link" data-scroll-target="#anova-table"><span class="header-section-number">1.1.1</span> ANOVA Table</a></li>
+  <li><a href="#summary-table-summaryfitcoefficients" id="toc-summary-table-summaryfitcoefficients" class="nav-link" data-scroll-target="#summary-table-summaryfitcoefficients"><span class="header-section-number">1.1.2</span> Summary Table (<code>summary(fit)$coefficients</code>)</a></li>
+  </ul></li>
+  <li><a href="#example-1-slr-fill-the-anova-table" id="toc-example-1-slr-fill-the-anova-table" class="nav-link" data-scroll-target="#example-1-slr-fill-the-anova-table"><span class="header-section-number">1.2</span> Example 1 — SLR: Fill the ANOVA Table</a></li>
+  <li><a href="#example-2-mlr-fill-the-anova-table" id="toc-example-2-mlr-fill-the-anova-table" class="nav-link" data-scroll-target="#example-2-mlr-fill-the-anova-table"><span class="header-section-number">1.3</span> Example 2 — MLR: Fill the ANOVA Table</a></li>
+  <li><a href="#example-2b-reconstruct-from-f₀-and-σ²-scenario-b" id="toc-example-2b-reconstruct-from-f₀-and-σ²-scenario-b" class="nav-link" data-scroll-target="#example-2b-reconstruct-from-f₀-and-σ²-scenario-b"><span class="header-section-number">1.4</span> Example 2b — Reconstruct from F₀ and σ̂² (Scenario B)</a></li>
+  <li><a href="#example-3-completing-the-summary-table" id="toc-example-3-completing-the-summary-table" class="nav-link" data-scroll-target="#example-3-completing-the-summary-table"><span class="header-section-number">1.5</span> Example 3 — Completing the Summary Table</a></li>
+  <li><a href="#example-4-recommendations-from-output" id="toc-example-4-recommendations-from-output" class="nav-link" data-scroll-target="#example-4-recommendations-from-output"><span class="header-section-number">1.6</span> Example 4 — Recommendations from Output</a></li>
+  <li><a href="#quick-reference-what-to-do-when-a-cell-is-missing" id="toc-quick-reference-what-to-do-when-a-cell-is-missing" class="nav-link" data-scroll-target="#quick-reference-what-to-do-when-a-cell-is-missing"><span class="header-section-number">1.7</span> Quick-Reference: What to Do When a Cell Is Missing</a></li>
+  <li><a href="#practice-problems-fill-the-anova-table-class-activity-format" id="toc-practice-problems-fill-the-anova-table-class-activity-format" class="nav-link" data-scroll-target="#practice-problems-fill-the-anova-table-class-activity-format"><span class="header-section-number">1.8</span> Practice Problems — Fill the ANOVA Table (Class Activity Format)</a>
+  <ul class="collapse">
+  <li><a href="#practice-problem-1-slr-k-1" id="toc-practice-problem-1-slr-k-1" class="nav-link" data-scroll-target="#practice-problem-1-slr-k-1"><span class="header-section-number">1.8.1</span> Practice Problem 1 (SLR, k = 1)</a></li>
+  <li><a href="#practice-problem-2-mlr-k-2" id="toc-practice-problem-2-mlr-k-2" class="nav-link" data-scroll-target="#practice-problem-2-mlr-k-2"><span class="header-section-number">1.8.2</span> Practice Problem 2 (MLR, k = 2)</a></li>
+  <li><a href="#practice-problem-3-mlr-k-3" id="toc-practice-problem-3-mlr-k-3" class="nav-link" data-scroll-target="#practice-problem-3-mlr-k-3"><span class="header-section-number">1.8.3</span> Practice Problem 3 (MLR, k = 3)</a></li>
+  <li><a href="#practice-problem-4-mlr-k-4" id="toc-practice-problem-4-mlr-k-4" class="nav-link" data-scroll-target="#practice-problem-4-mlr-k-4"><span class="header-section-number">1.8.4</span> Practice Problem 4 (MLR, k = 4)</a></li>
+  <li><a href="#practice-problem-5-mlr-k-2" id="toc-practice-problem-5-mlr-k-2" class="nav-link" data-scroll-target="#practice-problem-5-mlr-k-2"><span class="header-section-number">1.8.5</span> Practice Problem 5 (MLR, k = 2)</a></li>
+  </ul></li>
+  <li><a href="#practice-problem-answers" id="toc-practice-problem-answers" class="nav-link" data-scroll-target="#practice-problem-answers"><span class="header-section-number">1.9</span> Practice Problem Answers</a>
+  <ul class="collapse">
+  <li><a href="#answer-1-k-1-n-16" id="toc-answer-1-k-1-n-16" class="nav-link" data-scroll-target="#answer-1-k-1-n-16"><span class="header-section-number">1.9.1</span> Answer 1 (k = 1, n = 16)</a></li>
+  <li><a href="#answer-2-k-2-n-22" id="toc-answer-2-k-2-n-22" class="nav-link" data-scroll-target="#answer-2-k-2-n-22"><span class="header-section-number">1.9.2</span> Answer 2 (k = 2, n = 22)</a></li>
+  <li><a href="#answer-3-k-3-n-30" id="toc-answer-3-k-3-n-30" class="nav-link" data-scroll-target="#answer-3-k-3-n-30"><span class="header-section-number">1.9.3</span> Answer 3 (k = 3, n = 30)</a></li>
+  <li><a href="#answer-4-k-4-n-40" id="toc-answer-4-k-4-n-40" class="nav-link" data-scroll-target="#answer-4-k-4-n-40"><span class="header-section-number">1.9.4</span> Answer 4 (k = 4, n = 40)</a></li>
+  <li><a href="#answer-5-k-2-n-18" id="toc-answer-5-k-2-n-18" class="nav-link" data-scroll-target="#answer-5-k-2-n-18"><span class="header-section-number">1.9.5</span> Answer 5 (k = 2, n = 18)</a></li>
+  </ul></li>
+  <li><a href="#example-5-doe-rcbd-reverse-engineer-anova-table-from-ms-and-f" id="toc-example-5-doe-rcbd-reverse-engineer-anova-table-from-ms-and-f" class="nav-link" data-scroll-target="#example-5-doe-rcbd-reverse-engineer-anova-table-from-ms-and-f"><span class="header-section-number">1.10</span> Example 5 — DOE (RCBD): Reverse-Engineer ANOVA Table from MS and F</a></li>
+  <li><a href="#related" id="toc-related" class="nav-link" data-scroll-target="#related"><span class="header-section-number">1.11</span> Related</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+
+
+
+
+<section id="examples-completing-anova-and-summary-tables" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Examples: Completing ANOVA and Summary Tables</h1>
+<p>See also: [[regression-ht]], [[regression-slr]], [[regression-mlr]], [[reading-r-output]]</p>
+<blockquote class="blockquote">
+<p><strong>Exam focus:</strong> You will NOT calculate from raw data. You WILL be given a partial table from R output and asked to fill in blanks, compute σ̂, interpret, and make recommendations.</p>
+</blockquote>
+<hr>
+<section id="the-master-relationships-memorize-these" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-master-relationships-memorize-these"><span class="header-section-number">1.1</span> The Master Relationships (memorize these)</h2>
+<section id="anova-table" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="anova-table"><span class="header-section-number">1.1.1</span> ANOVA Table</h3>
+<pre><code>Source      df       SS       MS          F           p
+Regression  k        SSR      MSR=SSR/k   F₀=MSR/MSE  p-value
+Residuals   n-p      SSE      MSE=SSE/(n-p)
+Total       n-1      SST</code></pre>
+<p><strong>Abbreviations:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 39%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Full name</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>df</td>
+<td>Degrees of freedom</td>
+<td>Units of independent information available for estimation</td>
+</tr>
+<tr class="even">
+<td>SS</td>
+<td>Sum of squares</td>
+<td>A measure of total squared deviation</td>
+</tr>
+<tr class="odd">
+<td>MS</td>
+<td>Mean square</td>
+<td>SS divided by its df; an estimated variance</td>
+</tr>
+<tr class="even">
+<td>F (F₀)</td>
+<td>F-statistic</td>
+<td>Test statistic for the overall model: MSR / MSE</td>
+</tr>
+<tr class="odd">
+<td>p</td>
+<td>p-value</td>
+<td>Probability of observing F₀ this large if H₀ is true</td>
+</tr>
+<tr class="even">
+<td>SSR</td>
+<td>Sum of squares — Regression</td>
+<td>Variation in y <em>explained</em> by the model</td>
+</tr>
+<tr class="odd">
+<td>SSE</td>
+<td>Sum of squares — Error (Residuals)</td>
+<td>Variation in y <em>not explained</em> by the model</td>
+</tr>
+<tr class="even">
+<td>SST</td>
+<td>Sum of squares — Total</td>
+<td>Total variation in y around its mean: SSR + SSE</td>
+</tr>
+<tr class="odd">
+<td>MSR</td>
+<td>Mean square — Regression</td>
+<td>SSR / k</td>
+</tr>
+<tr class="even">
+<td>MSE</td>
+<td>Mean square — Error</td>
+<td>SSE / (n − p); also equals σ̂²</td>
+</tr>
+<tr class="odd">
+<td>k</td>
+<td>Number of predictors</td>
+<td>Regression df; equals p − 1</td>
+</tr>
+<tr class="even">
+<td>n</td>
+<td>Sample size</td>
+<td>Number of observations</td>
+</tr>
+<tr class="odd">
+<td>p (parameter count)</td>
+<td>Number of parameters</td>
+<td>k + 1 (predictors + intercept); used in df_Res = n − p</td>
+</tr>
+<tr class="even">
+<td>σ̂</td>
+<td>Estimated standard deviation</td>
+<td>√MSE; typical error of a prediction in original units</td>
+</tr>
+<tr class="odd">
+<td>R²</td>
+<td>Coefficient of determination</td>
+<td>SSR / SST; proportion of variation explained by the model</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> “p” is overloaded — it means <em>p-value</em> in the F column but <em>number of parameters</em> in the df formulas. Context makes it clear.</p>
+</blockquote>
+<ul>
+<li><strong>p</strong> = number of parameters = k + 1 (intercept + number of predictors)</li>
+<li><strong>SLR:</strong> k = 1, df_Reg = 1, df_Res = n − 2</li>
+<li><strong>MLR with k predictors:</strong> df_Reg = k, df_Res = n − k − 1</li>
+</ul>
+<p><strong>Key formulas to fill any blank:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Want</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SST</td>
+<td>SSR + SSE</td>
+</tr>
+<tr class="even">
+<td>SSR</td>
+<td>SST − SSE</td>
+</tr>
+<tr class="odd">
+<td>SSE</td>
+<td>SST − SSR</td>
+</tr>
+<tr class="even">
+<td>MSR</td>
+<td>SSR / k</td>
+</tr>
+<tr class="odd">
+<td>MSE</td>
+<td>SSE / (n − p)</td>
+</tr>
+<tr class="even">
+<td>F₀</td>
+<td>MSR / MSE</td>
+</tr>
+<tr class="odd">
+<td>σ̂²</td>
+<td>MSE</td>
+</tr>
+<tr class="even">
+<td>σ̂</td>
+<td>√MSE</td>
+</tr>
+<tr class="odd">
+<td>R²</td>
+<td>SSR / SST</td>
+</tr>
+<tr class="even">
+<td>R²_adj</td>
+<td>1 − MSE / [SST / (n − 1)]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="summary-table-summaryfitcoefficients" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="summary-table-summaryfitcoefficients"><span class="header-section-number">1.1.2</span> Summary Table (<code>summary(fit)$coefficients</code>)</h3>
+<pre><code>             Estimate   Std. Error   t value   Pr(&gt;|t|)
+(Intercept)  β̂₀        se₀          t₀        p₀
+x1           β̂₁        se₁          t₁        p₁
+x2           β̂₂        se₂          t₂        p₂</code></pre>
+<p><strong>Key formulas:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Want</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>t value</td>
+<td>Estimate / Std. Error</td>
+</tr>
+<tr class="even">
+<td>Std. Error</td>
+<td>Estimate / t value</td>
+</tr>
+<tr class="odd">
+<td>Estimate</td>
+<td>t value × Std. Error</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> The <code>t value</code> column ALWAYS tests H₀: βⱼ = 0. If the exam gives a non-zero null, compute T₀ manually: T₀ = (β̂ⱼ − β₀) / se(β̂ⱼ).</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="example-1-slr-fill-the-anova-table" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="example-1-slr-fill-the-anova-table"><span class="header-section-number">1.2</span> Example 1 — SLR: Fill the ANOVA Table</h2>
+<p><strong>Given (Oxygen Purity, n = 20, k = 1):</strong></p>
+<pre><code>Source      df    SS        MS        F       p
+Regression  1     ____      ____      ____    &lt; 0.001
+Residuals   18    21.25     ____
+Total       19    ____</code></pre>
+<p>Also known: R² = 0.877</p>
+<p><strong>Find:</strong> Fill in all blanks. State σ̂. State the model conclusion at α = 0.05.</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<p><strong>Step 1 — MSE from Residuals row:</strong> <span class="math display">\[MSE = \frac{SSE}{df_{Res}} = \frac{21.25}{18} = 1.181\]</span></p>
+<p><strong>Step 2 — σ̂:</strong> <span class="math display">\[\hat{\sigma} = \sqrt{MSE} = \sqrt{1.181} = 1.087\]</span></p>
+<p><strong>Step 3 — SST from R²:</strong> <span class="math display">\[R^2 = \frac{SSR}{SST} \implies SST = \frac{SSR}{R^2}\]</span> We need SSR first. Since SST = SSR + SSE: <span class="math display">\[0.877 = \frac{SSR}{SSR + 21.25} \implies 0.877(SSR + 21.25) = SSR \implies 21.25 \times 0.877 = 0.123 \times SSR\]</span> <span class="math display">\[SSR = \frac{21.25 \times 0.877}{0.123} = \frac{18.64}{0.123} = 151.5\]</span></p>
+<p>Alternatively, once you have SSR: SST = SSR + SSE = 151.5 + 21.25 = 172.75</p>
+<p><strong>Step 4 — MSR:</strong> <span class="math display">\[MSR = \frac{SSR}{k} = \frac{151.5}{1} = 151.5\]</span></p>
+<p><strong>Step 5 — F₀:</strong> <span class="math display">\[F_0 = \frac{MSR}{MSE} = \frac{151.5}{1.181} = 128.3\]</span></p>
+<p><strong>Completed table:</strong></p>
+<pre><code>Source      df    SS        MS        F       p
+Regression  1     151.5     151.5     128.3   &lt; 0.001
+Residuals   18    21.25     1.181
+Total       19    172.75</code></pre>
+<p><strong>Answer:</strong> &gt; “The regression model is significant at α = 0.05. F₀ = 128.3 with p &lt; 0.001 — there is sufficient evidence that at least one regression coefficient is nonzero. σ̂ = 1.087.”</p>
+<hr>
+</section>
+<section id="example-2-mlr-fill-the-anova-table" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="example-2-mlr-fill-the-anova-table"><span class="header-section-number">1.3</span> Example 2 — MLR: Fill the ANOVA Table</h2>
+<p><strong>Given (Wirebond Pull Strength, n = 25, k = 2 predictors):</strong></p>
+<pre><code>Source      df    SS          MS          F        p
+Regression  ____  ____        2995.39     ____     &lt; 0.001
+Residuals   ____  ____        5.235
+Total       24    ____</code></pre>
+<p><strong>Find:</strong> Fill all blanks. State σ̂, R², and the test conclusion.</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<p><strong>Step 1 — Degrees of freedom:</strong> - df_Reg = k = 2 - df_Res = n − k − 1 = 25 − 2 − 1 = 22 - df_Total = n − 1 = 24 ✓ (check: 2 + 22 = 24 ✓)</p>
+<p><strong>Step 2 — SS from MS × df:</strong> <span class="math display">\[SSR = MSR \times df_{Reg} = 2995.39 \times 2 = 5990.78\]</span> <span class="math display">\[SSE = MSE \times df_{Res} = 5.235 \times 22 = 115.17\]</span> <span class="math display">\[SST = SSR + SSE = 5990.78 + 115.17 = 6105.95\]</span></p>
+<p><strong>Step 3 — F₀:</strong> <span class="math display">\[F_0 = \frac{MSR}{MSE} = \frac{2995.39}{5.235} = 572.2\]</span></p>
+<p><strong>Step 4 — σ̂ and R²:</strong> <span class="math display">\[\hat{\sigma}^2 = MSE = 5.235 \implies \hat{\sigma} = \sqrt{5.235} = 2.288\]</span> <span class="math display">\[R^2 = \frac{SSR}{SST} = \frac{5990.78}{6105.95} = 0.981\]</span></p>
+<p><strong>Completed table:</strong></p>
+<pre><code>Source      df    SS          MS          F        p
+Regression  2     5990.78     2995.39     572.2    &lt; 0.001
+Residuals   22    115.17      5.235
+Total       24    6105.95</code></pre>
+<p><strong>Answer:</strong> &gt; “The regression model is significant at α = 0.05 (F₀ = 572.2, p &lt; 0.001). 98.1% of the variation in pull strength is explained by the model. σ̂ = 2.288. There is sufficient evidence that at least one coefficient is nonzero.”</p>
+<hr>
+</section>
+<section id="example-2b-reconstruct-from-f₀-and-σ²-scenario-b" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="example-2b-reconstruct-from-f₀-and-σ²-scenario-b"><span class="header-section-number">1.4</span> Example 2b — Reconstruct from F₀ and σ̂² (Scenario B)</h2>
+<p><strong>Given (MLR output, n = 30, k = 3 predictors):</strong></p>
+<pre><code>F-statistic: 42.6 on 3 and 26 DF,  p-value: &lt; 0.001
+Residual standard error: 4.12</code></pre>
+<p><strong>Find:</strong> Reconstruct the full ANOVA table. Compute SST, SSR, SSE, R², R²_adj.</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<p><strong>Step 1 — df from problem statement:</strong> - df_Reg = k = 3 - df_Res = n − k − 1 = 30 − 3 − 1 = 26 ← confirmed by “3 and 26 DF” - df_Total = n − 1 = 29</p>
+<p><strong>Step 2 — MSE from σ̂:</strong> <span class="math display">\[MSE = \hat{\sigma}^2 = (4.12)^2 = 16.974\]</span></p>
+<p><strong>Step 3 — MSR from F₀:</strong> <span class="math display">\[MSR = F_0 \times MSE = 42.6 \times 16.974 = 723.09\]</span></p>
+<p><strong>Step 4 — SS from MS × df:</strong> <span class="math display">\[SSR = MSR \times df_{Reg} = 723.09 \times 3 = 2169.3\]</span> <span class="math display">\[SSE = MSE \times df_{Res} = 16.974 \times 26 = 441.3\]</span> <span class="math display">\[SST = SSR + SSE = 2169.3 + 441.3 = 2610.6\]</span></p>
+<p><strong>Step 5 — R² and R²_adj:</strong> <span class="math display">\[R^2 = \frac{SSR}{SST} = \frac{2169.3}{2610.6} = 0.831\]</span> <span class="math display">\[R^2_{adj} = 1 - \frac{MSE}{SST/(n-1)} = 1 - \frac{16.974}{2610.6/29} = 1 - \frac{16.974}{90.02} = 0.811\]</span></p>
+<p><strong>Completed table:</strong></p>
+<pre><code>Source      df    SS        MS        F       p
+Regression  3     2169.3    723.09    42.6    &lt; 0.001
+Residuals   26    441.3     16.974
+Total       29    2610.6</code></pre>
+<p><strong>Answer:</strong> &gt; “The regression model is significant (F₀ = 42.6, p &lt; 0.001). R² = 0.831 — 83.1% of the variation in Y is explained by the model. σ̂ = 4.12.”</p>
+<p><strong>Scenario B formula chain (memorize this order):</strong></p>
+<pre><code>Read:  F₀, σ̂ (or MSE), n, k
+Derive:
+  df_Reg = k,  df_Res = n−k−1,  df_Total = n−1
+  MSE = σ̂²
+  MSR = F₀ × MSE
+  SSE = MSE × df_Res
+  SSR = MSR × df_Reg
+  SST = SSR + SSE
+  R²  = SSR / SST
+  R²_adj = 1 − MSE / (SST / df_Total)</code></pre>
+<hr>
+</section>
+<section id="example-3-completing-the-summary-table" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="example-3-completing-the-summary-table"><span class="header-section-number">1.5</span> Example 3 — Completing the Summary Table</h2>
+<p><strong>Given (partial summary table, SLR, n = 20):</strong></p>
+<pre><code>             Estimate   Std. Error   t value   Pr(&gt;|t|)
+(Intercept)  74.28      ____         ____      0.0009
+x            14.95      1.317        ____      &lt; 0.001</code></pre>
+<p><strong>Find:</strong> Fill in blanks. Which terms are significant at α = 0.05?</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<p><strong>β̂₁ row (x):</strong> <span class="math display">\[t_1 = \frac{\hat{\beta}_1}{se_1} = \frac{14.95}{1.317} = 11.35\]</span></p>
+<p><strong>Intercept row:</strong> The p-value is 0.0009, which is &lt; 0.05. Work backwards: - Two-sided p-value 0.0009 corresponds to |t| ≈ 3.92 at df = 18. - se₀ = β̂₀ / t₀ = 74.28 / 3.92 ≈ 18.9 <em>(Alternatively: if you know df, use <code>qt(1 - 0.0009/2, 18)</code> to find t₀, then SE = Est/t₀)</em></p>
+<p><strong>Completed table:</strong></p>
+<pre><code>             Estimate   Std. Error   t value   Pr(&gt;|t|)
+(Intercept)  74.28      ~18.9        ~3.92     0.0009
+x            14.95      1.317        11.35     &lt; 0.001</code></pre>
+<p><strong>Answer:</strong> &gt; Both terms are significant at α = 0.05 (both p-values &lt; 0.05). There is sufficient evidence to conclude that x has a significant linear effect on y (t₀ = 11.35, p &lt; 0.001). The intercept is also significantly different from zero (p = 0.0009).</p>
+<hr>
+</section>
+<section id="example-4-recommendations-from-output" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="example-4-recommendations-from-output"><span class="header-section-number">1.6</span> Example 4 — Recommendations from Output</h2>
+<p><strong>Scenario:</strong> MLR model with 3 predictors. Summary table:</p>
+<pre><code>             Estimate   Std. Error   t value   Pr(&gt;|t|)
+(Intercept)  45.32      5.12         8.85      &lt; 0.001
+x1           2.18       0.41         5.32      &lt; 0.001
+x2           -0.43      0.89        -0.48      0.634
+x3           1.75       0.33         5.30      &lt; 0.001</code></pre>
+<p>Overall F-test: F₀ = 48.3, p &lt; 0.001</p>
+<p><strong>Find:</strong> Interpret the output. What recommendation would you make?</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>The overall model is significant (F₀ = 48.3, p &lt; 0.001) → at least one predictor is useful.</li>
+<li>x1 and x3 are individually significant (both p &lt; 0.001) → evidence their coefficients ≠ 0.</li>
+<li>x2 is <strong>not</strong> significant (t = −0.48, p = 0.634) → no evidence that x2 contributes beyond x1 and x3.</li>
+</ul>
+<p><strong>Answer:</strong> &gt; “x2 does not appear to contribute significantly to the model (p = 0.634). I would recommend removing x2 and refitting the model with x1 and x3 only. The overall F-test confirms the model has value, but x2’s individual p-value suggests it adds no explanatory power beyond the other predictors.”</p>
+<hr>
+</section>
+<section id="quick-reference-what-to-do-when-a-cell-is-missing" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="quick-reference-what-to-do-when-a-cell-is-missing"><span class="header-section-number">1.7</span> Quick-Reference: What to Do When a Cell Is Missing</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Missing cell</th>
+<th>How to find it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MSE</td>
+<td>SSE / df_Res</td>
+</tr>
+<tr class="even">
+<td>MSR</td>
+<td>SSR / df_Reg</td>
+</tr>
+<tr class="odd">
+<td>F₀</td>
+<td>MSR / MSE</td>
+</tr>
+<tr class="even">
+<td>SSR</td>
+<td>SST − SSE <strong>or</strong> MSR × df_Reg</td>
+</tr>
+<tr class="odd">
+<td>SSE</td>
+<td>SST − SSR <strong>or</strong> MSE × df_Res</td>
+</tr>
+<tr class="even">
+<td>SST</td>
+<td>SSR + SSE</td>
+</tr>
+<tr class="odd">
+<td>σ̂²</td>
+<td>MSE (they are the same thing)</td>
+</tr>
+<tr class="even">
+<td>σ̂</td>
+<td>√MSE</td>
+</tr>
+<tr class="odd">
+<td>R²</td>
+<td>SSR / SST</td>
+</tr>
+<tr class="even">
+<td>df_Reg</td>
+<td>k (= number of predictors)</td>
+</tr>
+<tr class="odd">
+<td>df_Res</td>
+<td>n − k − 1</td>
+</tr>
+<tr class="even">
+<td>df_Total</td>
+<td>n − 1</td>
+</tr>
+<tr class="odd">
+<td>t value (summary)</td>
+<td>Estimate / Std. Error</td>
+</tr>
+<tr class="even">
+<td>Std. Error (summary)</td>
+<td>Estimate / t value</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<hr>
+</section>
+<section id="practice-problems-fill-the-anova-table-class-activity-format" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="practice-problems-fill-the-anova-table-class-activity-format"><span class="header-section-number">1.8</span> Practice Problems — Fill the ANOVA Table (Class Activity Format)</h2>
+<blockquote class="blockquote">
+<p><strong>Instructions:</strong> For each problem, compute SSR, fill in all blanks, state σ̂, compute F₀, and state the test conclusion at the given α. Answers are at the bottom of this page.</p>
+</blockquote>
+<hr>
+<section id="practice-problem-1-slr-k-1" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="practice-problem-1-slr-k-1"><span class="header-section-number">1.8.1</span> Practice Problem 1 (SLR, k = 1)</h3>
+<p><span class="math display">\[H_0: \beta_1 = 0 \qquad H_1: \beta_1 \neq 0\]</span></p>
+<p><span class="math display">\[SS_T = 520; \quad SS_{x_1} = 448; \quad SS_E = 72; \quad \alpha = 0.05; \quad n = 16\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 27%">
+<col style="width: 17%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of Variation</th>
+<th>Sum of Squares</th>
+<th>Degrees of Freedom</th>
+<th>Mean Square</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Error or Residual</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="practice-problem-2-mlr-k-2" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="practice-problem-2-mlr-k-2"><span class="header-section-number">1.8.2</span> Practice Problem 2 (MLR, k = 2)</h3>
+<p><span class="math display">\[H_0: \beta_1 = \beta_2 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j\]</span></p>
+<p><span class="math display">\[SS_T = 1840; \quad SS_{x_1} = 920; \quad SS_{x_2} = 745; \quad SS_E = 175; \quad \alpha = 0.05; \quad n = 22\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 27%">
+<col style="width: 17%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of Variation</th>
+<th>Sum of Squares</th>
+<th>Degrees of Freedom</th>
+<th>Mean Square</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Error or Residual</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="practice-problem-3-mlr-k-3" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="practice-problem-3-mlr-k-3"><span class="header-section-number">1.8.3</span> Practice Problem 3 (MLR, k = 3)</h3>
+<p><span class="math display">\[H_0: \beta_1 = \beta_2 = \beta_3 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j\]</span></p>
+<p><span class="math display">\[SS_T = 6200; \quad SS_{x_1} = 2800; \quad SS_{x_2} = 1900; \quad SS_{x_3} = 1050; \quad SS_E = 450; \quad \alpha = 0.01; \quad n = 30\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 27%">
+<col style="width: 17%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of Variation</th>
+<th>Sum of Squares</th>
+<th>Degrees of Freedom</th>
+<th>Mean Square</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Error or Residual</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="practice-problem-4-mlr-k-4" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="practice-problem-4-mlr-k-4"><span class="header-section-number">1.8.4</span> Practice Problem 4 (MLR, k = 4)</h3>
+<p><span class="math display">\[H_0: \beta_1 = \beta_2 = \beta_3 = \beta_4 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j\]</span></p>
+<p><span class="math display">\[SS_T = 9500; \quad SS_{x_1} = 3400; \quad SS_{x_2} = 2200; \quad SS_{x_3} = 1600; \quad SS_{x_4} = 850; \quad SS_E = 1450; \quad \alpha = 0.05; \quad n = 40\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 27%">
+<col style="width: 17%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of Variation</th>
+<th>Sum of Squares</th>
+<th>Degrees of Freedom</th>
+<th>Mean Square</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Error or Residual</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="practice-problem-5-mlr-k-2" class="level3" data-number="1.8.5">
+<h3 data-number="1.8.5" class="anchored" data-anchor-id="practice-problem-5-mlr-k-2"><span class="header-section-number">1.8.5</span> Practice Problem 5 (MLR, k = 2)</h3>
+<p><span class="math display">\[H_0: \beta_1 = \beta_2 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j\]</span></p>
+<p><span class="math display">\[SS_T = 4100; \quad SS_{x_1} = 2200; \quad SS_{x_2} = 1560; \quad SS_E = 340; \quad \alpha = 0.01; \quad n = 18\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 27%">
+<col style="width: 17%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of Variation</th>
+<th>Sum of Squares</th>
+<th>Degrees of Freedom</th>
+<th>Mean Square</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Error or Residual</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="practice-problem-answers" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="practice-problem-answers"><span class="header-section-number">1.9</span> Practice Problem Answers</h2>
+<section id="answer-1-k-1-n-16" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="answer-1-k-1-n-16"><span class="header-section-number">1.9.1</span> Answer 1 (k = 1, n = 16)</h3>
+<p><strong>SSR</strong> = SS_{x1} = 448</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>SS</th>
+<th>df</th>
+<th>MS</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td>448</td>
+<td>1</td>
+<td>448.00</td>
+<td>87.11</td>
+</tr>
+<tr class="even">
+<td>Residual</td>
+<td>72</td>
+<td>14</td>
+<td>5.143</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>520</td>
+<td>15</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[MSR = \frac{448}{1} = 448 \qquad MSE = \frac{72}{14} = 5.143 \qquad F_0 = \frac{448}{5.143} = 87.11\]</span></p>
+<p><span class="math display">\[\hat{\sigma} = \sqrt{5.143} = 2.268\]</span></p>
+<blockquote class="blockquote">
+<p>F₀ = 87.11 &gt;&gt; F_{0.05,1,14} ≈ 4.60 → <strong>Reject H₀.</strong> There is sufficient evidence that β₁ ≠ 0. The regression is significant.</p>
+</blockquote>
+<hr>
+</section>
+<section id="answer-2-k-2-n-22" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="answer-2-k-2-n-22"><span class="header-section-number">1.9.2</span> Answer 2 (k = 2, n = 22)</h3>
+<p><strong>SSR</strong> = 920 + 745 = 1665</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>SS</th>
+<th>df</th>
+<th>MS</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td>1665</td>
+<td>2</td>
+<td>832.50</td>
+<td>85.44</td>
+</tr>
+<tr class="even">
+<td>Residual</td>
+<td>175</td>
+<td>19</td>
+<td>9.211</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>1840</td>
+<td>21</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[MSR = \frac{1665}{2} = 832.50 \qquad MSE = \frac{175}{19} = 9.211 \qquad F_0 = \frac{832.50}{9.211} = 90.38\]</span></p>
+<p><span class="math display">\[\hat{\sigma} = \sqrt{9.211} = 3.035\]</span></p>
+<blockquote class="blockquote">
+<p>F₀ = 90.38 &gt;&gt; F_{0.05,2,19} ≈ 3.52 → <strong>Reject H₀.</strong> At least one predictor is significant.</p>
+</blockquote>
+<hr>
+</section>
+<section id="answer-3-k-3-n-30" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="answer-3-k-3-n-30"><span class="header-section-number">1.9.3</span> Answer 3 (k = 3, n = 30)</h3>
+<p><strong>SSR</strong> = 2800 + 1900 + 1050 = 5750</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>SS</th>
+<th>df</th>
+<th>MS</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td>5750</td>
+<td>3</td>
+<td>1916.67</td>
+<td>110.77</td>
+</tr>
+<tr class="even">
+<td>Residual</td>
+<td>450</td>
+<td>26</td>
+<td>17.308</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>6200</td>
+<td>29</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[MSR = \frac{5750}{3} = 1916.67 \qquad MSE = \frac{450}{26} = 17.308 \qquad F_0 = \frac{1916.67}{17.308} = 110.77\]</span></p>
+<p><span class="math display">\[\hat{\sigma} = \sqrt{17.308} = 4.160\]</span></p>
+<blockquote class="blockquote">
+<p>F₀ = 110.77 &gt;&gt; F_{0.01,3,26} ≈ 4.64 → <strong>Reject H₀.</strong> At least one predictor is significant at α = 0.01.</p>
+</blockquote>
+<hr>
+</section>
+<section id="answer-4-k-4-n-40" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="answer-4-k-4-n-40"><span class="header-section-number">1.9.4</span> Answer 4 (k = 4, n = 40)</h3>
+<p><strong>SSR</strong> = 3400 + 2200 + 1600 + 850 = 8050</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>SS</th>
+<th>df</th>
+<th>MS</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td>8050</td>
+<td>4</td>
+<td>2012.5</td>
+<td>55.52</td>
+</tr>
+<tr class="even">
+<td>Residual</td>
+<td>1450</td>
+<td>35</td>
+<td>41.429</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>9500</td>
+<td>39</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[MSR = \frac{8050}{4} = 2012.50 \qquad MSE = \frac{1450}{35} = 41.429 \qquad F_0 = \frac{2012.50}{41.429} = 48.58\]</span></p>
+<p><span class="math display">\[\hat{\sigma} = \sqrt{41.429} = 6.437\]</span></p>
+<blockquote class="blockquote">
+<p>F₀ = 48.58 &gt;&gt; F_{0.05,4,35} ≈ 2.64 → <strong>Reject H₀.</strong> At least one predictor is significant.</p>
+</blockquote>
+<hr>
+</section>
+<section id="answer-5-k-2-n-18" class="level3" data-number="1.9.5">
+<h3 data-number="1.9.5" class="anchored" data-anchor-id="answer-5-k-2-n-18"><span class="header-section-number">1.9.5</span> Answer 5 (k = 2, n = 18)</h3>
+<p><strong>SSR</strong> = 2200 + 1560 = 3760</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>SS</th>
+<th>df</th>
+<th>MS</th>
+<th>F₀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression</td>
+<td>3760</td>
+<td>2</td>
+<td>1880.0</td>
+<td>110.59</td>
+</tr>
+<tr class="even">
+<td>Residual</td>
+<td>340</td>
+<td>15</td>
+<td>22.667</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>4100</td>
+<td>17</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[MSR = \frac{3760}{2} = 1880.0 \qquad MSE = \frac{340}{15} = 22.667 \qquad F_0 = \frac{1880.0}{22.667} = 82.94\]</span></p>
+<p><span class="math display">\[\hat{\sigma} = \sqrt{22.667} = 4.761\]</span></p>
+<blockquote class="blockquote">
+<p>F₀ = 82.94 &gt;&gt; F_{0.01,2,15} ≈ 6.36 → <strong>Reject H₀.</strong> At least one predictor is significant at α = 0.01.</p>
+</blockquote>
+<hr>
+<hr>
+</section>
+</section>
+<section id="example-5-doe-rcbd-reverse-engineer-anova-table-from-ms-and-f" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="example-5-doe-rcbd-reverse-engineer-anova-table-from-ms-and-f"><span class="header-section-number">1.10</span> Example 5 — DOE (RCBD): Reverse-Engineer ANOVA Table from MS and F</h2>
+<p>This pattern is distinct from the regression reconstruction examples above. In DOE, the ANOVA table has <strong>three sources</strong> (Factor, Blocks, Error), and you are typically given MS values and F₀ rather than SS directly.</p>
+<p><strong>Given (RCBD, a = 4 treatments, b = 5 blocks):</strong></p>
+<pre><code>Source      df    SS       MS          F₀
+Factor      ____  ____     115.2067    3.498
+Blocks      ____  ____     71.9775
+Error       ____  ____     ____
+Total       ____  ____</code></pre>
+<p><strong>Find:</strong> Fill all blanks. What is the test conclusion at α = 0.05?</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<p><strong>Step 1 — df from design parameters:</strong> <span class="math display">\[df_{\text{Factor}} = a - 1 = 3\]</span> <span class="math display">\[df_{\text{Blocks}} = b - 1 = 4\]</span> <span class="math display">\[df_{\text{Error}} = (a-1)(b-1) = 3 \times 4 = 12\]</span> <span class="math display">\[df_{\text{Total}} = ab - 1 = 19 \quad \text{(check: } 3+4+12=19 \checkmark\text{)}\]</span></p>
+<p><strong>Step 2 — MS_E from F₀:</strong> <span class="math display">\[MS_E = \frac{MS_{\text{Factor}}}{F_0} = \frac{115.2067}{3.498} = 32.94\]</span></p>
+<p><strong>Step 3 — SS from MS × df:</strong> <span class="math display">\[SS_{\text{Factor}} = MS_{\text{Factor}} \times df_{\text{Factor}} = 115.2067 \times 3 = 345.62\]</span> <span class="math display">\[SS_{\text{Blocks}} = MS_{\text{Blocks}} \times df_{\text{Blocks}} = 71.9775 \times 4 = 287.91\]</span> <span class="math display">\[SS_E = MS_E \times df_E = 32.94 \times 12 = 395.28\]</span> <span class="math display">\[SS_{\text{Total}} = 345.62 + 287.91 + 395.28 = 1028.81\]</span></p>
+<p><strong>Completed table:</strong></p>
+<pre><code>Source      df    SS        MS          F₀
+Factor      3     345.62    115.2067    3.498
+Blocks      4     287.91    71.9775
+Error       12    395.28    32.94
+Total       19    1028.81</code></pre>
+<p><strong>Decision:</strong> F_crit(0.05, 3, 12) ≈ 3.49. Since F₀ = 3.498 &gt; 3.49, <strong>reject H₀ at α = 0.05</strong>.</p>
+<p><strong>Answer:</strong> &gt; “Reject H₀ at α = 0.05. There is sufficient evidence to conclude that at least one treatment mean differs (F₀ = 3.498 &gt; F_crit ≈ 3.49). This is a borderline result — always compare to the exact critical value.”</p>
+<hr>
+<p><strong>DOE reverse-engineer formula chain (memorize this order):</strong></p>
+<pre><code>Given: MS_Factor, F₀, MS_Blocks, design parameters a, b
+Derive:
+  df_Factor = a−1
+  df_Blocks = b−1
+  df_Error  = (a−1)(b−1)
+  df_Total  = ab−1
+  MS_E      = MS_Factor / F₀
+  SS_Factor = MS_Factor × df_Factor
+  SS_Blocks = MS_Blocks × df_Blocks
+  SS_E      = MS_E × df_Error
+  SS_Total  = SS_Factor + SS_Blocks + SS_E</code></pre>
+<p>See also: [[rcbd-blocking]] for the RCBD ANOVA structure; compare [[regression-ht]] for the regression version of this pattern.</p>
+<hr>
+</section>
+<section id="related" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="related"><span class="header-section-number">1.11</span> Related</h2>
+<ul>
+<li>[[regression-ht]]</li>
+<li>[[regression-slr]]</li>
+<li>[[regression-mlr]]</li>
+<li>[[reading-r-output]]</li>
+<li>[[rcbd-blocking]]</li>
+<li>[[crd-one-way-anova]]</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/warrenrross\.github\.io\/Stats_Wiki_Dojo_plus\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [example, section-3]</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="an">tier:</span><span class="co"> script</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="an">sources:</span><span class="co"> [L34&amp;35P HT in Linear Regression, L36&amp;37P CI in Regression, regression-ht]</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Examples: Completing ANOVA and Summary Tables</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>See also: <span class="co">[</span><span class="ot">regression-ht</span><span class="co">](../concepts/regression-ht.md)</span>, <span class="co">[</span><span class="ot">regression-slr</span><span class="co">](../concepts/regression-slr.md)</span>, <span class="co">[</span><span class="ot">regression-mlr</span><span class="co">](../concepts/regression-mlr.md)</span>, <span class="co">[</span><span class="ot">reading-r-output</span><span class="co">](../r-code/reading-r-output.md)</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Exam focus:** You will NOT calculate from raw data. You WILL be given a partial table from R output and asked to fill in blanks, compute σ̂, interpret, and make recommendations.</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Master Relationships (memorize these)</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### ANOVA Table</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df       SS       MS          F           p</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="in">Regression  k        SSR      MSR=SSR/k   F₀=MSR/MSE  p-value</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="in">Residuals   n-p      SSE      MSE=SSE/(n-p)</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="in">Total       n-1      SST</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>**Abbreviations:**</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Full name <span class="pp">|</span> Meaning <span class="pp">|</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-----------|---------|</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> df <span class="pp">|</span> Degrees of freedom <span class="pp">|</span> Units of independent information available for estimation <span class="pp">|</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SS <span class="pp">|</span> Sum of squares <span class="pp">|</span> A measure of total squared deviation <span class="pp">|</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MS <span class="pp">|</span> Mean square <span class="pp">|</span> SS divided by its df; an estimated variance <span class="pp">|</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> F (F₀) <span class="pp">|</span> F-statistic <span class="pp">|</span> Test statistic for the overall model: MSR / MSE <span class="pp">|</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> p <span class="pp">|</span> p-value <span class="pp">|</span> Probability of observing F₀ this large if H₀ is true <span class="pp">|</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSR <span class="pp">|</span> Sum of squares — Regression <span class="pp">|</span> Variation in y *explained* by the model <span class="pp">|</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSE <span class="pp">|</span> Sum of squares — Error (Residuals) <span class="pp">|</span> Variation in y *not explained* by the model <span class="pp">|</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SST <span class="pp">|</span> Sum of squares — Total <span class="pp">|</span> Total variation in y around its mean: SSR + SSE <span class="pp">|</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MSR <span class="pp">|</span> Mean square — Regression <span class="pp">|</span> SSR / k <span class="pp">|</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MSE <span class="pp">|</span> Mean square — Error <span class="pp">|</span> SSE / (n − p); also equals σ̂² <span class="pp">|</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> k <span class="pp">|</span> Number of predictors <span class="pp">|</span> Regression df; equals p − 1 <span class="pp">|</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> n <span class="pp">|</span> Sample size <span class="pp">|</span> Number of observations <span class="pp">|</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> p (parameter count) <span class="pp">|</span> Number of parameters <span class="pp">|</span> k + 1 (predictors + intercept); used in df_Res = n − p <span class="pp">|</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> σ̂ <span class="pp">|</span> Estimated standard deviation <span class="pp">|</span> √MSE; typical error of a prediction in original units <span class="pp">|</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R² <span class="pp">|</span> Coefficient of determination <span class="pp">|</span> SSR / SST; proportion of variation explained by the model <span class="pp">|</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** "p" is overloaded — it means *p-value* in the F column but *number of parameters* in the df formulas. Context makes it clear.</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**p** = number of parameters = k + 1 (intercept + number of predictors)</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**SLR:** k = 1, df_Reg = 1, df_Res = n − 2</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**MLR with k predictors:** df_Reg = k, df_Res = n − k − 1</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>**Key formulas to fill any blank:**</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Want <span class="pp">|</span> Formula <span class="pp">|</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SST <span class="pp">|</span> SSR + SSE <span class="pp">|</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSR <span class="pp">|</span> SST − SSE <span class="pp">|</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSE <span class="pp">|</span> SST − SSR <span class="pp">|</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MSR <span class="pp">|</span> SSR / k <span class="pp">|</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MSE <span class="pp">|</span> SSE / (n − p) <span class="pp">|</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> F₀ <span class="pp">|</span> MSR / MSE <span class="pp">|</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> σ̂² <span class="pp">|</span> MSE <span class="pp">|</span></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> σ̂ <span class="pp">|</span> √MSE <span class="pp">|</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R² <span class="pp">|</span> SSR / SST <span class="pp">|</span></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R²_adj <span class="pp">|</span> 1 − MSE / <span class="co">[</span><span class="ot">SST / (n − 1)</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary Table (`summary(fit)$coefficients`)</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="in">             Estimate   Std. Error   t value   Pr(&gt;|t|)</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="in">(Intercept)  β̂₀        se₀          t₀        p₀</span></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a><span class="in">x1           β̂₁        se₁          t₁        p₁</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a><span class="in">x2           β̂₂        se₂          t₂        p₂</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>**Key formulas:**</span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Want <span class="pp">|</span> Formula <span class="pp">|</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|</span></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> t value <span class="pp">|</span> Estimate / Std. Error <span class="pp">|</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Std. Error <span class="pp">|</span> Estimate / t value <span class="pp">|</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Estimate <span class="pp">|</span> t value × Std. Error <span class="pp">|</span></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Warning:** The </span><span class="in">`t value`</span><span class="at"> column ALWAYS tests H₀: βⱼ = 0. If the exam gives a non-zero null, compute T₀ manually: T₀ = (β̂ⱼ − β₀) / se(β̂ⱼ).</span></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 1 — SLR: Fill the ANOVA Table</span></span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>**Given (Oxygen Purity, n = 20, k = 1):**</span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df    SS        MS        F       p</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="in">Regression  1     ____      ____      ____    &lt; 0.001</span></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="in">Residuals   18    21.25     ____</span></span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a><span class="in">Total       19    ____</span></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>Also known: R² = 0.877</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>**Find:** Fill in all blanks. State σ̂. State the model conclusion at α = 0.05.</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>**Step 1 — MSE from Residuals row:**</span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>$$MSE = \frac{SSE}{df_{Res}} = \frac{21.25}{18} = 1.181$$</span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>**Step 2 — σ̂:**</span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \sqrt{MSE} = \sqrt{1.181} = 1.087$$</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>**Step 3 — SST from R²:**</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>$$R^2 = \frac{SSR}{SST} \implies SST = \frac{SSR}{R^2}$$</span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>We need SSR first. Since SST = SSR + SSE:</span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a>$$0.877 = \frac{SSR}{SSR + 21.25} \implies 0.877(SSR + 21.25) = SSR \implies 21.25 \times 0.877 = 0.123 \times SSR$$</span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>$$SSR = \frac{21.25 \times 0.877}{0.123} = \frac{18.64}{0.123} = 151.5$$</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a>Alternatively, once you have SSR: SST = SSR + SSE = 151.5 + 21.25 = 172.75</span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a>**Step 4 — MSR:**</span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a>$$MSR = \frac{SSR}{k} = \frac{151.5}{1} = 151.5$$</span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a>**Step 5 — F₀:**</span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a>$$F_0 = \frac{MSR}{MSE} = \frac{151.5}{1.181} = 128.3$$</span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a>**Completed table:**</span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df    SS        MS        F       p</span></span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a><span class="in">Regression  1     151.5     151.5     128.3   &lt; 0.001</span></span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a><span class="in">Residuals   18    21.25     1.181</span></span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a><span class="in">Total       19    172.75</span></span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "The regression model is significant at α = 0.05. F₀ = 128.3 with p &lt; 0.001 — there is sufficient evidence that at least one regression coefficient is nonzero. σ̂ = 1.087."</span></span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 2 — MLR: Fill the ANOVA Table</span></span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a>**Given (Wirebond Pull Strength, n = 25, k = 2 predictors):**</span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df    SS          MS          F        p</span></span>
+<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a><span class="in">Regression  ____  ____        2995.39     ____     &lt; 0.001</span></span>
+<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a><span class="in">Residuals   ____  ____        5.235</span></span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a><span class="in">Total       24    ____</span></span>
+<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a>**Find:** Fill all blanks. State σ̂, R², and the test conclusion.</span>
+<span id="cb16-148"><a href="#cb16-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-149"><a href="#cb16-149" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb16-152"><a href="#cb16-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-153"><a href="#cb16-153" aria-hidden="true" tabindex="-1"></a>**Step 1 — Degrees of freedom:**</span>
+<span id="cb16-154"><a href="#cb16-154" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>df_Reg = k = 2</span>
+<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>df_Res = n − k − 1 = 25 − 2 − 1 = 22</span>
+<span id="cb16-156"><a href="#cb16-156" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>df_Total = n − 1 = 24 ✓ (check: 2 + 22 = 24 ✓)</span>
+<span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a>**Step 2 — SS from MS × df:**</span>
+<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a>$$SSR = MSR \times df_{Reg} = 2995.39 \times 2 = 5990.78$$</span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a>$$SSE = MSE \times df_{Res} = 5.235 \times 22 = 115.17$$</span>
+<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a>$$SST = SSR + SSE = 5990.78 + 115.17 = 6105.95$$</span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a>**Step 3 — F₀:**</span>
+<span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a>$$F_0 = \frac{MSR}{MSE} = \frac{2995.39}{5.235} = 572.2$$</span>
+<span id="cb16-165"><a href="#cb16-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a>**Step 4 — σ̂ and R²:**</span>
+<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma}^2 = MSE = 5.235 \implies \hat{\sigma} = \sqrt{5.235} = 2.288$$</span>
+<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a>$$R^2 = \frac{SSR}{SST} = \frac{5990.78}{6105.95} = 0.981$$</span>
+<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a>**Completed table:**</span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df    SS          MS          F        p</span></span>
+<span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a><span class="in">Regression  2     5990.78     2995.39     572.2    &lt; 0.001</span></span>
+<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a><span class="in">Residuals   22    115.17      5.235</span></span>
+<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a><span class="in">Total       24    6105.95</span></span>
+<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "The regression model is significant at α = 0.05 (F₀ = 572.2, p &lt; 0.001). 98.1% of the variation in pull strength is explained by the model. σ̂ = 2.288. There is sufficient evidence that at least one coefficient is nonzero."</span></span>
+<span id="cb16-180"><a href="#cb16-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-181"><a href="#cb16-181" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-182"><a href="#cb16-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-183"><a href="#cb16-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 2b — Reconstruct from F₀ and σ̂² (Scenario B)</span></span>
+<span id="cb16-184"><a href="#cb16-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a>**Given (MLR output, n = 30, k = 3 predictors):**</span>
+<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a><span class="in">F-statistic: 42.6 on 3 and 26 DF,  p-value: &lt; 0.001</span></span>
+<span id="cb16-188"><a href="#cb16-188" aria-hidden="true" tabindex="-1"></a><span class="in">Residual standard error: 4.12</span></span>
+<span id="cb16-189"><a href="#cb16-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a>**Find:** Reconstruct the full ANOVA table. Compute SST, SSR, SSE, R², R²_adj.</span>
+<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a>**Step 1 — df from problem statement:**</span>
+<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>df_Reg = k = 3</span>
+<span id="cb16-199"><a href="#cb16-199" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>df_Res = n − k − 1 = 30 − 3 − 1 = 26  ← confirmed by "3 and 26 DF"</span>
+<span id="cb16-200"><a href="#cb16-200" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>df_Total = n − 1 = 29</span>
+<span id="cb16-201"><a href="#cb16-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-202"><a href="#cb16-202" aria-hidden="true" tabindex="-1"></a>**Step 2 — MSE from σ̂:**</span>
+<span id="cb16-203"><a href="#cb16-203" aria-hidden="true" tabindex="-1"></a>$$MSE = \hat{\sigma}^2 = (4.12)^2 = 16.974$$</span>
+<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a>**Step 3 — MSR from F₀:**</span>
+<span id="cb16-206"><a href="#cb16-206" aria-hidden="true" tabindex="-1"></a>$$MSR = F_0 \times MSE = 42.6 \times 16.974 = 723.09$$</span>
+<span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a>**Step 4 — SS from MS × df:**</span>
+<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a>$$SSR = MSR \times df_{Reg} = 723.09 \times 3 = 2169.3$$</span>
+<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a>$$SSE = MSE \times df_{Res} = 16.974 \times 26 = 441.3$$</span>
+<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a>$$SST = SSR + SSE = 2169.3 + 441.3 = 2610.6$$</span>
+<span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a>**Step 5 — R² and R²_adj:**</span>
+<span id="cb16-214"><a href="#cb16-214" aria-hidden="true" tabindex="-1"></a>$$R^2 = \frac{SSR}{SST} = \frac{2169.3}{2610.6} = 0.831$$</span>
+<span id="cb16-215"><a href="#cb16-215" aria-hidden="true" tabindex="-1"></a>$$R^2_{adj} = 1 - \frac{MSE}{SST/(n-1)} = 1 - \frac{16.974}{2610.6/29} = 1 - \frac{16.974}{90.02} = 0.811$$</span>
+<span id="cb16-216"><a href="#cb16-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-217"><a href="#cb16-217" aria-hidden="true" tabindex="-1"></a>**Completed table:**</span>
+<span id="cb16-218"><a href="#cb16-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-219"><a href="#cb16-219" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df    SS        MS        F       p</span></span>
+<span id="cb16-220"><a href="#cb16-220" aria-hidden="true" tabindex="-1"></a><span class="in">Regression  3     2169.3    723.09    42.6    &lt; 0.001</span></span>
+<span id="cb16-221"><a href="#cb16-221" aria-hidden="true" tabindex="-1"></a><span class="in">Residuals   26    441.3     16.974</span></span>
+<span id="cb16-222"><a href="#cb16-222" aria-hidden="true" tabindex="-1"></a><span class="in">Total       29    2610.6</span></span>
+<span id="cb16-223"><a href="#cb16-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-224"><a href="#cb16-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-225"><a href="#cb16-225" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb16-226"><a href="#cb16-226" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "The regression model is significant (F₀ = 42.6, p &lt; 0.001). R² = 0.831 — 83.1% of the variation in Y is explained by the model. σ̂ = 4.12."</span></span>
+<span id="cb16-227"><a href="#cb16-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-228"><a href="#cb16-228" aria-hidden="true" tabindex="-1"></a>**Scenario B formula chain (memorize this order):**</span>
+<span id="cb16-229"><a href="#cb16-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-230"><a href="#cb16-230" aria-hidden="true" tabindex="-1"></a><span class="in">Read:  F₀, σ̂ (or MSE), n, k</span></span>
+<span id="cb16-231"><a href="#cb16-231" aria-hidden="true" tabindex="-1"></a><span class="in">Derive:</span></span>
+<span id="cb16-232"><a href="#cb16-232" aria-hidden="true" tabindex="-1"></a><span class="in">  df_Reg = k,  df_Res = n−k−1,  df_Total = n−1</span></span>
+<span id="cb16-233"><a href="#cb16-233" aria-hidden="true" tabindex="-1"></a><span class="in">  MSE = σ̂²</span></span>
+<span id="cb16-234"><a href="#cb16-234" aria-hidden="true" tabindex="-1"></a><span class="in">  MSR = F₀ × MSE</span></span>
+<span id="cb16-235"><a href="#cb16-235" aria-hidden="true" tabindex="-1"></a><span class="in">  SSE = MSE × df_Res</span></span>
+<span id="cb16-236"><a href="#cb16-236" aria-hidden="true" tabindex="-1"></a><span class="in">  SSR = MSR × df_Reg</span></span>
+<span id="cb16-237"><a href="#cb16-237" aria-hidden="true" tabindex="-1"></a><span class="in">  SST = SSR + SSE</span></span>
+<span id="cb16-238"><a href="#cb16-238" aria-hidden="true" tabindex="-1"></a><span class="in">  R²  = SSR / SST</span></span>
+<span id="cb16-239"><a href="#cb16-239" aria-hidden="true" tabindex="-1"></a><span class="in">  R²_adj = 1 − MSE / (SST / df_Total)</span></span>
+<span id="cb16-240"><a href="#cb16-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-241"><a href="#cb16-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-242"><a href="#cb16-242" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-243"><a href="#cb16-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-244"><a href="#cb16-244" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 3 — Completing the Summary Table</span></span>
+<span id="cb16-245"><a href="#cb16-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-246"><a href="#cb16-246" aria-hidden="true" tabindex="-1"></a>**Given (partial summary table, SLR, n = 20):**</span>
+<span id="cb16-247"><a href="#cb16-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-248"><a href="#cb16-248" aria-hidden="true" tabindex="-1"></a><span class="in">             Estimate   Std. Error   t value   Pr(&gt;|t|)</span></span>
+<span id="cb16-249"><a href="#cb16-249" aria-hidden="true" tabindex="-1"></a><span class="in">(Intercept)  74.28      ____         ____      0.0009</span></span>
+<span id="cb16-250"><a href="#cb16-250" aria-hidden="true" tabindex="-1"></a><span class="in">x            14.95      1.317        ____      &lt; 0.001</span></span>
+<span id="cb16-251"><a href="#cb16-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-252"><a href="#cb16-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-253"><a href="#cb16-253" aria-hidden="true" tabindex="-1"></a>**Find:** Fill in blanks. Which terms are significant at α = 0.05?</span>
+<span id="cb16-254"><a href="#cb16-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-255"><a href="#cb16-255" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-256"><a href="#cb16-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-257"><a href="#cb16-257" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb16-258"><a href="#cb16-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-259"><a href="#cb16-259" aria-hidden="true" tabindex="-1"></a>**β̂₁ row (x):**</span>
+<span id="cb16-260"><a href="#cb16-260" aria-hidden="true" tabindex="-1"></a>$$t_1 = \frac{\hat{\beta}_1}{se_1} = \frac{14.95}{1.317} = 11.35$$</span>
+<span id="cb16-261"><a href="#cb16-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-262"><a href="#cb16-262" aria-hidden="true" tabindex="-1"></a>**Intercept row:** The p-value is 0.0009, which is &lt; 0.05. Work backwards:</span>
+<span id="cb16-263"><a href="#cb16-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Two-sided p-value 0.0009 corresponds to |t| ≈ 3.92 at df = 18.</span>
+<span id="cb16-264"><a href="#cb16-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>se₀ = β̂₀ / t₀ = 74.28 / 3.92 ≈ 18.9</span>
+<span id="cb16-265"><a href="#cb16-265" aria-hidden="true" tabindex="-1"></a>  *(Alternatively: if you know df, use `qt(1 - 0.0009/2, 18)` to find t₀, then SE = Est/t₀)*</span>
+<span id="cb16-266"><a href="#cb16-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-267"><a href="#cb16-267" aria-hidden="true" tabindex="-1"></a>**Completed table:**</span>
+<span id="cb16-268"><a href="#cb16-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-269"><a href="#cb16-269" aria-hidden="true" tabindex="-1"></a><span class="in">             Estimate   Std. Error   t value   Pr(&gt;|t|)</span></span>
+<span id="cb16-270"><a href="#cb16-270" aria-hidden="true" tabindex="-1"></a><span class="in">(Intercept)  74.28      ~18.9        ~3.92     0.0009</span></span>
+<span id="cb16-271"><a href="#cb16-271" aria-hidden="true" tabindex="-1"></a><span class="in">x            14.95      1.317        11.35     &lt; 0.001</span></span>
+<span id="cb16-272"><a href="#cb16-272" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-273"><a href="#cb16-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-274"><a href="#cb16-274" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb16-275"><a href="#cb16-275" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Both terms are significant at α = 0.05 (both p-values &lt; 0.05). There is sufficient evidence to conclude that x has a significant linear effect on y (t₀ = 11.35, p &lt; 0.001). The intercept is also significantly different from zero (p = 0.0009).</span></span>
+<span id="cb16-276"><a href="#cb16-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-277"><a href="#cb16-277" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-278"><a href="#cb16-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-279"><a href="#cb16-279" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 4 — Recommendations from Output</span></span>
+<span id="cb16-280"><a href="#cb16-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-281"><a href="#cb16-281" aria-hidden="true" tabindex="-1"></a>**Scenario:** MLR model with 3 predictors. Summary table:</span>
+<span id="cb16-282"><a href="#cb16-282" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-283"><a href="#cb16-283" aria-hidden="true" tabindex="-1"></a><span class="in">             Estimate   Std. Error   t value   Pr(&gt;|t|)</span></span>
+<span id="cb16-284"><a href="#cb16-284" aria-hidden="true" tabindex="-1"></a><span class="in">(Intercept)  45.32      5.12         8.85      &lt; 0.001</span></span>
+<span id="cb16-285"><a href="#cb16-285" aria-hidden="true" tabindex="-1"></a><span class="in">x1           2.18       0.41         5.32      &lt; 0.001</span></span>
+<span id="cb16-286"><a href="#cb16-286" aria-hidden="true" tabindex="-1"></a><span class="in">x2           -0.43      0.89        -0.48      0.634</span></span>
+<span id="cb16-287"><a href="#cb16-287" aria-hidden="true" tabindex="-1"></a><span class="in">x3           1.75       0.33         5.30      &lt; 0.001</span></span>
+<span id="cb16-288"><a href="#cb16-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-289"><a href="#cb16-289" aria-hidden="true" tabindex="-1"></a>Overall F-test: F₀ = 48.3, p &lt; 0.001</span>
+<span id="cb16-290"><a href="#cb16-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-291"><a href="#cb16-291" aria-hidden="true" tabindex="-1"></a>**Find:** Interpret the output. What recommendation would you make?</span>
+<span id="cb16-292"><a href="#cb16-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-293"><a href="#cb16-293" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-294"><a href="#cb16-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-295"><a href="#cb16-295" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb16-296"><a href="#cb16-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-297"><a href="#cb16-297" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The overall model is significant (F₀ = 48.3, p &lt; 0.001) → at least one predictor is useful.</span>
+<span id="cb16-298"><a href="#cb16-298" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>x1 and x3 are individually significant (both p &lt; 0.001) → evidence their coefficients ≠ 0.</span>
+<span id="cb16-299"><a href="#cb16-299" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>x2 is **not** significant (t = −0.48, p = 0.634) → no evidence that x2 contributes beyond x1 and x3.</span>
+<span id="cb16-300"><a href="#cb16-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-301"><a href="#cb16-301" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb16-302"><a href="#cb16-302" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "x2 does not appear to contribute significantly to the model (p = 0.634). I would recommend removing x2 and refitting the model with x1 and x3 only. The overall F-test confirms the model has value, but x2's individual p-value suggests it adds no explanatory power beyond the other predictors."</span></span>
+<span id="cb16-303"><a href="#cb16-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-304"><a href="#cb16-304" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-305"><a href="#cb16-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-306"><a href="#cb16-306" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quick-Reference: What to Do When a Cell Is Missing</span></span>
+<span id="cb16-307"><a href="#cb16-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-308"><a href="#cb16-308" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Missing cell <span class="pp">|</span> How to find it <span class="pp">|</span></span>
+<span id="cb16-309"><a href="#cb16-309" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------|---------------|</span></span>
+<span id="cb16-310"><a href="#cb16-310" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MSE <span class="pp">|</span> SSE / df_Res <span class="pp">|</span></span>
+<span id="cb16-311"><a href="#cb16-311" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MSR <span class="pp">|</span> SSR / df_Reg <span class="pp">|</span></span>
+<span id="cb16-312"><a href="#cb16-312" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> F₀ <span class="pp">|</span> MSR / MSE <span class="pp">|</span></span>
+<span id="cb16-313"><a href="#cb16-313" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSR <span class="pp">|</span> SST − SSE **or** MSR × df_Reg <span class="pp">|</span></span>
+<span id="cb16-314"><a href="#cb16-314" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SSE <span class="pp">|</span> SST − SSR **or** MSE × df_Res <span class="pp">|</span></span>
+<span id="cb16-315"><a href="#cb16-315" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SST <span class="pp">|</span> SSR + SSE <span class="pp">|</span></span>
+<span id="cb16-316"><a href="#cb16-316" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> σ̂² <span class="pp">|</span> MSE (they are the same thing) <span class="pp">|</span></span>
+<span id="cb16-317"><a href="#cb16-317" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> σ̂ <span class="pp">|</span> √MSE <span class="pp">|</span></span>
+<span id="cb16-318"><a href="#cb16-318" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R² <span class="pp">|</span> SSR / SST <span class="pp">|</span></span>
+<span id="cb16-319"><a href="#cb16-319" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> df_Reg <span class="pp">|</span> k (= number of predictors) <span class="pp">|</span></span>
+<span id="cb16-320"><a href="#cb16-320" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> df_Res <span class="pp">|</span> n − k − 1 <span class="pp">|</span></span>
+<span id="cb16-321"><a href="#cb16-321" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> df_Total <span class="pp">|</span> n − 1 <span class="pp">|</span></span>
+<span id="cb16-322"><a href="#cb16-322" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> t value (summary) <span class="pp">|</span> Estimate / Std. Error <span class="pp">|</span></span>
+<span id="cb16-323"><a href="#cb16-323" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Std. Error (summary) <span class="pp">|</span> Estimate / t value <span class="pp">|</span></span>
+<span id="cb16-324"><a href="#cb16-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-325"><a href="#cb16-325" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-326"><a href="#cb16-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-327"><a href="#cb16-327" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-328"><a href="#cb16-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-329"><a href="#cb16-329" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practice Problems — Fill the ANOVA Table (Class Activity Format)</span></span>
+<span id="cb16-330"><a href="#cb16-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-331"><a href="#cb16-331" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Instructions:** For each problem, compute SSR, fill in all blanks, state σ̂, compute F₀, and state the test conclusion at the given α. Answers are at the bottom of this page.</span></span>
+<span id="cb16-332"><a href="#cb16-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-333"><a href="#cb16-333" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-334"><a href="#cb16-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-335"><a href="#cb16-335" aria-hidden="true" tabindex="-1"></a><span class="fu">### Practice Problem 1 (SLR, k = 1)</span></span>
+<span id="cb16-336"><a href="#cb16-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-337"><a href="#cb16-337" aria-hidden="true" tabindex="-1"></a>$$H_0: \beta_1 = 0 \qquad H_1: \beta_1 \neq 0$$</span>
+<span id="cb16-338"><a href="#cb16-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-339"><a href="#cb16-339" aria-hidden="true" tabindex="-1"></a>$$SS_T = 520; \quad SS_{x_1} = 448; \quad SS_E = 72; \quad \alpha = 0.05; \quad n = 16$$</span>
+<span id="cb16-340"><a href="#cb16-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-341"><a href="#cb16-341" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source of Variation <span class="pp">|</span> Sum of Squares <span class="pp">|</span> Degrees of Freedom <span class="pp">|</span> Mean Square <span class="pp">|</span> F₀ <span class="pp">|</span></span>
+<span id="cb16-342"><a href="#cb16-342" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------|----------------|--------------------|-------------|----|</span></span>
+<span id="cb16-343"><a href="#cb16-343" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression          <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-344"><a href="#cb16-344" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Error or Residual   <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-345"><a href="#cb16-345" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total               <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-346"><a href="#cb16-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-347"><a href="#cb16-347" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-348"><a href="#cb16-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-349"><a href="#cb16-349" aria-hidden="true" tabindex="-1"></a><span class="fu">### Practice Problem 2 (MLR, k = 2)</span></span>
+<span id="cb16-350"><a href="#cb16-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-351"><a href="#cb16-351" aria-hidden="true" tabindex="-1"></a>$$H_0: \beta_1 = \beta_2 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j$$</span>
+<span id="cb16-352"><a href="#cb16-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-353"><a href="#cb16-353" aria-hidden="true" tabindex="-1"></a>$$SS_T = 1840; \quad SS_{x_1} = 920; \quad SS_{x_2} = 745; \quad SS_E = 175; \quad \alpha = 0.05; \quad n = 22$$</span>
+<span id="cb16-354"><a href="#cb16-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-355"><a href="#cb16-355" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source of Variation <span class="pp">|</span> Sum of Squares <span class="pp">|</span> Degrees of Freedom <span class="pp">|</span> Mean Square <span class="pp">|</span> F₀ <span class="pp">|</span></span>
+<span id="cb16-356"><a href="#cb16-356" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------|----------------|--------------------|-------------|----|</span></span>
+<span id="cb16-357"><a href="#cb16-357" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression          <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-358"><a href="#cb16-358" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Error or Residual   <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-359"><a href="#cb16-359" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total               <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-360"><a href="#cb16-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-361"><a href="#cb16-361" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-362"><a href="#cb16-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-363"><a href="#cb16-363" aria-hidden="true" tabindex="-1"></a><span class="fu">### Practice Problem 3 (MLR, k = 3)</span></span>
+<span id="cb16-364"><a href="#cb16-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-365"><a href="#cb16-365" aria-hidden="true" tabindex="-1"></a>$$H_0: \beta_1 = \beta_2 = \beta_3 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j$$</span>
+<span id="cb16-366"><a href="#cb16-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-367"><a href="#cb16-367" aria-hidden="true" tabindex="-1"></a>$$SS_T = 6200; \quad SS_{x_1} = 2800; \quad SS_{x_2} = 1900; \quad SS_{x_3} = 1050; \quad SS_E = 450; \quad \alpha = 0.01; \quad n = 30$$</span>
+<span id="cb16-368"><a href="#cb16-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-369"><a href="#cb16-369" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source of Variation <span class="pp">|</span> Sum of Squares <span class="pp">|</span> Degrees of Freedom <span class="pp">|</span> Mean Square <span class="pp">|</span> F₀ <span class="pp">|</span></span>
+<span id="cb16-370"><a href="#cb16-370" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------|----------------|--------------------|-------------|----|</span></span>
+<span id="cb16-371"><a href="#cb16-371" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression          <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-372"><a href="#cb16-372" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Error or Residual   <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-373"><a href="#cb16-373" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total               <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-374"><a href="#cb16-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-375"><a href="#cb16-375" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-376"><a href="#cb16-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-377"><a href="#cb16-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### Practice Problem 4 (MLR, k = 4)</span></span>
+<span id="cb16-378"><a href="#cb16-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-379"><a href="#cb16-379" aria-hidden="true" tabindex="-1"></a>$$H_0: \beta_1 = \beta_2 = \beta_3 = \beta_4 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j$$</span>
+<span id="cb16-380"><a href="#cb16-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-381"><a href="#cb16-381" aria-hidden="true" tabindex="-1"></a>$$SS_T = 9500; \quad SS_{x_1} = 3400; \quad SS_{x_2} = 2200; \quad SS_{x_3} = 1600; \quad SS_{x_4} = 850; \quad SS_E = 1450; \quad \alpha = 0.05; \quad n = 40$$</span>
+<span id="cb16-382"><a href="#cb16-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-383"><a href="#cb16-383" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source of Variation <span class="pp">|</span> Sum of Squares <span class="pp">|</span> Degrees of Freedom <span class="pp">|</span> Mean Square <span class="pp">|</span> F₀ <span class="pp">|</span></span>
+<span id="cb16-384"><a href="#cb16-384" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------|----------------|--------------------|-------------|----|</span></span>
+<span id="cb16-385"><a href="#cb16-385" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression          <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-386"><a href="#cb16-386" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Error or Residual   <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-387"><a href="#cb16-387" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total               <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-388"><a href="#cb16-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-389"><a href="#cb16-389" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-390"><a href="#cb16-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-391"><a href="#cb16-391" aria-hidden="true" tabindex="-1"></a><span class="fu">### Practice Problem 5 (MLR, k = 2)</span></span>
+<span id="cb16-392"><a href="#cb16-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-393"><a href="#cb16-393" aria-hidden="true" tabindex="-1"></a>$$H_0: \beta_1 = \beta_2 = 0 \qquad H_1: \beta_j \neq 0 \text{ for at least one } j$$</span>
+<span id="cb16-394"><a href="#cb16-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-395"><a href="#cb16-395" aria-hidden="true" tabindex="-1"></a>$$SS_T = 4100; \quad SS_{x_1} = 2200; \quad SS_{x_2} = 1560; \quad SS_E = 340; \quad \alpha = 0.01; \quad n = 18$$</span>
+<span id="cb16-396"><a href="#cb16-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-397"><a href="#cb16-397" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source of Variation <span class="pp">|</span> Sum of Squares <span class="pp">|</span> Degrees of Freedom <span class="pp">|</span> Mean Square <span class="pp">|</span> F₀ <span class="pp">|</span></span>
+<span id="cb16-398"><a href="#cb16-398" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------|----------------|--------------------|-------------|----|</span></span>
+<span id="cb16-399"><a href="#cb16-399" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression          <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-400"><a href="#cb16-400" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Error or Residual   <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-401"><a href="#cb16-401" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total               <span class="pp">|</span>                <span class="pp">|</span>                    <span class="pp">|</span>             <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb16-402"><a href="#cb16-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-403"><a href="#cb16-403" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-404"><a href="#cb16-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-405"><a href="#cb16-405" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practice Problem Answers</span></span>
+<span id="cb16-406"><a href="#cb16-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-407"><a href="#cb16-407" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer 1 (k = 1, n = 16)</span></span>
+<span id="cb16-408"><a href="#cb16-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-409"><a href="#cb16-409" aria-hidden="true" tabindex="-1"></a>**SSR** = SS_{x1} = 448</span>
+<span id="cb16-410"><a href="#cb16-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-411"><a href="#cb16-411" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source     <span class="pp">|</span> SS  <span class="pp">|</span> df <span class="pp">|</span> MS     <span class="pp">|</span> F₀    <span class="pp">|</span></span>
+<span id="cb16-412"><a href="#cb16-412" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------|-----|----|--------|-------|</span></span>
+<span id="cb16-413"><a href="#cb16-413" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> 448 <span class="pp">|</span> 1  <span class="pp">|</span> 448.00 <span class="pp">|</span> 87.11 <span class="pp">|</span></span>
+<span id="cb16-414"><a href="#cb16-414" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual   <span class="pp">|</span> 72  <span class="pp">|</span> 14 <span class="pp">|</span> 5.143  <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-415"><a href="#cb16-415" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total      <span class="pp">|</span> 520 <span class="pp">|</span> 15 <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-416"><a href="#cb16-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-417"><a href="#cb16-417" aria-hidden="true" tabindex="-1"></a>$$MSR = \frac{448}{1} = 448 \qquad MSE = \frac{72}{14} = 5.143 \qquad F_0 = \frac{448}{5.143} = 87.11$$</span>
+<span id="cb16-418"><a href="#cb16-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-419"><a href="#cb16-419" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \sqrt{5.143} = 2.268$$</span>
+<span id="cb16-420"><a href="#cb16-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-421"><a href="#cb16-421" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; F₀ = 87.11 &gt;&gt; F_{0.05,1,14} ≈ 4.60 → **Reject H₀.** There is sufficient evidence that β₁ ≠ 0. The regression is significant.</span></span>
+<span id="cb16-422"><a href="#cb16-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-423"><a href="#cb16-423" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer 2 (k = 2, n = 22)</span></span>
+<span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a>**SSR** = 920 + 745 = 1665</span>
+<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source     <span class="pp">|</span> SS   <span class="pp">|</span> df <span class="pp">|</span> MS     <span class="pp">|</span> F₀    <span class="pp">|</span></span>
+<span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------|------|----|--------|-------|</span></span>
+<span id="cb16-431"><a href="#cb16-431" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> 1665 <span class="pp">|</span> 2  <span class="pp">|</span> 832.50 <span class="pp">|</span> 85.44 <span class="pp">|</span></span>
+<span id="cb16-432"><a href="#cb16-432" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual   <span class="pp">|</span> 175  <span class="pp">|</span> 19 <span class="pp">|</span> 9.211  <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-433"><a href="#cb16-433" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total      <span class="pp">|</span> 1840 <span class="pp">|</span> 21 <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-434"><a href="#cb16-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-435"><a href="#cb16-435" aria-hidden="true" tabindex="-1"></a>$$MSR = \frac{1665}{2} = 832.50 \qquad MSE = \frac{175}{19} = 9.211 \qquad F_0 = \frac{832.50}{9.211} = 90.38$$</span>
+<span id="cb16-436"><a href="#cb16-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-437"><a href="#cb16-437" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \sqrt{9.211} = 3.035$$</span>
+<span id="cb16-438"><a href="#cb16-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-439"><a href="#cb16-439" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; F₀ = 90.38 &gt;&gt; F_{0.05,2,19} ≈ 3.52 → **Reject H₀.** At least one predictor is significant.</span></span>
+<span id="cb16-440"><a href="#cb16-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-441"><a href="#cb16-441" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-442"><a href="#cb16-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-443"><a href="#cb16-443" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer 3 (k = 3, n = 30)</span></span>
+<span id="cb16-444"><a href="#cb16-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-445"><a href="#cb16-445" aria-hidden="true" tabindex="-1"></a>**SSR** = 2800 + 1900 + 1050 = 5750</span>
+<span id="cb16-446"><a href="#cb16-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-447"><a href="#cb16-447" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source     <span class="pp">|</span> SS   <span class="pp">|</span> df <span class="pp">|</span> MS      <span class="pp">|</span> F₀     <span class="pp">|</span></span>
+<span id="cb16-448"><a href="#cb16-448" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------|------|----|---------|--------|</span></span>
+<span id="cb16-449"><a href="#cb16-449" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> 5750 <span class="pp">|</span> 3  <span class="pp">|</span> 1916.67 <span class="pp">|</span> 110.77 <span class="pp">|</span></span>
+<span id="cb16-450"><a href="#cb16-450" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual   <span class="pp">|</span> 450  <span class="pp">|</span> 26 <span class="pp">|</span> 17.308  <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb16-451"><a href="#cb16-451" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total      <span class="pp">|</span> 6200 <span class="pp">|</span> 29 <span class="pp">|</span>         <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb16-452"><a href="#cb16-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-453"><a href="#cb16-453" aria-hidden="true" tabindex="-1"></a>$$MSR = \frac{5750}{3} = 1916.67 \qquad MSE = \frac{450}{26} = 17.308 \qquad F_0 = \frac{1916.67}{17.308} = 110.77$$</span>
+<span id="cb16-454"><a href="#cb16-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-455"><a href="#cb16-455" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \sqrt{17.308} = 4.160$$</span>
+<span id="cb16-456"><a href="#cb16-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-457"><a href="#cb16-457" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; F₀ = 110.77 &gt;&gt; F_{0.01,3,26} ≈ 4.64 → **Reject H₀.** At least one predictor is significant at α = 0.01.</span></span>
+<span id="cb16-458"><a href="#cb16-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-459"><a href="#cb16-459" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-460"><a href="#cb16-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-461"><a href="#cb16-461" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer 4 (k = 4, n = 40)</span></span>
+<span id="cb16-462"><a href="#cb16-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-463"><a href="#cb16-463" aria-hidden="true" tabindex="-1"></a>**SSR** = 3400 + 2200 + 1600 + 850 = 8050</span>
+<span id="cb16-464"><a href="#cb16-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-465"><a href="#cb16-465" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source     <span class="pp">|</span> SS   <span class="pp">|</span> df <span class="pp">|</span> MS     <span class="pp">|</span> F₀    <span class="pp">|</span></span>
+<span id="cb16-466"><a href="#cb16-466" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------|------|----|--------|-------|</span></span>
+<span id="cb16-467"><a href="#cb16-467" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> 8050 <span class="pp">|</span> 4  <span class="pp">|</span> 2012.5 <span class="pp">|</span> 55.52 <span class="pp">|</span></span>
+<span id="cb16-468"><a href="#cb16-468" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual   <span class="pp">|</span> 1450 <span class="pp">|</span> 35 <span class="pp">|</span> 41.429 <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-469"><a href="#cb16-469" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total      <span class="pp">|</span> 9500 <span class="pp">|</span> 39 <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-470"><a href="#cb16-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-471"><a href="#cb16-471" aria-hidden="true" tabindex="-1"></a>$$MSR = \frac{8050}{4} = 2012.50 \qquad MSE = \frac{1450}{35} = 41.429 \qquad F_0 = \frac{2012.50}{41.429} = 48.58$$</span>
+<span id="cb16-472"><a href="#cb16-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-473"><a href="#cb16-473" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \sqrt{41.429} = 6.437$$</span>
+<span id="cb16-474"><a href="#cb16-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-475"><a href="#cb16-475" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; F₀ = 48.58 &gt;&gt; F_{0.05,4,35} ≈ 2.64 → **Reject H₀.** At least one predictor is significant.</span></span>
+<span id="cb16-476"><a href="#cb16-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-477"><a href="#cb16-477" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-478"><a href="#cb16-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-479"><a href="#cb16-479" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer 5 (k = 2, n = 18)</span></span>
+<span id="cb16-480"><a href="#cb16-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-481"><a href="#cb16-481" aria-hidden="true" tabindex="-1"></a>**SSR** = 2200 + 1560 = 3760</span>
+<span id="cb16-482"><a href="#cb16-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-483"><a href="#cb16-483" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Source     <span class="pp">|</span> SS   <span class="pp">|</span> df <span class="pp">|</span> MS     <span class="pp">|</span> F₀     <span class="pp">|</span></span>
+<span id="cb16-484"><a href="#cb16-484" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------|------|----|--------|--------|</span></span>
+<span id="cb16-485"><a href="#cb16-485" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> 3760 <span class="pp">|</span> 2  <span class="pp">|</span> 1880.0 <span class="pp">|</span> 110.59 <span class="pp">|</span></span>
+<span id="cb16-486"><a href="#cb16-486" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual   <span class="pp">|</span> 340  <span class="pp">|</span> 15 <span class="pp">|</span> 22.667 <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb16-487"><a href="#cb16-487" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Total      <span class="pp">|</span> 4100 <span class="pp">|</span> 17 <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb16-488"><a href="#cb16-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-489"><a href="#cb16-489" aria-hidden="true" tabindex="-1"></a>$$MSR = \frac{3760}{2} = 1880.0 \qquad MSE = \frac{340}{15} = 22.667 \qquad F_0 = \frac{1880.0}{22.667} = 82.94$$</span>
+<span id="cb16-490"><a href="#cb16-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-491"><a href="#cb16-491" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \sqrt{22.667} = 4.761$$</span>
+<span id="cb16-492"><a href="#cb16-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-493"><a href="#cb16-493" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; F₀ = 82.94 &gt;&gt; F_{0.01,2,15} ≈ 6.36 → **Reject H₀.** At least one predictor is significant at α = 0.01.</span></span>
+<span id="cb16-494"><a href="#cb16-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-495"><a href="#cb16-495" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-496"><a href="#cb16-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-497"><a href="#cb16-497" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-498"><a href="#cb16-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-499"><a href="#cb16-499" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 5 — DOE (RCBD): Reverse-Engineer ANOVA Table from MS and F</span></span>
+<span id="cb16-500"><a href="#cb16-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-501"><a href="#cb16-501" aria-hidden="true" tabindex="-1"></a>This pattern is distinct from the regression reconstruction examples above. In DOE, the ANOVA table has **three sources** (Factor, Blocks, Error), and you are typically given MS values and F₀ rather than SS directly.</span>
+<span id="cb16-502"><a href="#cb16-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-503"><a href="#cb16-503" aria-hidden="true" tabindex="-1"></a>**Given (RCBD, a = 4 treatments, b = 5 blocks):**</span>
+<span id="cb16-504"><a href="#cb16-504" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-505"><a href="#cb16-505" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df    SS       MS          F₀</span></span>
+<span id="cb16-506"><a href="#cb16-506" aria-hidden="true" tabindex="-1"></a><span class="in">Factor      ____  ____     115.2067    3.498</span></span>
+<span id="cb16-507"><a href="#cb16-507" aria-hidden="true" tabindex="-1"></a><span class="in">Blocks      ____  ____     71.9775</span></span>
+<span id="cb16-508"><a href="#cb16-508" aria-hidden="true" tabindex="-1"></a><span class="in">Error       ____  ____     ____</span></span>
+<span id="cb16-509"><a href="#cb16-509" aria-hidden="true" tabindex="-1"></a><span class="in">Total       ____  ____</span></span>
+<span id="cb16-510"><a href="#cb16-510" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-511"><a href="#cb16-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-512"><a href="#cb16-512" aria-hidden="true" tabindex="-1"></a>**Find:** Fill all blanks. What is the test conclusion at α = 0.05?</span>
+<span id="cb16-513"><a href="#cb16-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-514"><a href="#cb16-514" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-515"><a href="#cb16-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-516"><a href="#cb16-516" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb16-517"><a href="#cb16-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-518"><a href="#cb16-518" aria-hidden="true" tabindex="-1"></a>**Step 1 — df from design parameters:**</span>
+<span id="cb16-519"><a href="#cb16-519" aria-hidden="true" tabindex="-1"></a>$$df_{\text{Factor}} = a - 1 = 3$$</span>
+<span id="cb16-520"><a href="#cb16-520" aria-hidden="true" tabindex="-1"></a>$$df_{\text{Blocks}} = b - 1 = 4$$</span>
+<span id="cb16-521"><a href="#cb16-521" aria-hidden="true" tabindex="-1"></a>$$df_{\text{Error}} = (a-1)(b-1) = 3 \times 4 = 12$$</span>
+<span id="cb16-522"><a href="#cb16-522" aria-hidden="true" tabindex="-1"></a>$$df_{\text{Total}} = ab - 1 = 19 \quad \text{(check: } 3+4+12=19 \checkmark\text{)}$$</span>
+<span id="cb16-523"><a href="#cb16-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-524"><a href="#cb16-524" aria-hidden="true" tabindex="-1"></a>**Step 2 — MS_E from F₀:**</span>
+<span id="cb16-525"><a href="#cb16-525" aria-hidden="true" tabindex="-1"></a>$$MS_E = \frac{MS_{\text{Factor}}}{F_0} = \frac{115.2067}{3.498} = 32.94$$</span>
+<span id="cb16-526"><a href="#cb16-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-527"><a href="#cb16-527" aria-hidden="true" tabindex="-1"></a>**Step 3 — SS from MS × df:**</span>
+<span id="cb16-528"><a href="#cb16-528" aria-hidden="true" tabindex="-1"></a>$$SS_{\text{Factor}} = MS_{\text{Factor}} \times df_{\text{Factor}} = 115.2067 \times 3 = 345.62$$</span>
+<span id="cb16-529"><a href="#cb16-529" aria-hidden="true" tabindex="-1"></a>$$SS_{\text{Blocks}} = MS_{\text{Blocks}} \times df_{\text{Blocks}} = 71.9775 \times 4 = 287.91$$</span>
+<span id="cb16-530"><a href="#cb16-530" aria-hidden="true" tabindex="-1"></a>$$SS_E = MS_E \times df_E = 32.94 \times 12 = 395.28$$</span>
+<span id="cb16-531"><a href="#cb16-531" aria-hidden="true" tabindex="-1"></a>$$SS_{\text{Total}} = 345.62 + 287.91 + 395.28 = 1028.81$$</span>
+<span id="cb16-532"><a href="#cb16-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-533"><a href="#cb16-533" aria-hidden="true" tabindex="-1"></a>**Completed table:**</span>
+<span id="cb16-534"><a href="#cb16-534" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-535"><a href="#cb16-535" aria-hidden="true" tabindex="-1"></a><span class="in">Source      df    SS        MS          F₀</span></span>
+<span id="cb16-536"><a href="#cb16-536" aria-hidden="true" tabindex="-1"></a><span class="in">Factor      3     345.62    115.2067    3.498</span></span>
+<span id="cb16-537"><a href="#cb16-537" aria-hidden="true" tabindex="-1"></a><span class="in">Blocks      4     287.91    71.9775</span></span>
+<span id="cb16-538"><a href="#cb16-538" aria-hidden="true" tabindex="-1"></a><span class="in">Error       12    395.28    32.94</span></span>
+<span id="cb16-539"><a href="#cb16-539" aria-hidden="true" tabindex="-1"></a><span class="in">Total       19    1028.81</span></span>
+<span id="cb16-540"><a href="#cb16-540" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-541"><a href="#cb16-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-542"><a href="#cb16-542" aria-hidden="true" tabindex="-1"></a>**Decision:** F_crit(0.05, 3, 12) ≈ 3.49. Since F₀ = 3.498 &gt; 3.49, **reject H₀ at α = 0.05**.</span>
+<span id="cb16-543"><a href="#cb16-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-544"><a href="#cb16-544" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb16-545"><a href="#cb16-545" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "Reject H₀ at α = 0.05. There is sufficient evidence to conclude that at least one treatment mean differs (F₀ = 3.498 &gt; F_crit ≈ 3.49). This is a borderline result — always compare to the exact critical value."</span></span>
+<span id="cb16-546"><a href="#cb16-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-547"><a href="#cb16-547" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-548"><a href="#cb16-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-549"><a href="#cb16-549" aria-hidden="true" tabindex="-1"></a>**DOE reverse-engineer formula chain (memorize this order):**</span>
+<span id="cb16-550"><a href="#cb16-550" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-551"><a href="#cb16-551" aria-hidden="true" tabindex="-1"></a><span class="in">Given: MS_Factor, F₀, MS_Blocks, design parameters a, b</span></span>
+<span id="cb16-552"><a href="#cb16-552" aria-hidden="true" tabindex="-1"></a><span class="in">Derive:</span></span>
+<span id="cb16-553"><a href="#cb16-553" aria-hidden="true" tabindex="-1"></a><span class="in">  df_Factor = a−1</span></span>
+<span id="cb16-554"><a href="#cb16-554" aria-hidden="true" tabindex="-1"></a><span class="in">  df_Blocks = b−1</span></span>
+<span id="cb16-555"><a href="#cb16-555" aria-hidden="true" tabindex="-1"></a><span class="in">  df_Error  = (a−1)(b−1)</span></span>
+<span id="cb16-556"><a href="#cb16-556" aria-hidden="true" tabindex="-1"></a><span class="in">  df_Total  = ab−1</span></span>
+<span id="cb16-557"><a href="#cb16-557" aria-hidden="true" tabindex="-1"></a><span class="in">  MS_E      = MS_Factor / F₀</span></span>
+<span id="cb16-558"><a href="#cb16-558" aria-hidden="true" tabindex="-1"></a><span class="in">  SS_Factor = MS_Factor × df_Factor</span></span>
+<span id="cb16-559"><a href="#cb16-559" aria-hidden="true" tabindex="-1"></a><span class="in">  SS_Blocks = MS_Blocks × df_Blocks</span></span>
+<span id="cb16-560"><a href="#cb16-560" aria-hidden="true" tabindex="-1"></a><span class="in">  SS_E      = MS_E × df_Error</span></span>
+<span id="cb16-561"><a href="#cb16-561" aria-hidden="true" tabindex="-1"></a><span class="in">  SS_Total  = SS_Factor + SS_Blocks + SS_E</span></span>
+<span id="cb16-562"><a href="#cb16-562" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-563"><a href="#cb16-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-564"><a href="#cb16-564" aria-hidden="true" tabindex="-1"></a>See also: <span class="co">[</span><span class="ot">rcbd-blocking</span><span class="co">](../concepts/rcbd-blocking.md)</span> for the RCBD ANOVA structure; compare <span class="co">[</span><span class="ot">regression-ht</span><span class="co">](../concepts/regression-ht.md)</span> for the regression version of this pattern.</span>
+<span id="cb16-565"><a href="#cb16-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-566"><a href="#cb16-566" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-567"><a href="#cb16-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-568"><a href="#cb16-568" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related</span></span>
+<span id="cb16-569"><a href="#cb16-569" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">regression-ht</span><span class="co">](../concepts/regression-ht.md)</span></span>
+<span id="cb16-570"><a href="#cb16-570" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">regression-slr</span><span class="co">](../concepts/regression-slr.md)</span></span>
+<span id="cb16-571"><a href="#cb16-571" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">regression-mlr</span><span class="co">](../concepts/regression-mlr.md)</span></span>
+<span id="cb16-572"><a href="#cb16-572" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">reading-r-output</span><span class="co">](../r-code/reading-r-output.md)</span></span>
+<span id="cb16-573"><a href="#cb16-573" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">rcbd-blocking</span><span class="co">](../concepts/rcbd-blocking.md)</span></span>
+<span id="cb16-574"><a href="#cb16-574" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">crd-one-way-anova</span><span class="co">](../concepts/crd-one-way-anova.md)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

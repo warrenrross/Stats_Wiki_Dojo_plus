@@ -90,8 +90,8 @@ accounted for. In Python: `statsmodels.stats.anova.anova_lm(restricted_model, fu
   — they are related but not identical when multiple predictors are present
 
 ## Related
-- [[rcbd-blocking]] — RCBD treatment estimation is FWL with block dummies as X₁
-- [[factorial-anova]] — factorial regression coefficients are FWL partial coefficients under ±1 coding
-- [[regression-mlr]] — the full MLR that FWL decomposes
-- [[regression-ht]] — t-tests on individual βⱼ use FWL-equivalent partial SS
-- [[correlation-transformations]] — partial correlation vs. bivariate Pearson r
+- [rcbd-blocking](rcbd-blocking.md) — RCBD treatment estimation is FWL with block dummies as X₁
+- [factorial-anova](factorial-anova.md) — factorial regression coefficients are FWL partial coefficients under ±1 coding
+- [regression-mlr](regression-mlr.md) — the full MLR that FWL decomposes
+- [regression-ht](regression-ht.md) — t-tests on individual βⱼ use FWL-equivalent partial SS
+- [correlation-transformations](correlation-transformations.md) — partial correlation vs. bivariate Pearson r

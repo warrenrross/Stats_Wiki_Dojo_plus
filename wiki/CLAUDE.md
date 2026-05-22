@@ -204,7 +204,7 @@ These are the exact phrasings expected in exam answers. Use these in "Teacher's 
 When Warren asks a question:
 1. Read `index.md` to find relevant pages
 2. Read those pages
-3. Answer with citations (e.g., "see [[hypothesis-testing-overview]]")
+3. Answer with citations (e.g., "see [hypothesis-testing-overview](concepts/hypothesis-testing-overview.md)")
 4. If the answer is non-trivial and reusable, file it as a new wiki page
 
 ---
@@ -251,7 +251,7 @@ Every content page carries a `tier:` frontmatter field. Assign as follows:
 
 - **reference** — cross-tier navigation aids (formula sheets, flowcharts). No tier assigned.
 
-See `[[taxonomy]]` for the full page mapping and `[[knowledge-dimensions]]` for theoretical grounding.
+See `[taxonomy](concepts/taxonomy.md)` for the full page mapping and `[[knowledge-dimensions]]` for theoretical grounding.
 
 ---
 

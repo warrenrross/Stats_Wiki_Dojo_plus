@@ -117,10 +117,10 @@ qf(0.95, df1 = 3, df2 = 20)
 
 ## Related
 
-- [[standard-error]] — SE formulas that pair with these df values
-- [[variance-estimation]] — how df enters variance estimation
-- [[hypothesis-testing-overview]] — one-sample tests
-- [[two-sample-tests]] — two-sample and Welch df
-- [[chi-square]] — GoF and independence df
-- [[regression-ht]] — regression ANOVA df
-- [[regression-ci]] — which df to use for t-critical in confint()
+- [standard-error](standard-error.md) — SE formulas that pair with these df values
+- [variance-estimation](variance-estimation.md) — how df enters variance estimation
+- [hypothesis-testing-overview](hypothesis-testing-overview.md) — one-sample tests
+- [two-sample-tests](two-sample-tests.md) — two-sample and Welch df
+- [chi-square](chi-square.md) — GoF and independence df
+- [regression-ht](regression-ht.md) — regression ANOVA df
+- [regression-ci](regression-ci.md) — which df to use for t-critical in confint()

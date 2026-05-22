@@ -90,8 +90,8 @@ Note: R's `between.var` takes the variance of the τᵢ vector (i.e., Στᵢ²/
 Increasing any one of {δ, n, α} increases power. Increasing α buys power at the cost of more false alarms. Increasing n is the most principled lever when δ is fixed by the application.
 
 ## Related
-- [[hypothesis-testing-overview]] — 7-step procedure and error type definitions
-- [[crd-one-way-anova]] — ANOVA F-test power: Case 4 above determines required replicates
-- [[two-sample-tests]] — two-sample t power: Case 3 above
-- [[distributions]] — power depends on the non-central t and F distributions
-- [[which-test]] — choose the right power case once the test type is identified
+- [hypothesis-testing-overview](hypothesis-testing-overview.md) — 7-step procedure and error type definitions
+- [crd-one-way-anova](crd-one-way-anova.md) — ANOVA F-test power: Case 4 above determines required replicates
+- [two-sample-tests](two-sample-tests.md) — two-sample t power: Case 3 above
+- [distributions](distributions.md) — power depends on the non-central t and F distributions
+- [which-test](which-test.md) — choose the right power case once the test type is identified

@@ -112,6 +112,6 @@ E₁₁ = (R₁ × C₁)/N
 - Wrong df: GoF is k−1, contingency is (r−1)(c−1), variance test is n−1
 
 ## Related
-- [[distributions]]
-- [[hypothesis-testing-overview]]
-- [[which-test]]
+- [distributions](distributions.md)
+- [hypothesis-testing-overview](hypothesis-testing-overview.md)
+- [which-test](which-test.md)

@@ -156,5 +156,5 @@ print(pc, digits = 10)
 - Concluding a process is capable based on Cp alone when it's off-center
 
 ## Related
-- [[control-charts]]
-- [[control-charts-r]]
+- [control-charts](control-charts.md)
+- [control-charts-r](../r-code/control-charts-r.md)

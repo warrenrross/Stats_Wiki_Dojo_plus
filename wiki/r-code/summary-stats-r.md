@@ -145,6 +145,6 @@ df %>% glimpse()
 ```
 
 ## Related
-- [[distributions]]
-- [[hypothesis-tests-r]]
-- [[reading-r-output]]
+- [distributions](../concepts/distributions.md)
+- [hypothesis-tests-r](hypothesis-tests-r.md)
+- [reading-r-output](reading-r-output.md)

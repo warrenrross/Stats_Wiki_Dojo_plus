@@ -51,7 +51,7 @@ $$df = (r-1)(c-1)$$
 - Forgetting that significance means association, not causation
 
 ## Related
-- [[ht-goodness-of-fit]] — one-variable χ² test for distributional fit
-- [[ht-one-sample-chisq-variance]] — χ² test on σ²
-- [[chi-square]] — broader coverage of all χ² procedures
-- [[ht-tests-overview]] — full test selection table
+- [ht-goodness-of-fit](ht-goodness-of-fit.md) — one-variable χ² test for distributional fit
+- [ht-one-sample-chisq-variance](ht-one-sample-chisq-variance.md) — χ² test on σ²
+- [chi-square](chi-square.md) — broader coverage of all χ² procedures
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table

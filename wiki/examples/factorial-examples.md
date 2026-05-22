@@ -135,7 +135,7 @@ Given the following partial two-factor factorial ANOVA output, complete the tabl
 ---
 
 ## Related
-- [[factorial-anova]] — concept and formula page
-- [[factorial-anova-r]] — full R code patterns for factorial designs
-- [[2k-factorial-examples]] — 2^k specific examples with effect estimation
-- [[anova-table-examples]] — general ANOVA table completion practice
+- [factorial-anova](../concepts/factorial-anova.md) — concept and formula page
+- [factorial-anova-r](../r-code/factorial-anova-r.md) — full R code patterns for factorial designs
+- [2k-factorial-examples](2k-factorial-examples.md) — 2^k specific examples with effect estimation
+- [anova-table-examples](anova-table-examples.md) — general ANOVA table completion practice

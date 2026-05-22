@@ -178,7 +178,7 @@ pred_original_scale <- exp(pred_log)
 - Comparing r² between a transformed and untransformed model (not valid comparison)
 
 ## Related
-- [[regression-slr]]
-- [[model-adequacy]]
-- [[regression-ht]]
-- [[distributions]] — the Fisher Z statistic Z₀ ~ N(0,1) under H₀
+- [regression-slr](regression-slr.md)
+- [model-adequacy](model-adequacy.md)
+- [regression-ht](regression-ht.md)
+- [distributions](distributions.md) — the Fisher Z statistic Z₀ ~ N(0,1) under H₀

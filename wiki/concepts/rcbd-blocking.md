@@ -109,9 +109,9 @@ MS_Error inflates from 5.79 → 8.06 (+39%) and F₀ drops from 20.54 → 14.76 
 - Treating RCBD as a two-factor factorial — RCBD has no replication within cells and no interaction
 
 ## Related
-- [[crd-one-way-anova]] — the same design without blocking
-- [[random-effects-model]] — when treatments are randomly sampled from a population
-- [[anova-r]] — R code for RCBD (`aov(obs ~ trt + blk)`)
-- [[factorial-anova]] — when you have two factors of equal interest (not nuisance blocking)
-- [[fwl-theorem]] — algebraic equivalence between RCBD block-demeaning and FWL residualization
-- [[ss-decomposition]] — RCBD adds SS_Blocks as a third term in the universal partition
+- [crd-one-way-anova](crd-one-way-anova.md) — the same design without blocking
+- [random-effects-model](random-effects-model.md) — when treatments are randomly sampled from a population
+- [anova-r](../r-code/anova-r.md) — R code for RCBD (`aov(obs ~ trt + blk)`)
+- [factorial-anova](factorial-anova.md) — when you have two factors of equal interest (not nuisance blocking)
+- [fwl-theorem](fwl-theorem.md) — algebraic equivalence between RCBD block-demeaning and FWL residualization
+- [ss-decomposition](ss-decomposition.md) — RCBD adds SS_Blocks as a third term in the universal partition

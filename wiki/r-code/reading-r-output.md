@@ -223,6 +223,6 @@ sample estimates:
 | 4 | Residuals vs Leverage | High Cook's D → influential points |
 
 ## Related
-- [[regression-r]]
-- [[hypothesis-tests-r]]
-- [[control-charts-r]]
+- [regression-r](regression-r.md)
+- [hypothesis-tests-r](hypothesis-tests-r.md)
+- [control-charts-r](control-charts-r.md)

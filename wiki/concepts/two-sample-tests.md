@@ -118,8 +118,8 @@ $$\frac{s_1^2}{s_2^2} f_{1-\alpha/2,n_2-1,n_1-1} \leq \frac{\sigma_1^2}{\sigma_2
 - Swapping n₁−1 and n₂−1 in Welch df formula numerator/denominator
 
 ## Related
-- [[which-test]]
-- [[hypothesis-testing-overview]]
-- [[confidence-intervals]]
-- [[crd-one-way-anova]] — one-way ANOVA is the generalization of the two-sample t to k ≥ 3 groups
-- [[power-sample-size]] — sample size formula for detecting a two-sample mean difference
+- [which-test](which-test.md)
+- [hypothesis-testing-overview](hypothesis-testing-overview.md)
+- [confidence-intervals](confidence-intervals.md)
+- [crd-one-way-anova](crd-one-way-anova.md) — one-way ANOVA is the generalization of the two-sample t to k ≥ 3 groups
+- [power-sample-size](power-sample-size.md) — sample size formula for detecting a two-sample mean difference

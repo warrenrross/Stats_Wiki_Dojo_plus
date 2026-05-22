@@ -11,7 +11,7 @@ Use to test whether two populations have equal variances. This is typically run 
 ## When To Use
 - Testing H₀: σ₁² = σ₂²
 - Two independent samples from normal populations
-- Preliminary check before running [[ht-two-sample-t-means]]
+- Preliminary check before running [ht-two-sample-t-means](ht-two-sample-t-means.md)
 
 ## Formula(s)
 
@@ -55,7 +55,7 @@ Note: the two F critical values use **swapped** degrees of freedom.
 - Concluding equal variances just because F-test doesn't reject — absence of evidence ≠ evidence of absence; Welch's is safer by default
 
 ## Related
-- [[ht-two-sample-t-means]] — use this test first to decide Case 1 vs Case 2
-- [[ht-one-sample-chisq-variance]] — one-sample variance test (use χ²)
-- [[hypothesis-tests-r]] — `var.test(x, y)`
-- [[ht-tests-overview]] — full test selection table
+- [ht-two-sample-t-means](ht-two-sample-t-means.md) — use this test first to decide Case 1 vs Case 2
+- [ht-one-sample-chisq-variance](ht-one-sample-chisq-variance.md) — one-sample variance test (use χ²)
+- [hypothesis-tests-r](../r-code/hypothesis-tests-r.md) — `var.test(x, y)`
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table

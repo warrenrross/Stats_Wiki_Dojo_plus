@@ -72,18 +72,18 @@ Quick-lookup table for all Section 1–2 hypothesis tests. Each test has its own
 
 ```
 Two samples → independent or paired?
-├── Paired → [[ht-paired-t]]
+├── Paired → [ht-paired-t](../concepts/ht-paired-t.md)
 └── Independent → σ² known or unknown?
-    ├── Known → [[ht-two-sample-z-means]]
-    └── Unknown → run F-test [[ht-two-sample-f-variances]]
-        ├── Equal variances → [[ht-two-sample-t-means]] Case 1 (pooled)
-        └── Unequal variances → [[ht-two-sample-t-means]] Case 2 (Welch's)
+    ├── Known → [ht-two-sample-z-means](../concepts/ht-two-sample-z-means.md)
+    └── Unknown → run F-test [ht-two-sample-f-variances](../concepts/ht-two-sample-f-variances.md)
+        ├── Equal variances → [ht-two-sample-t-means](../concepts/ht-two-sample-t-means.md) Case 1 (pooled)
+        └── Unequal variances → [ht-two-sample-t-means](../concepts/ht-two-sample-t-means.md) Case 2 (Welch's)
 ```
 
 ---
 
 ## Related
-- [[which-test]] — broader flowchart including ANOVA, regression, control charts
-- [[confidence-intervals]] — CI formulas for all one-sample tests
-- [[two-sample-tests]] — additional detail on two-sample inference
-- [[hypothesis-tests-r]] — R code for all tests above
+- [which-test](../concepts/which-test.md) — broader flowchart including ANOVA, regression, control charts
+- [confidence-intervals](../concepts/confidence-intervals.md) — CI formulas for all one-sample tests
+- [two-sample-tests](../concepts/two-sample-tests.md) — additional detail on two-sample inference
+- [hypothesis-tests-r](../r-code/hypothesis-tests-r.md) — R code for all tests above

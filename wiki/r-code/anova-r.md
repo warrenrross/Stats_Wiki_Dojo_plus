@@ -293,4 +293,4 @@ Both Blom and `stat_qq` test the same thing (normality of residuals). The Blom v
 - **CRD** (`aov(obs ~ trt)`): one factor, completely random assignment, no blocks
 - **RCBD** (`aov(obs ~ trt + blk)`): one factor + nuisance block variable
 - **Random effects** (`aov(obs ~ trt)`, same formula): use when factor levels are randomly sampled — report variance components, not pairwise means
-- **Factorial** (`aov(obs ~ F1 * F2)`): two or more factors of equal interest — see [[factorial-anova-r]]
+- **Factorial** (`aov(obs ~ F1 * F2)`): two or more factors of equal interest — see [factorial-anova-r](factorial-anova-r.md)

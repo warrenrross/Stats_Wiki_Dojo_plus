@@ -151,9 +151,9 @@ pi_obs[, "upr"]   # upper bound
 - Extrapolating without checking x₀ is in range
 
 ## Related
-- [[regression-slr]]
-- [[regression-ht]]
-- [[regression-mlr]]
-- [[model-adequacy]]
-- [[confidence-intervals]] — CI on βⱼ is an instance of the universal Estimate ± Score × SE structure
-- [[standard-error]] — SE(β̂ⱼ) that enters the CI formula is defined in the universal SE reference
+- [regression-slr](regression-slr.md)
+- [regression-ht](regression-ht.md)
+- [regression-mlr](regression-mlr.md)
+- [model-adequacy](model-adequacy.md)
+- [confidence-intervals](confidence-intervals.md) — CI on βⱼ is an instance of the universal Estimate ± Score × SE structure
+- [standard-error](standard-error.md) — SE(β̂ⱼ) that enters the CI formula is defined in the universal SE reference

@@ -142,12 +142,12 @@ Multiple factors — are each factor's levels exactly ±1 (two levels each)?
 5. What is the sample size? (affects Z vs t)
 
 ## Related
-- [[hypothesis-testing-overview]]
-- [[two-sample-tests]]
-- [[chi-square]]
-- [[regression-ht]]
-- [[crd-one-way-anova]]
-- [[rcbd-blocking]]
-- [[factorial-anova]]
-- [[2k-factorial-design]]
-- [[anova-design-guide]]
+- [hypothesis-testing-overview](hypothesis-testing-overview.md)
+- [two-sample-tests](two-sample-tests.md)
+- [chi-square](chi-square.md)
+- [regression-ht](regression-ht.md)
+- [crd-one-way-anova](crd-one-way-anova.md)
+- [rcbd-blocking](rcbd-blocking.md)
+- [factorial-anova](factorial-anova.md)
+- [2k-factorial-design](2k-factorial-design.md)
+- [anova-design-guide](../reference/anova-design-guide.md)

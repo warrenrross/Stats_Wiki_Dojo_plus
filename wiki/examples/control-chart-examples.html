@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>control-chart-examples – INEG 2314H — Statistical Methods</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cb9eb8060de154f7129409f226e8d1c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">INEG 2314H — Statistical Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../syllabus-path.html"> 
+<span class="menu-text">Linear Path</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lessons/index.html"> 
+<span class="menu-text">Lessons</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dojo/index.html"> 
+<span class="menu-text">Coding Dojo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../graph-navigation.html"> 
+<span class="menu-text">Knowledge Graph</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../wiki/index.html"> 
+<span class="menu-text">Wiki Index</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">INEG 2314H — Statistical Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Resource</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Suggested Linear Path</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../graph-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge Graph Navigation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lessons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/sampling-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling Distributions and the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/standard-error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standard Error — The Universal Reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/foundations/confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Confidence Intervals</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Inference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing — The 7-Step Framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/t-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One- and Two-Sample t-Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/inference/anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One-Way ANOVA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple Linear Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/regression/diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Diagnostics and Adequacy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Quality Methods</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/control-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Chart Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/xbar-r-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">X̄/R and X̄/S Charts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/quality-methods/p-c-u-charts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">p, c, and u Charts</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Experimental Design</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/crd-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRD and One-Way ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/factorial-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Factorial ANOVA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/experimental-design/two-k-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2^k Factorial Designs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Coding Dojo</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coding Dojo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/simulate-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Simulate the CLT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fit-regression-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fit and Interpret a Regression Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/build-control-chart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Build a Control Chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/fill-anova-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Fill an ANOVA Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dojo/r-drills/factorial-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill: Factorial ANOVA in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#examples-control-charts-and-process-capability" id="toc-examples-control-charts-and-process-capability" class="nav-link active" data-scroll-target="#examples-control-charts-and-process-capability"><span class="header-section-number">1</span> Examples: Control Charts and Process Capability</a>
+  <ul class="collapse">
+  <li><a href="#chart-types-quick-reference" id="toc-chart-types-quick-reference" class="nav-link" data-scroll-target="#chart-types-quick-reference"><span class="header-section-number">1.1</span> Chart Types Quick Reference</a></li>
+  <li><a href="#control-limits-vs.-specification-limits" id="toc-control-limits-vs.-specification-limits" class="nav-link" data-scroll-target="#control-limits-vs.-specification-limits"><span class="header-section-number">1.2</span> Control Limits vs.&nbsp;Specification Limits</a></li>
+  <li><a href="#example-1-applying-western-electric-rules" id="toc-example-1-applying-western-electric-rules" class="nav-link" data-scroll-target="#example-1-applying-western-electric-rules"><span class="header-section-number">1.3</span> Example 1 — Applying Western Electric Rules</a></li>
+  <li><a href="#example-2-reading-r-output-identifying-ooc-points" id="toc-example-2-reading-r-output-identifying-ooc-points" class="nav-link" data-scroll-target="#example-2-reading-r-output-identifying-ooc-points"><span class="header-section-number">1.4</span> Example 2 — Reading R Output: Identifying OOC Points</a></li>
+  <li><a href="#example-3-process-capability-from-r-output" id="toc-example-3-process-capability-from-r-output" class="nav-link" data-scroll-target="#example-3-process-capability-from-r-output"><span class="header-section-number">1.5</span> Example 3 — Process Capability from R Output</a></li>
+  <li><a href="#example-4-calculating-cpcpk-by-hand-from-given-values" id="toc-example-4-calculating-cpcpk-by-hand-from-given-values" class="nav-link" data-scroll-target="#example-4-calculating-cpcpk-by-hand-from-given-values"><span class="header-section-number">1.6</span> Example 4 — Calculating Cp/Cpk by Hand from Given Values</a></li>
+  <li><a href="#example-5-estimating-σ-from-control-chart-output" id="toc-example-5-estimating-σ-from-control-chart-output" class="nav-link" data-scroll-target="#example-5-estimating-σ-from-control-chart-output"><span class="header-section-number">1.7</span> Example 5 — Estimating σ̂ from Control Chart Output</a></li>
+  <li><a href="#example-6-p-chart-interpretation" id="toc-example-6-p-chart-interpretation" class="nav-link" data-scroll-target="#example-6-p-chart-interpretation"><span class="header-section-number">1.8</span> Example 6 — p-Chart Interpretation</a></li>
+  <li><a href="#example-7-falloutfraction-defective-calculation" id="toc-example-7-falloutfraction-defective-calculation" class="nav-link" data-scroll-target="#example-7-falloutfraction-defective-calculation"><span class="header-section-number">1.9</span> Example 7 — Fallout/Fraction Defective Calculation</a></li>
+  <li><a href="#concept-checkpoint-qa-exam-style-questions" id="toc-concept-checkpoint-qa-exam-style-questions" class="nav-link" data-scroll-target="#concept-checkpoint-qa-exam-style-questions"><span class="header-section-number">1.10</span> Concept Checkpoint Q&amp;A — Exam-Style Questions</a></li>
+  <li><a href="#common-mistakes-on-exams" id="toc-common-mistakes-on-exams" class="nav-link" data-scroll-target="#common-mistakes-on-exams"><span class="header-section-number">1.11</span> Common Mistakes on Exams</a></li>
+  <li><a href="#related" id="toc-related" class="nav-link" data-scroll-target="#related"><span class="header-section-number">1.12</span> Related</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+
+
+
+
+<section id="examples-control-charts-and-process-capability" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Examples: Control Charts and Process Capability</h1>
+<p>See also: [[control-charts]], [[process-capability]], [[control-charts-r]]</p>
+<blockquote class="blockquote">
+<p><strong>Exam focus:</strong> You will interpret charts and output — not write R code. Know chart characteristics, apply Western Electric Rules, read Cp/Cpk output, and distinguish control limits from specification limits.</p>
+</blockquote>
+<hr>
+<section id="chart-types-quick-reference" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="chart-types-quick-reference"><span class="header-section-number">1.1</span> Chart Types Quick Reference</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 38%">
+<col style="width: 25%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chart</th>
+<th>What it monitors</th>
+<th>Input data</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X̄ (Xbar)</td>
+<td>Process <strong>mean</strong></td>
+<td>Subgroup means x̄ᵢ</td>
+<td>Always paired with R or S chart</td>
+</tr>
+<tr class="even">
+<td>R</td>
+<td>Process <strong>variability</strong> (range)</td>
+<td>Subgroup ranges Rᵢ</td>
+<td>Subgroup size n ≤ 10</td>
+</tr>
+<tr class="odd">
+<td>S</td>
+<td>Process <strong>variability</strong> (std dev)</td>
+<td>Subgroup std devs sᵢ</td>
+<td>Larger subgroups; more sensitive than R</td>
+</tr>
+<tr class="even">
+<td>p</td>
+<td>Fraction <strong>defective</strong></td>
+<td># defectives / sample size</td>
+<td>Binary outcome (defective or not), n can vary</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>Count of <strong>defects</strong> per unit</td>
+<td>Defect count per unit</td>
+<td>Count data, <strong>fixed</strong> inspection unit size</td>
+</tr>
+<tr class="even">
+<td>u</td>
+<td>Defects <strong>per unit</strong> (variable)</td>
+<td>Defect count + unit size</td>
+<td>Count data, <strong>variable</strong> inspection unit size</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Critical rule — always build the variability chart first:</strong> &gt; Build the R (or S) chart before the X̄ chart. If the R/S chart is out of control, the X̄ chart control limits are <strong>unreliable</strong> because σ̂ is inflated by special causes.</p>
+<hr>
+</section>
+<section id="control-limits-vs.-specification-limits" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="control-limits-vs.-specification-limits"><span class="header-section-number">1.2</span> Control Limits vs.&nbsp;Specification Limits</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 37%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Control Limits</th>
+<th>Specification Limits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set by</td>
+<td><strong>Data</strong> — calculated as x̄̄ ± 3σ̂</td>
+<td><strong>Customer/engineering</strong> — defines acceptable range</td>
+</tr>
+<tr class="even">
+<td>Purpose</td>
+<td>Detect special cause variation (process going wrong)</td>
+<td>Define product acceptability</td>
+</tr>
+<tr class="odd">
+<td>Can they differ?</td>
+<td>Yes — a process can be in control but produce out-of-spec product</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Are they the same?</td>
+<td><strong>Never</strong> — confusing these is a serious mistake</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="example-1-applying-western-electric-rules" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="example-1-applying-western-electric-rules"><span class="header-section-number">1.3</span> Example 1 — Applying Western Electric Rules</h2>
+<p><strong>Given:</strong> An X̄ chart with center line at 50, UCL = 56, LCL = 44 (3σ control limits). The 1σ and 2σ zone boundaries are at 52, 54 (above CL) and 48, 46 (below CL).</p>
+<p>The last 12 plotted points (in order) are:</p>
+<pre><code>Point:   1    2    3    4    5    6    7    8    9    10   11   12
+Value:  51   52   53   54   52   53   55   54   53   52   51   50</code></pre>
+<p><strong>Find:</strong> Is this process in or out of control? Which rule(s) are triggered?</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<p>Check each Western Electric Rule:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 34%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>Trigger</th>
+<th>This data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. One point outside 3σ</td>
+<td>Any point &gt; 56 or &lt; 44</td>
+<td>No — max is 55</td>
+</tr>
+<tr class="even">
+<td>2. Two of three outside 2σ (same side)</td>
+<td>2 of 3 consecutive &gt; 54 or &lt; 46</td>
+<td>Points 6, 7, 8: values 53, 55, 54 — two of three exceed 54 ✓ <strong>TRIGGERED</strong></td>
+</tr>
+<tr class="odd">
+<td>3. Four of five outside 1σ (same side)</td>
+<td>4 of 5 consecutive &gt; 52 or &lt; 48</td>
+<td>Points 4–8: 54, 52, 53, 55, 54 — four of five exceed 52 ✓ <strong>TRIGGERED</strong></td>
+</tr>
+<tr class="even">
+<td>4. Eight consecutive same side</td>
+<td>Eight points all above or all below CL</td>
+<td>Points 1–12: mix of above/below — No</td>
+</tr>
+<tr class="odd">
+<td>5. Six consecutive trending</td>
+<td>Six steadily increasing or decreasing</td>
+<td>Points 1–7: mostly increasing (51→55) — Yes, 7 points ✓ <strong>TRIGGERED</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Answer:</strong> &gt; “Points 6–8 trigger Rule 2 (two of three outside 2σ). Points 4–8 trigger Rule 3 (four of five outside 1σ). Points 1–7 exhibit a steady increasing trend (Rule 5). The process is <strong>out of statistical control</strong> — a special cause of variation is present.”</p>
+<hr>
+</section>
+<section id="example-2-reading-r-output-identifying-ooc-points" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="example-2-reading-r-output-identifying-ooc-points"><span class="header-section-number">1.4</span> Example 2 — Reading R Output: Identifying OOC Points</h2>
+<p><strong>Given:</strong> R output from <code>qcc()</code> on a process with 25 subgroups:</p>
+<pre><code>R Chart
+
+Number of groups:  25
+Center:  5.74
+StdDev:  2.469
+Control limits:
+   LCL    UCL
+  0.00   19.18
+
+Beyond limits of control (rules 1 violated):
+ Group  18 20</code></pre>
+<p><strong>Find:</strong> Interpret this output. What action should be taken?</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Center line (R̄) = 5.74 — this is the average within-subgroup range</li>
+<li>UCL = 19.18, LCL = 0 (LCL floored at 0 for R charts with small n)</li>
+<li>σ̂ from R chart = StdDev = 2.469 (this is R̄/d₂ for the subgroup size used)</li>
+<li>Subgroups 18 and 20 are <strong>beyond the control limits</strong> (their ranges exceed 19.18)</li>
+</ul>
+<p><strong>Next step:</strong> Find and investigate the special cause in subgroups 18 and 20. Remove those subgroups, recompute revised control limits from the remaining 23 subgroups, then rebuild the chart.</p>
+<p><strong>Answer:</strong> &gt; “Subgroups 18 and 20 fall outside the control limits on the R chart, indicating the process variability is out of statistical control at those time points. A special cause of variation is present. These subgroups should be investigated, removed, and revised control limits computed.”</p>
+<hr>
+</section>
+<section id="example-3-process-capability-from-r-output" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="example-3-process-capability-from-r-output"><span class="header-section-number">1.5</span> Example 3 — Process Capability from R Output</h2>
+<p><strong>Given:</strong> <code>process.capability()</code> output for a process with spec limits LSL = 1.3, USL = 1.7:</p>
+<pre><code>Process Capability Analysis
+
+Call:
+process.capability(object = qqX, spec.limits = c(1.3, 1.7))
+
+Number of obs: 100    Target: 1.5
+Mean: 1.491   StdDev: 0.04812
+
+          Value
+Cp        1.386
+Cp_l      1.378
+Cp_u      1.323
+Cp_k      1.323
+Cpm       1.357
+
+Exp&lt;LSL  0.01%   Obs&lt;LSL  0.00%
+Exp&gt;USL  0.09%   Obs&gt;USL  0.00%</code></pre>
+<p><strong>Find:</strong> Interpret Cp and Cpk. Is the process capable? Is it centered?</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Cp = 1.386</strong> — The process spread (6σ̂ = 6 × 0.0481 = 0.289) fits within the spec width (USL − LSL = 0.4) with a ratio of 1.386. This exceeds the typical 1.33 threshold → process spread is adequate.</li>
+<li><strong>Cpk = 1.323</strong> — This is Cpk = min(Cp_l, Cp_u) = min(1.378, 1.323) = 1.323. Slightly below 1.33.
+<ul>
+<li>Since Cpk &lt; Cp, the process is <strong>slightly off-center</strong> (mean = 1.491 is below target 1.5).</li>
+<li>Cpk = 1.323 is just under the 1.33 threshold.</li>
+</ul></li>
+<li><strong>Expected fraction nonconforming:</strong> ~0.10% (Exp &lt; LSL 0.01% + Exp &gt; USL 0.09%)</li>
+</ul>
+<p><strong>Answer:</strong> &gt; “Cp = 1.386 indicates adequate process spread relative to specifications. However, Cpk = 1.323 &lt; Cp indicates the process is slightly off-center (mean = 1.491 vs target = 1.500). Cpk is just below the 1.33 threshold, suggesting the process is marginally not capable. The process mean should be adjusted upward toward 1.500 to improve Cpk.”</p>
+<hr>
+</section>
+<section id="example-4-calculating-cpcpk-by-hand-from-given-values" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="example-4-calculating-cpcpk-by-hand-from-given-values"><span class="header-section-number">1.6</span> Example 4 — Calculating Cp/Cpk by Hand from Given Values</h2>
+<p><strong>Given:</strong> Specs at 125 ± 30 (USL = 155, LSL = 95). Process σ = 8. Two scenarios:</p>
+<p><strong>Scenario A: Process mean μ = 125 (centered)</strong></p>
+<p><span class="math display">\[C_p = \frac{USL - LSL}{6\sigma} = \frac{155 - 95}{6(8)} = \frac{60}{48} = 1.25\]</span></p>
+<p><span class="math display">\[C_{pk} = \min\left[\frac{155-125}{3(8)},\; \frac{125-95}{3(8)}\right] = \min\left[\frac{30}{24}, \frac{30}{24}\right] = 1.25\]</span></p>
+<p>When centered, Cp = Cpk = 1.25. Process is capable (&gt; 1.0) but below 1.33 threshold.</p>
+<p><strong>Scenario B: Process mean μ = 130 (off-center toward USL)</strong></p>
+<p><span class="math display">\[C_p = \frac{60}{48} = 1.25 \quad \text{(unchanged — Cp ignores centering)}\]</span></p>
+<p><span class="math display">\[C_{pk} = \min\left[\frac{155-130}{24},\; \frac{130-95}{24}\right] = \min\left[\frac{25}{24}, \frac{35}{24}\right] = \min[1.042, 1.458] = 1.042\]</span></p>
+<p><strong>Answer:</strong> &gt; “Scenario B: Although Cp = 1.25, Cpk = 1.042 because the process is shifted toward the USL. The fraction defective above USL is higher than a centered process would produce. Cp is the same in both scenarios — this illustrates why Cp alone is insufficient when the process may be off-center.”</p>
+<hr>
+</section>
+<section id="example-5-estimating-σ-from-control-chart-output" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="example-5-estimating-σ-from-control-chart-output"><span class="header-section-number">1.7</span> Example 5 — Estimating σ̂ from Control Chart Output</h2>
+<p><strong>Given:</strong> R chart with R̄ = 5.74, subgroup size n = 5. Control chart constants table gives d₂ = 2.326 for n = 5.</p>
+<p><strong>Find:</strong> σ̂</p>
+<p><strong>Solution:</strong> <span class="math display">\[\hat{\sigma} = \frac{\bar{R}}{d_2} = \frac{5.74}{2.326} = 2.467\]</span></p>
+<blockquote class="blockquote">
+<p>Note: This σ̂ is used to set X̄ chart limits AND to compute Cp/Cpk. The <code>StdDev</code> shown in qcc R output IS this value — qcc computes R̄/d₂ internally.</p>
+</blockquote>
+<p>If using an S chart instead (s̄ = 2.35, n = 5, c₄ = 0.9400): <span class="math display">\[\hat{\sigma} = \frac{\bar{s}}{c_4} = \frac{2.35}{0.9400} = 2.500\]</span></p>
+<hr>
+</section>
+<section id="example-6-p-chart-interpretation" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="example-6-p-chart-interpretation"><span class="header-section-number">1.8</span> Example 6 — p-Chart Interpretation</h2>
+<p><strong>Given:</strong> p-chart output on 25 subgroups, monitoring fraction of defective units. All points are within control limits. No non-random patterns observed.</p>
+<p><strong>Find:</strong> State the conclusion.</p>
+<p><strong>Answer:</strong> &gt; “The fraction defective p-chart shows the process is in statistical control. All 25 subgroup proportions fall within the control limits and no non-random patterns are present. The process appears stable with respect to the fraction of defective items produced.”</p>
+<hr>
+</section>
+<section id="example-7-falloutfraction-defective-calculation" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="example-7-falloutfraction-defective-calculation"><span class="header-section-number">1.9</span> Example 7 — Fallout/Fraction Defective Calculation</h2>
+<p><strong>Given:</strong> Spec limits: USL = 155, LSL = 95. Process: μ = 130, σ = 8. Find the fraction of output that fails specs.</p>
+<hr>
+<p><strong>Solution:</strong></p>
+<p><span class="math display">\[\text{Fallout} = P(X &lt; LSL) + P(X &gt; USL)\]</span></p>
+<p><span class="math display">\[= P(X &lt; 95) + P(X &gt; 155)\]</span></p>
+<p><span class="math display">\[= \Phi\!\left(\frac{95-130}{8}\right) + \left[1 - \Phi\!\left(\frac{155-130}{8}\right)\right]\]</span></p>
+<p><span class="math display">\[= \Phi(-4.375) + \Phi(-3.125) \approx 0 + 0.000874 = 0.0874\%\]</span></p>
+<p><strong>Common trap:</strong> The formula on the exam may be written as Pr(X &lt; (LSL − μ)/σ) + Pr(X &gt; (USL − μ)/σ). This is <strong>incorrect</strong> — those expressions are already standardized Z-values, not X-values. The correct formula standardizes the raw X:</p>
+<p><span class="math display">\[P(X &lt; LSL) = \Phi\!\left(\frac{LSL - \mu}{\sigma}\right) \neq \Phi(LSL - \mu)/\sigma\]</span></p>
+<p><strong>Answer:</strong> &gt; “Approximately 0.087% of output is expected to fall outside specification limits, with virtually all of it exceeding the USL.”</p>
+<hr>
+</section>
+<section id="concept-checkpoint-qa-exam-style-questions" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="concept-checkpoint-qa-exam-style-questions"><span class="header-section-number">1.10</span> Concept Checkpoint Q&amp;A — Exam-Style Questions</h2>
+<p>These are the exact question types that appear on concept checkpoints (L27-28, L29-30):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Correct Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A process is “out of control” when…</td>
+<td>Operating in presence of <strong>assignable causes</strong> (not chance causes)</td>
+</tr>
+<tr class="even">
+<td>Purpose of a control chart</td>
+<td>Enable <strong>just-in-time adjustments</strong> to reduce overall variability</td>
+</tr>
+<tr class="odd">
+<td>k in the control limit formula</td>
+<td>Distance from center line in <strong>standard deviation units</strong> (commonly = 3)</td>
+</tr>
+<tr class="even">
+<td>The chart that monitors the <strong>average</strong></td>
+<td>X̄ (Xbar) chart</td>
+</tr>
+<tr class="odd">
+<td>A₂ is used in…</td>
+<td>X̄ chart control limits</td>
+</tr>
+<tr class="even">
+<td>D₃ is used in…</td>
+<td>R chart <strong>lower</strong> control limit</td>
+</tr>
+<tr class="odd">
+<td>D₄ is used in…</td>
+<td>R chart <strong>upper</strong> control limit</td>
+</tr>
+<tr class="even">
+<td>C₄ is used in…</td>
+<td>S chart control limits (and σ̂ = s̄/c₄)</td>
+</tr>
+<tr class="odd">
+<td>Spec limits = control limits?</td>
+<td><strong>False</strong> — completely different sources and purposes</td>
+</tr>
+<tr class="even">
+<td>Triggered WE rule means…</td>
+<td>“Investigate for assignable cause” — not necessarily OOC, but warrants investigation</td>
+</tr>
+<tr class="odd">
+<td>P-chart is based on which distribution?</td>
+<td><strong>Binomial</strong></td>
+</tr>
+<tr class="even">
+<td>U-chart is based on which distribution?</td>
+<td><strong>Poisson</strong></td>
+</tr>
+<tr class="odd">
+<td>Cp overstates capability when…</td>
+<td>Process is running <strong>off-center</strong> (use Cpk for actual capability)</td>
+</tr>
+<tr class="even">
+<td>Natural tolerance limits are…</td>
+<td>μ ± 3σ (where the process actually puts 99.73% of its output)</td>
+</tr>
+<tr class="odd">
+<td>PCR in plain English</td>
+<td>Relationship between what customer wants (spec width) vs what we produce (6σ)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="common-mistakes-on-exams" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="common-mistakes-on-exams"><span class="header-section-number">1.11</span> Common Mistakes on Exams</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>Correct approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Building X̄ chart before R chart</td>
+<td>Build R (or S) chart FIRST — if it’s OOC, X̄ limits are unreliable</td>
+</tr>
+<tr class="even">
+<td>Using raw sample s as σ̂</td>
+<td>Use R̄/d₂ or s̄/c₄ — not the raw standard deviation</td>
+</tr>
+<tr class="odd">
+<td>Treating control limits as spec limits</td>
+<td>Control limits = 3σ from data; spec limits = customer requirement — completely different</td>
+</tr>
+<tr class="even">
+<td>Concluding capable from Cp alone</td>
+<td>Always check Cpk — Cp ignores off-centering</td>
+</tr>
+<tr class="odd">
+<td>Revising limits without removing OOC</td>
+<td>Find and remove OOC subgroups BEFORE recomputing revised limits</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="related" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="related"><span class="header-section-number">1.12</span> Related</h2>
+<ul>
+<li>[[control-charts]]</li>
+<li>[[process-capability]]</li>
+<li>[[control-charts-r]]</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/warrenrross\.github\.io\/Stats_Wiki_Dojo_plus\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [example, section-3]</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">tier:</span><span class="co"> script</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">sources:</span><span class="co"> [ControlCharts_Homework.R, Process Capability.R, Attribute Chart.R, L28P X and RorS Control Charts, L30E Fraction Defective and PCR Example, control-charts, process-capability]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Examples: Control Charts and Process Capability</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>See also: <span class="co">[</span><span class="ot">control-charts</span><span class="co">](../concepts/control-charts.md)</span>, <span class="co">[</span><span class="ot">process-capability</span><span class="co">](../concepts/process-capability.md)</span>, <span class="co">[</span><span class="ot">control-charts-r</span><span class="co">](../r-code/control-charts-r.md)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Exam focus:** You will interpret charts and output — not write R code. Know chart characteristics, apply Western Electric Rules, read Cp/Cpk output, and distinguish control limits from specification limits.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Chart Types Quick Reference</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Chart <span class="pp">|</span> What it monitors <span class="pp">|</span> Input data <span class="pp">|</span> Use when <span class="pp">|</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|-----------------|-----------|---------|</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> X̄ (Xbar) <span class="pp">|</span> Process **mean** <span class="pp">|</span> Subgroup means x̄ᵢ <span class="pp">|</span> Always paired with R or S chart <span class="pp">|</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R <span class="pp">|</span> Process **variability** (range) <span class="pp">|</span> Subgroup ranges Rᵢ <span class="pp">|</span> Subgroup size n ≤ 10 <span class="pp">|</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> S <span class="pp">|</span> Process **variability** (std dev) <span class="pp">|</span> Subgroup std devs sᵢ <span class="pp">|</span> Larger subgroups; more sensitive than R <span class="pp">|</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> p <span class="pp">|</span> Fraction **defective** <span class="pp">|</span> # defectives / sample size <span class="pp">|</span> Binary outcome (defective or not), n can vary <span class="pp">|</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> c <span class="pp">|</span> Count of **defects** per unit | Defect count per unit | Count data, **fixed** inspection unit size <span class="pp">|</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> u <span class="pp">|</span> Defects **per unit** (variable) | Defect count + unit size | Count data, **variable** inspection unit size <span class="pp">|</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>**Critical rule — always build the variability chart first:**</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Build the R (or S) chart before the X̄ chart. If the R/S chart is out of control, the X̄ chart control limits are **unreliable** because σ̂ is inflated by special causes.</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Control Limits vs. Specification Limits</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> Control Limits <span class="pp">|</span> Specification Limits <span class="pp">|</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>--<span class="pp">|--------------|---------------------|</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Set by <span class="pp">|</span> **Data** — calculated as x̄̄ ± 3σ̂ | **Customer/engineering** — defines acceptable range <span class="pp">|</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Purpose <span class="pp">|</span> Detect special cause variation (process going wrong) <span class="pp">|</span> Define product acceptability <span class="pp">|</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Can they differ? <span class="pp">|</span> Yes — a process can be in control but produce out-of-spec product <span class="pp">|</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Are they the same? <span class="pp">|</span> **Never** — confusing these is a serious mistake <span class="pp">|</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 1 — Applying Western Electric Rules</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>**Given:** An X̄ chart with center line at 50, UCL = 56, LCL = 44 (3σ control limits). The 1σ and 2σ zone boundaries are at 52, 54 (above CL) and 48, 46 (below CL).</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>The last 12 plotted points (in order) are:</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="in">Point:   1    2    3    4    5    6    7    8    9    10   11   12</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="in">Value:  51   52   53   54   52   53   55   54   53   52   51   50</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>**Find:** Is this process in or out of control? Which rule(s) are triggered?</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>Check each Western Electric Rule:</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rule <span class="pp">|</span> Trigger <span class="pp">|</span> This data <span class="pp">|</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|-----------|</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1. One point outside 3σ <span class="pp">|</span> Any point &gt; 56 or &lt; 44 <span class="pp">|</span> No — max is 55 <span class="pp">|</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2. Two of three outside 2σ (same side) <span class="pp">|</span> 2 of 3 consecutive &gt; 54 or &lt; 46 <span class="pp">|</span> Points 6, 7, 8: values 53, 55, 54 — two of three exceed 54 ✓ **TRIGGERED** <span class="pp">|</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3. Four of five outside 1σ (same side) <span class="pp">|</span> 4 of 5 consecutive &gt; 52 or &lt; 48 <span class="pp">|</span> Points 4–8: 54, 52, 53, 55, 54 — four of five exceed 52 ✓ **TRIGGERED** <span class="pp">|</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4. Eight consecutive same side <span class="pp">|</span> Eight points all above or all below CL <span class="pp">|</span> Points 1–12: mix of above/below — No <span class="pp">|</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5. Six consecutive trending <span class="pp">|</span> Six steadily increasing or decreasing <span class="pp">|</span> Points 1–7: mostly increasing (51→55) — Yes, 7 points ✓ **TRIGGERED** <span class="pp">|</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "Points 6–8 trigger Rule 2 (two of three outside 2σ). Points 4–8 trigger Rule 3 (four of five outside 1σ). Points 1–7 exhibit a steady increasing trend (Rule 5). The process is **out of statistical control** — a special cause of variation is present."</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 2 — Reading R Output: Identifying OOC Points</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>**Given:** R output from <span class="in">`qcc()`</span> on a process with 25 subgroups:</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="in">R Chart</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="in">Number of groups:  25</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="in">Center:  5.74</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="in">StdDev:  2.469</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="in">Control limits:</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="in">   LCL    UCL</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="in">  0.00   19.18</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="in">Beyond limits of control (rules 1 violated):</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="in"> Group  18 20</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>**Find:** Interpret this output. What action should be taken?</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Center line (R̄) = 5.74 — this is the average within-subgroup range</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>UCL = 19.18, LCL = 0 (LCL floored at 0 for R charts with small n)</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>σ̂ from R chart = StdDev = 2.469 (this is R̄/d₂ for the subgroup size used)</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Subgroups 18 and 20 are **beyond the control limits** (their ranges exceed 19.18)</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>**Next step:** Find and investigate the special cause in subgroups 18 and 20. Remove those subgroups, recompute revised control limits from the remaining 23 subgroups, then rebuild the chart.</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "Subgroups 18 and 20 fall outside the control limits on the R chart, indicating the process variability is out of statistical control at those time points. A special cause of variation is present. These subgroups should be investigated, removed, and revised control limits computed."</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 3 — Process Capability from R Output</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>**Given:** <span class="in">`process.capability()`</span> output for a process with spec limits LSL = 1.3, USL = 1.7:</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="in">Process Capability Analysis</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="in">Call:</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="in">process.capability(object = qqX, spec.limits = c(1.3, 1.7))</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="in">Number of obs: 100    Target: 1.5</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="in">Mean: 1.491   StdDev: 0.04812</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="in">          Value</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="in">Cp        1.386</span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="in">Cp_l      1.378</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="in">Cp_u      1.323</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="in">Cp_k      1.323</span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="in">Cpm       1.357</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="in">Exp&lt;LSL  0.01%   Obs&lt;LSL  0.00%</span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="in">Exp&gt;USL  0.09%   Obs&gt;USL  0.00%</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>**Find:** Interpret Cp and Cpk. Is the process capable? Is it centered?</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cp = 1.386** — The process spread (6σ̂ = 6 × 0.0481 = 0.289) fits within the spec width (USL − LSL = 0.4) with a ratio of 1.386. This exceeds the typical 1.33 threshold → process spread is adequate.</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cpk = 1.323** — This is Cpk = min(Cp_l, Cp_u) = min(1.378, 1.323) = 1.323. Slightly below 1.33.</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Since Cpk &lt; Cp, the process is **slightly off-center** (mean = 1.491 is below target 1.5).</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Cpk = 1.323 is just under the 1.33 threshold.</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Expected fraction nonconforming:** ~0.10% (Exp &lt; LSL 0.01% + Exp &gt; USL 0.09%)</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "Cp = 1.386 indicates adequate process spread relative to specifications. However, Cpk = 1.323 &lt; Cp indicates the process is slightly off-center (mean = 1.491 vs target = 1.500). Cpk is just below the 1.33 threshold, suggesting the process is marginally not capable. The process mean should be adjusted upward toward 1.500 to improve Cpk."</span></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 4 — Calculating Cp/Cpk by Hand from Given Values</span></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>**Given:** Specs at 125 ± 30 (USL = 155, LSL = 95). Process σ = 8. Two scenarios:</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>**Scenario A: Process mean μ = 125 (centered)**</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>$$C_p = \frac{USL - LSL}{6\sigma} = \frac{155 - 95}{6(8)} = \frac{60}{48} = 1.25$$</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>$$C_{pk} = \min\left<span class="co">[</span><span class="ot">\frac{155-125}{3(8)},\; \frac{125-95}{3(8)}\right</span><span class="co">]</span> = \min\left<span class="co">[</span><span class="ot">\frac{30}{24}, \frac{30}{24}\right</span><span class="co">]</span> = 1.25$$</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>When centered, Cp = Cpk = 1.25. Process is capable (&gt; 1.0) but below 1.33 threshold.</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>**Scenario B: Process mean μ = 130 (off-center toward USL)**</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>$$C_p = \frac{60}{48} = 1.25 \quad \text{(unchanged — Cp ignores centering)}$$</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>$$C_{pk} = \min\left<span class="co">[</span><span class="ot">\frac{155-130}{24},\; \frac{130-95}{24}\right</span><span class="co">]</span> = \min\left<span class="co">[</span><span class="ot">\frac{25}{24}, \frac{35}{24}\right</span><span class="co">]</span> = \min<span class="co">[</span><span class="ot">1.042, 1.458</span><span class="co">]</span> = 1.042$$</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "Scenario B: Although Cp = 1.25, Cpk = 1.042 because the process is shifted toward the USL. The fraction defective above USL is higher than a centered process would produce. Cp is the same in both scenarios — this illustrates why Cp alone is insufficient when the process may be off-center."</span></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 5 — Estimating σ̂ from Control Chart Output</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>**Given:** R chart with R̄ = 5.74, subgroup size n = 5. Control chart constants table gives d₂ = 2.326 for n = 5.</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>**Find:** σ̂</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \frac{\bar{R}}{d_2} = \frac{5.74}{2.326} = 2.467$$</span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Note: This σ̂ is used to set X̄ chart limits AND to compute Cp/Cpk. The </span><span class="in">`StdDev`</span><span class="at"> shown in qcc R output IS this value — qcc computes R̄/d₂ internally.</span></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>If using an S chart instead (s̄ = 2.35, n = 5, c₄ = 0.9400):</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \frac{\bar{s}}{c_4} = \frac{2.35}{0.9400} = 2.500$$</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 6 — p-Chart Interpretation</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>**Given:** p-chart output on 25 subgroups, monitoring fraction of defective units. All points are within control limits. No non-random patterns observed.</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>**Find:** State the conclusion.</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "The fraction defective p-chart shows the process is in statistical control. All 25 subgroup proportions fall within the control limits and no non-random patterns are present. The process appears stable with respect to the fraction of defective items produced."</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example 7 — Fallout/Fraction Defective Calculation</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>**Given:** Spec limits: USL = 155, LSL = 95. Process: μ = 130, σ = 8. Find the fraction of output that fails specs.</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>$$\text{Fallout} = P(X &lt; LSL) + P(X &gt; USL)$$</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>$$= P(X &lt; 95) + P(X &gt; 155)$$</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>$$= \Phi<span class="sc">\!</span>\left(\frac{95-130}{8}\right) + \left<span class="co">[</span><span class="ot">1 - \Phi\!\left(\frac{155-130}{8}\right)\right</span><span class="co">]</span>$$</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>$$= \Phi(-4.375) + \Phi(-3.125) \approx 0 + 0.000874 = 0.0874\%$$</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>**Common trap:** The formula on the exam may be written as Pr(X &lt; (LSL − μ)/σ) + Pr(X &gt; (USL − μ)/σ). This is **incorrect** — those expressions are already standardized Z-values, not X-values. The correct formula standardizes the raw X:</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>$$P(X &lt; LSL) = \Phi<span class="sc">\!</span>\left(\frac{LSL - \mu}{\sigma}\right) \neq \Phi(LSL - \mu)/\sigma$$</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>**Answer:**</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "Approximately 0.087% of output is expected to fall outside specification limits, with virtually all of it exceeding the USL."</span></span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concept Checkpoint Q&amp;A — Exam-Style Questions</span></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>These are the exact question types that appear on concept checkpoints (L27-28, L29-30):</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Question <span class="pp">|</span> Correct Answer <span class="pp">|</span></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|---------------|</span></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A process is "out of control" when... <span class="pp">|</span> Operating in presence of **assignable causes** (not chance causes) <span class="pp">|</span></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Purpose of a control chart <span class="pp">|</span> Enable **just-in-time adjustments** to reduce overall variability <span class="pp">|</span></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> k in the control limit formula <span class="pp">|</span> Distance from center line in **standard deviation units** (commonly = 3) <span class="pp">|</span></span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> The chart that monitors the **average** <span class="pp">|</span> X̄ (Xbar) chart <span class="pp">|</span></span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A₂ is used in... <span class="pp">|</span> X̄ chart control limits <span class="pp">|</span></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> D₃ is used in... <span class="pp">|</span> R chart **lower** control limit <span class="pp">|</span></span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> D₄ is used in... <span class="pp">|</span> R chart **upper** control limit <span class="pp">|</span></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> C₄ is used in... <span class="pp">|</span> S chart control limits (and σ̂ = s̄/c₄) <span class="pp">|</span></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Spec limits = control limits? <span class="pp">|</span> **False** — completely different sources and purposes <span class="pp">|</span></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Triggered WE rule means... <span class="pp">|</span> "Investigate for assignable cause" — not necessarily OOC, but warrants investigation <span class="pp">|</span></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> P-chart is based on which distribution? <span class="pp">|</span> **Binomial** <span class="pp">|</span></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> U-chart is based on which distribution? <span class="pp">|</span> **Poisson** <span class="pp">|</span></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cp overstates capability when... <span class="pp">|</span> Process is running **off-center** (use Cpk for actual capability) <span class="pp">|</span></span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Natural tolerance limits are... <span class="pp">|</span> μ ± 3σ (where the process actually puts 99.73% of its output) <span class="pp">|</span></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> PCR in plain English <span class="pp">|</span> Relationship between what customer wants (spec width) vs what we produce (6σ) <span class="pp">|</span></span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Mistakes on Exams</span></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mistake <span class="pp">|</span> Correct approach <span class="pp">|</span></span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|----------------|</span></span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Building X̄ chart before R chart <span class="pp">|</span> Build R (or S) chart FIRST — if it's OOC, X̄ limits are unreliable <span class="pp">|</span></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Using raw sample s as σ̂ <span class="pp">|</span> Use R̄/d₂ or s̄/c₄ — not the raw standard deviation <span class="pp">|</span></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Treating control limits as spec limits <span class="pp">|</span> Control limits = 3σ from data; spec limits = customer requirement — completely different <span class="pp">|</span></span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concluding capable from Cp alone <span class="pp">|</span> Always check Cpk — Cp ignores off-centering <span class="pp">|</span></span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Revising limits without removing OOC <span class="pp">|</span> Find and remove OOC subgroups BEFORE recomputing revised limits <span class="pp">|</span></span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related</span></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">control-charts</span><span class="co">](../concepts/control-charts.md)</span></span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">process-capability</span><span class="co">](../concepts/process-capability.md)</span></span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">control-charts-r</span><span class="co">](../r-code/control-charts-r.md)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

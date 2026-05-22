@@ -185,5 +185,5 @@ When out-of-control points are found:
 - Applying chart to non-stationary data without investigating
 
 ## Related
-- [[process-capability]]
-- [[control-charts-r]]
+- [process-capability](process-capability.md)
+- [control-charts-r](../r-code/control-charts-r.md)

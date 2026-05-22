@@ -110,8 +110,8 @@ $$F = \frac{W/u}{Y/v} \sim F_{u,v}$$
 - Lower tail: $f_{1-\alpha,u,v} = \frac{1}{f_{\alpha,v,u}}$
 
 ## Related
-- [[confidence-intervals]]
-- [[hypothesis-testing-overview]]
-- [[chi-square]]
-- [[two-sample-tests]]
-- [[correlation-transformations]] — Fisher Z-transform produces a statistic that follows the standard normal
+- [confidence-intervals](confidence-intervals.md)
+- [hypothesis-testing-overview](hypothesis-testing-overview.md)
+- [chi-square](chi-square.md)
+- [two-sample-tests](two-sample-tests.md)
+- [correlation-transformations](correlation-transformations.md) — Fisher Z-transform produces a statistic that follows the standard normal

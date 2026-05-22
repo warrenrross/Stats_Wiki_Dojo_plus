@@ -149,5 +149,5 @@ qqR$violations    # numeric indices of out-of-control points
 ---
 
 ## Related
-- [[control-charts]]
-- [[process-capability]]
+- [control-charts](../concepts/control-charts.md)
+- [process-capability](../concepts/process-capability.md)

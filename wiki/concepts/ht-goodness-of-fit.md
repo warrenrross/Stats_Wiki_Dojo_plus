@@ -57,7 +57,7 @@ where pᵢ is the probability assigned to category i under H₀.
 - Applying a two-tail test — GoF is always upper-tail only
 
 ## Related
-- [[ht-independence]] — different χ² test, for testing association in a two-way table
-- [[ht-one-sample-chisq-variance]] — different χ² test, on σ²
-- [[chi-square]] — broader coverage of all χ² procedures
-- [[ht-tests-overview]] — full test selection table
+- [ht-independence](ht-independence.md) — different χ² test, for testing association in a two-way table
+- [ht-one-sample-chisq-variance](ht-one-sample-chisq-variance.md) — different χ² test, on σ²
+- [chi-square](chi-square.md) — broader coverage of all χ² procedures
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table

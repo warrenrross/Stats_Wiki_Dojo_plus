@@ -61,11 +61,11 @@ $$\beta = \Phi\!\left(z_{\alpha/2} - \frac{\delta\sqrt{n}}{\sigma}\right) - \Phi
 - σ² is truly known (not estimated from this sample)
 
 ## Common Mistakes
-- Using Z when σ is unknown and n < 40 — use [[ht-one-sample-t-mean]] instead
+- Using Z when σ is unknown and n < 40 — use [ht-one-sample-t-mean](ht-one-sample-t-mean.md) instead
 - Forgetting to halve α for two-sided tests when looking up z critical value
 - Confusing "n ≥ 40" as a hard rule — it is a guideline; normality matters for small n
 
 ## Related
-- [[ht-one-sample-t-mean]] — same test, σ unknown → use t
-- [[confidence-intervals]] — CI on μ with known σ
-- [[ht-tests-overview]] — full test selection table
+- [ht-one-sample-t-mean](ht-one-sample-t-mean.md) — same test, σ unknown → use t
+- [confidence-intervals](confidence-intervals.md) — CI on μ with known σ
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table

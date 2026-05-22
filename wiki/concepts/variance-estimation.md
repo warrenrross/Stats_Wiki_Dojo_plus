@@ -122,11 +122,11 @@ For a regression coefficient CI: this gives you $se(\hat{\beta}_j) = \sqrt{MSE \
 
 ## Related
 
-- [[standard-error]] — how variance estimates feed into SE formulas
-- [[degrees-of-freedom]] — denominator df for each estimator
-- [[two-sample-tests]] — pooled variance derivation
-- [[regression-ht]] — how MSE feeds into F and t tests
-- [[regression-ci]] — MSE inside CI and PI formulas
-- [[control-charts]] — σ̂ from R̄/d₂ in control limit formulas
-- [[process-capability]] — σ̂ feeds into Cp/Cpk
-- [[crd-one-way-anova]] — MS_E in one-way ANOVA is the within-group variance estimate; same construct as s² but pooled across groups
+- [standard-error](standard-error.md) — how variance estimates feed into SE formulas
+- [degrees-of-freedom](degrees-of-freedom.md) — denominator df for each estimator
+- [two-sample-tests](two-sample-tests.md) — pooled variance derivation
+- [regression-ht](regression-ht.md) — how MSE feeds into F and t tests
+- [regression-ci](regression-ci.md) — MSE inside CI and PI formulas
+- [control-charts](control-charts.md) — σ̂ from R̄/d₂ in control limit formulas
+- [process-capability](process-capability.md) — σ̂ feeds into Cp/Cpk
+- [crd-one-way-anova](crd-one-way-anova.md) — MS_E in one-way ANOVA is the within-group variance estimate; same construct as s² but pooled across groups

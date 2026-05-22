@@ -107,10 +107,10 @@ $$n \approx \frac{(z_\alpha + z_\beta)^2 \sigma^2}{\delta^2}$$
 - For σ known: population σ is truly known (not estimated)
 
 ## Related
-- [[which-test]]
-- [[confidence-intervals]]
-- [[two-sample-tests]]
-- [[chi-square]]
-- [[regression-ht]] — regression t and F tests follow the same 7-step structure
-- [[crd-one-way-anova]] — the 7-step procedure applies directly to the ANOVA F-test
-- [[power-sample-size]] — full treatment of β, power, and sample size for t and F tests
+- [which-test](which-test.md)
+- [confidence-intervals](confidence-intervals.md)
+- [two-sample-tests](two-sample-tests.md)
+- [chi-square](chi-square.md)
+- [regression-ht](regression-ht.md) — regression t and F tests follow the same 7-step structure
+- [crd-one-way-anova](crd-one-way-anova.md) — the 7-step procedure applies directly to the ANOVA F-test
+- [power-sample-size](power-sample-size.md) — full treatment of β, power, and sample size for t and F tests

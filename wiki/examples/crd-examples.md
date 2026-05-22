@@ -172,5 +172,5 @@ The 95% CI on μ_EC10 − μ_EC1 is [lower, upper]. Since the interval **exclude
 ---
 
 ## Related
-- [[crd-one-way-anova]] — concept and formula page
-- [[anova-r]] — full R workflow with output table
+- [crd-one-way-anova](../concepts/crd-one-way-anova.md) — concept and formula page
+- [anova-r](../r-code/anova-r.md) — full R workflow with output table

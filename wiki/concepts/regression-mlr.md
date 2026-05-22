@@ -121,12 +121,12 @@ fit <- lm(production ~ temp + rainfall + population + oil_price, data = coffee)
 - **Panel fixed effects** (country + year dummy terms) add to k; recompute df accordingly
 - `statsmodels.formula.api.ols` (Python) maps to `lm()` in R — ANOVA table structure is identical; column names differ
 
-**Known data issue:** Production (Y) is right-skewed. Expect fan-shaped residuals on raw data → log-transform Y before modeling. See [[model-adequacy]] for diagnostic approach.
+**Known data issue:** Production (Y) is right-skewed. Expect fan-shaped residuals on raw data → log-transform Y before modeling. See [model-adequacy](model-adequacy.md) for diagnostic approach.
 
 ## Related
-- [[regression-slr]]
-- [[regression-ht]]
-- [[regression-ci]]
-- [[model-adequacy]]
-- [[fwl-theorem]] — the theorem that justifies partial regression coefficients
-- [[ss-decomposition]] — R² and the ANOVA table structure derive from this identity
+- [regression-slr](regression-slr.md)
+- [regression-ht](regression-ht.md)
+- [regression-ci](regression-ci.md)
+- [model-adequacy](model-adequacy.md)
+- [fwl-theorem](fwl-theorem.md) — the theorem that justifies partial regression coefficients
+- [ss-decomposition](ss-decomposition.md) — R² and the ANOVA table structure derive from this identity

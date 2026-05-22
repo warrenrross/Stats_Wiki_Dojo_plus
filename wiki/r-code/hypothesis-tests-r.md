@@ -210,7 +210,7 @@ summary(x)           # 5-number summary + mean
 | CI doesn't contain μ₀ | Equivalent: "reject based on confidence interval" |
 
 ## Related
-- [[hypothesis-testing-overview]]
-- [[two-sample-tests]]
-- [[chi-square]]
-- [[reading-r-output]]
+- [hypothesis-testing-overview](../concepts/hypothesis-testing-overview.md)
+- [two-sample-tests](../concepts/two-sample-tests.md)
+- [chi-square](../concepts/chi-square.md)
+- [reading-r-output](reading-r-output.md)

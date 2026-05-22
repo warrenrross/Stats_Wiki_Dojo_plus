@@ -96,14 +96,14 @@ $$e_{ij} = y_{ij} - \bar{y}_{i.}$$
 - Forgetting that `aov()` in R needs the data in **tall (long) format** — one column for treatment labels, one for observations
 
 ## Related
-- [[crd-examples]] — two worked homework problems (balanced and unbalanced)
-- [[anova-r]] — complete R workflow for CRD and RCBD
-- [[rcbd-blocking]] — add a block factor to control nuisance variability
-- [[factorial-anova]] — extend to two or more factors
-- [[model-adequacy]] — full diagnostic plot guide
-- [[which-test]] — decide which test to use
-- [[two-sample-tests]] — two-sample t is the k=2 special case of one-way ANOVA
-- [[hypothesis-testing-overview]] — the 7-step framework applies to the ANOVA F-test
-- [[variance-estimation]] — MS_E is a variance estimate; see the universal reference for context
-- [[ss-decomposition]] — the ANOVA Identity is the SS version of this universal construct
-- [[power-sample-size]] — use OC curves (Φ²) to determine required replicates n before running a CRD
+- [crd-examples](../examples/crd-examples.md) — two worked homework problems (balanced and unbalanced)
+- [anova-r](../r-code/anova-r.md) — complete R workflow for CRD and RCBD
+- [rcbd-blocking](rcbd-blocking.md) — add a block factor to control nuisance variability
+- [factorial-anova](factorial-anova.md) — extend to two or more factors
+- [model-adequacy](model-adequacy.md) — full diagnostic plot guide
+- [which-test](which-test.md) — decide which test to use
+- [two-sample-tests](two-sample-tests.md) — two-sample t is the k=2 special case of one-way ANOVA
+- [hypothesis-testing-overview](hypothesis-testing-overview.md) — the 7-step framework applies to the ANOVA F-test
+- [variance-estimation](variance-estimation.md) — MS_E is a variance estimate; see the universal reference for context
+- [ss-decomposition](ss-decomposition.md) — the ANOVA Identity is the SS version of this universal construct
+- [power-sample-size](power-sample-size.md) — use OC curves (Φ²) to determine required replicates n before running a CRD

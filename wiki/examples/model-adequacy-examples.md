@@ -5,7 +5,7 @@ sources: [L38-39_App_HWQ1.Rmd, L38&39P Model Adequacy.txt]
 ---
 # Examples: Model Adequacy
 
-See also: [[model-adequacy]], [[regression-r]]
+See also: [model-adequacy](../concepts/model-adequacy.md), [regression-r](../r-code/regression-r.md)
 
 ---
 

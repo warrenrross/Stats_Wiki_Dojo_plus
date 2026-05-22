@@ -69,6 +69,6 @@ Where p is the true (alternative) proportion you want to detect.
 - Forgetting to check normality condition
 
 ## Related
-- [[hypothesis-testing-overview]]
-- [[which-test]]
-- [[chi-square]]
+- [hypothesis-testing-overview](hypothesis-testing-overview.md)
+- [which-test](which-test.md)
+- [chi-square](chi-square.md)

@@ -145,6 +145,6 @@ Output is identical. Stick with `melt()` to stay consistent with existing course
 ---
 
 ## Related
-- [[anova-r]] — full CRD and RCBD templates using melt()
-- [[factorial-anova-r]] — factorial scripts use gather() instead of melt()
-- [[crd-examples]] — unbalanced import pattern with melt() + filter(!is.na())
+- [anova-r](anova-r.md) — full CRD and RCBD templates using melt()
+- [factorial-anova-r](factorial-anova-r.md) — factorial scripts use gather() instead of melt()
+- [crd-examples](../examples/crd-examples.md) — unbalanced import pattern with melt() + filter(!is.na())

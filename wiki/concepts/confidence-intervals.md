@@ -77,8 +77,8 @@ $$\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}} \leq \sigma^2 \leq \frac{(n-1)s^2}{\c
 - Misidentifying α/2 vs α for one-sided intervals
 
 ## Related
-- [[distributions]]
-- [[hypothesis-testing-overview]]
-- [[which-test]]
-- [[two-sample-tests]]
-- [[regression-ci]] — CI on βⱼ uses the same Estimate ± Score × SE structure
+- [distributions](distributions.md)
+- [hypothesis-testing-overview](hypothesis-testing-overview.md)
+- [which-test](which-test.md)
+- [two-sample-tests](two-sample-tests.md)
+- [regression-ci](regression-ci.md) — CI on βⱼ uses the same Estimate ± Score × SE structure

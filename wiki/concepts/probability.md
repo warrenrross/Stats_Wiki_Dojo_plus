@@ -49,5 +49,5 @@ Multiply probabilities **along** a path to get P(that outcome). Add probabilitie
 - Assuming independence when it hasn't been verified
 
 ## Related
-- [[distributions]]
-- [[hypothesis-testing-overview]]
+- [distributions](distributions.md)
+- [hypothesis-testing-overview](hypothesis-testing-overview.md)

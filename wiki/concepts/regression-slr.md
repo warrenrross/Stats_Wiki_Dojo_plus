@@ -83,7 +83,7 @@ anova(fit)["Residuals", "Mean Sq"]  # MSE (same)
 - Independence of errors
 - Normality of errors: ε ~ N(0, σ²)
 
-Check these with residual plots — see [[model-adequacy]].
+Check these with residual plots — see [model-adequacy](model-adequacy.md).
 
 ## Common Mistakes
 - Reading `t value` for a non-zero null (must compute manually)
@@ -91,9 +91,9 @@ Check these with residual plots — see [[model-adequacy]].
 - Forgetting that SSR = β̂₁ · S_{xy} for SLR
 
 ## Related
-- [[regression-mlr]]
-- [[regression-ht]]
-- [[regression-ci]]
-- [[model-adequacy]]
-- [[standard-error]] — SE(β̂₁) = √(MSE/S_xx) is an instance of the universal SE construct
-- [[ss-decomposition]] — the SS identity underlying the ANOVA table
+- [regression-mlr](regression-mlr.md)
+- [regression-ht](regression-ht.md)
+- [regression-ci](regression-ci.md)
+- [model-adequacy](model-adequacy.md)
+- [standard-error](standard-error.md) — SE(β̂₁) = √(MSE/S_xx) is an instance of the universal SE construct
+- [ss-decomposition](ss-decomposition.md) — the SS identity underlying the ANOVA table

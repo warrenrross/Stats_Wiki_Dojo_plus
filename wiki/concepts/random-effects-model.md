@@ -97,6 +97,6 @@ Both random effects models and RCBD blocks represent nuisance sources of variabi
 **Exam angle:** If a problem gives you randomly selected factor levels (operators, batches, machines drawn from a larger pool), it is a random effects model. Report variance components, not pairwise comparisons. If the levels are specifically chosen (exactly these temperatures, exactly these machine settings), it is fixed effects — report means and LSD.
 
 ## Related
-- [[crd-one-way-anova]] — the fixed-effects version of this design
-- [[rcbd-blocking]] — RCBD also uses this model structure when blocks are random
-- [[factorial-anova]] — random effects can be applied to factorial designs for variance component estimation
+- [crd-one-way-anova](crd-one-way-anova.md) — the fixed-effects version of this design
+- [rcbd-blocking](rcbd-blocking.md) — RCBD also uses this model structure when blocks are random
+- [factorial-anova](factorial-anova.md) — random effects can be applied to factorial designs for variance component estimation

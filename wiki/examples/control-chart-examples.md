@@ -5,7 +5,7 @@ sources: [ControlCharts_Homework.R, Process Capability.R, Attribute Chart.R, L28
 ---
 # Examples: Control Charts and Process Capability
 
-See also: [[control-charts]], [[process-capability]], [[control-charts-r]]
+See also: [control-charts](../concepts/control-charts.md), [process-capability](../concepts/process-capability.md), [control-charts-r](../r-code/control-charts-r.md)
 
 > **Exam focus:** You will interpret charts and output — not write R code. Know chart characteristics, apply Western Electric Rules, read Cp/Cpk output, and distinguish control limits from specification limits.
 
@@ -258,6 +258,6 @@ These are the exact question types that appear on concept checkpoints (L27-28, L
 ---
 
 ## Related
-- [[control-charts]]
-- [[process-capability]]
-- [[control-charts-r]]
+- [control-charts](../concepts/control-charts.md)
+- [process-capability](../concepts/process-capability.md)
+- [control-charts-r](../r-code/control-charts-r.md)

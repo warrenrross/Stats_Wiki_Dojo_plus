@@ -84,6 +84,6 @@ ONE population? or TWO populations?
 - Δ₀ = 0 unless problem says "test if μ₁ − μ₂ = some value"
 
 ## Related
-- [[which-test]]
-- [[hypothesis-testing-overview]]
-- [[two-sample-tests]]
+- [which-test](../concepts/which-test.md)
+- [hypothesis-testing-overview](../concepts/hypothesis-testing-overview.md)
+- [two-sample-tests](../concepts/two-sample-tests.md)

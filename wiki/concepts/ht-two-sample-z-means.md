@@ -6,7 +6,7 @@ sources: [L21P, formula-snippets]
 # Two-Sample Z-Test on Difference of Means (Both σ² Known)
 
 ## In Plain English
-Use when you have two independent samples and want to test whether their population means differ, and both population variances are known. Because both σ² are known, the sampling distribution of (X̄₁ − X̄₂) is exactly normal. In practice this is rare — if σ² are unknown, use [[ht-two-sample-t-means]].
+Use when you have two independent samples and want to test whether their population means differ, and both population variances are known. Because both σ² are known, the sampling distribution of (X̄₁ − X̄₂) is exactly normal. In practice this is rare — if σ² are unknown, use [ht-two-sample-t-means](ht-two-sample-t-means.md).
 
 ## When To Use
 - Testing H₀: μ₁ − μ₂ = Δ₀ (usually Δ₀ = 0, i.e., equal means)
@@ -41,17 +41,17 @@ $$(\bar{x}_1 - \bar{x}_2) - z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\si
 $$\beta = \Phi\!\left(z_{\alpha/2} - \frac{\Delta - \Delta_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}\right) - \Phi\!\left(-z_{\alpha/2} - \frac{\Delta - \Delta_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}\right)$$
 
 ## Key Assumptions
-- Samples are **independent** (not paired — use [[ht-paired-t]] if paired)
+- Samples are **independent** (not paired — use [ht-paired-t](ht-paired-t.md) if paired)
 - Both populations are normal OR sample sizes are large
 - σ₁² and σ₂² are truly known
 
 ## Common Mistakes
-- Using Z when σ² are unknown — use [[ht-two-sample-t-means]] (pooled or Welch's)
-- Treating paired data as independent — use [[ht-paired-t]] instead (more powerful)
+- Using Z when σ² are unknown — use [ht-two-sample-t-means](ht-two-sample-t-means.md) (pooled or Welch's)
+- Treating paired data as independent — use [ht-paired-t](ht-paired-t.md) instead (more powerful)
 - Forgetting Δ₀ in the numerator when H₀ is not μ₁ = μ₂
 
 ## Related
-- [[ht-two-sample-t-means]] — use when σ² are unknown (most common)
-- [[ht-paired-t]] — use when observations are paired
-- [[two-sample-tests]] — broader coverage of all two-sample procedures
-- [[ht-tests-overview]] — full test selection table
+- [ht-two-sample-t-means](ht-two-sample-t-means.md) — use when σ² are unknown (most common)
+- [ht-paired-t](ht-paired-t.md) — use when observations are paired
+- [two-sample-tests](two-sample-tests.md) — broader coverage of all two-sample procedures
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table

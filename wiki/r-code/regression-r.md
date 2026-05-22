@@ -238,8 +238,8 @@ ggplot(df, aes(x = x, y = y)) +
 | PI on future obs | "We are 95% confident a new [Y] at x=[x₀] will fall between [L] and [U]." |
 
 ## Related
-- [[regression-slr]]
-- [[regression-ht]]
-- [[regression-ci]]
-- [[model-adequacy]]
-- [[reading-r-output]]
+- [regression-slr](../concepts/regression-slr.md)
+- [regression-ht](../concepts/regression-ht.md)
+- [regression-ci](../concepts/regression-ci.md)
+- [model-adequacy](../concepts/model-adequacy.md)
+- [reading-r-output](reading-r-output.md)

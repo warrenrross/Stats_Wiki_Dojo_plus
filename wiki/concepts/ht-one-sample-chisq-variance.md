@@ -48,8 +48,8 @@ Note: the lower bound uses the **larger** χ² critical value (right tail), uppe
 - Confusing this χ² test (on σ²) with the GoF χ² test (on distribution fit)
 
 ## Related
-- [[ht-goodness-of-fit]] — different χ² test, for distributional fit
-- [[ht-independence]] — different χ² test, for contingency tables
-- [[ht-two-sample-f-variances]] — comparing two variances (use F-test)
-- [[confidence-intervals]] — CI on σ²
-- [[ht-tests-overview]] — full test selection table
+- [ht-goodness-of-fit](ht-goodness-of-fit.md) — different χ² test, for distributional fit
+- [ht-independence](ht-independence.md) — different χ² test, for contingency tables
+- [ht-two-sample-f-variances](ht-two-sample-f-variances.md) — comparing two variances (use F-test)
+- [confidence-intervals](confidence-intervals.md) — CI on σ²
+- [ht-tests-overview](../reference/ht-tests-overview.md) — full test selection table
