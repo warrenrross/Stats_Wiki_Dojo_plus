@@ -66,9 +66,9 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 | Page | Summary |
 |------|---------|
 | [hypothesis-tests-r](r-code/hypothesis-tests-r.md) | t.test(), var.test(), chisq.test(), prop.test(), critical values |
-| [[hw1-examples]] | Homework 1 worked problems — descriptive stats and basic probability (stub) |
-| [[hw4-drill-examples]] | Drill Homework 4 worked problems (stub) |
-| [[two-sample-examples]] | 2-sample Z/t and paired t worked examples from L22–23 (stub) |
+| hw1-examples | Homework 1 worked problems — descriptive stats and basic probability (stub) |
+| hw4-drill-examples | Drill Homework 4 worked problems (stub) |
+| two-sample-examples | 2-sample Z/t and paired t worked examples from L22–23 (stub) |
 
 ---
 
@@ -91,7 +91,7 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 |------|---------|
 | [regression-r](r-code/regression-r.md) | Full workflow: lm(), anova(), summary(), confint(), predict(), diagnostics |
 | [reading-r-output](r-code/reading-r-output.md) | Teacher-language guide for ALL R output terms — exam answer phrasing |
-| [[regression-examples]] | Rocket Motor SLR: summary table reading, ANOVA completion, non-zero null tests (stub) |
+| regression-examples | Rocket Motor SLR: summary table reading, ANOVA completion, non-zero null tests (stub) |
 | [regression-ci-examples](examples/regression-ci-examples.md) | CI/PI on βⱼ, mean response, and future observation — all 6 L36-37 homework problems (SLR & MLR) |
 | [model-adequacy-examples](examples/model-adequacy-examples.md) | R², normality check (QQ + Shapiro-Wilk), residual plots, Cook's D — NFL QB example |
 | [anova-table-examples](examples/anova-table-examples.md) | Completing partial ANOVA/summary tables; σ̂ = √MSE; recommendations from R output; DOE (RCBD) reverse-engineer from MS and F |
@@ -162,7 +162,7 @@ Quick-lookup pages spanning multiple tiers.
 | File | Purpose |
 |------|---------|
 | [taxonomy](concepts/taxonomy.md) | CPS page mapping — all 39 pages classified by tier with rationale; study guide for what to learn how |
-| [[knowledge-dimensions]] | Full theoretical grounding — Anderson, Schema Theory, Cognitive Load, Threshold Concepts |
+| knowledge-dimensions | Full theoretical grounding — Anderson, Schema Theory, Cognitive Load, Threshold Concepts |
 
 ---
 
