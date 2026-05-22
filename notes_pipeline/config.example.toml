@@ -1,0 +1,59 @@
+# notes_pipeline configuration
+# Copy to ~/.config/notes_pipeline/config.toml (or set NOTES_PIPELINE_CONFIG)
+# Every value here can also be overridden by an environment variable
+# with the NOTES_ prefix, e.g. NOTES_OCR_BACKEND=olmocr.
+
+[paths]
+# Root for all pipeline state. Subfolders are derived from this unless overridden.
+root = "~/notes"
+# Optional overrides (uncomment to use):
+# vault = "~/notes/vault"
+# inbox = "~/notes/inbox"
+# rendered = "~/notes/rendered"
+# processed = "~/notes/processed"
+# benchmarks = "~/notes/benchmarks"
+# state = "~/notes/.state"
+
+[ocr]
+# Default OCR backend: "claude" | "olmocr" | "llama"
+backend = "olmocr"
+# DPI for PDF rasterization. 200 is a good default; 300 for fine handwriting.
+dpi = 200
+# Max parallel page OCR calls (per backend).
+max_concurrency = 2
+# Retry policy
+max_retries = 3
+retry_base_delay_seconds = 2.0
+
+[ocr.claude]
+model = "claude-sonnet-4-5"
+max_tokens = 4096
+# api_key = "sk-ant-..."   # leave unset to use $ANTHROPIC_API_KEY
+
+[ocr.ollama]
+host = "http://localhost:11434"
+olmocr_model = "richardyoung/olmocr2:7b-q8"
+llama_model = "llama3.2-vision:11b"
+# Set to "-1" to keep models warm forever; "30m" for 30 minutes; etc.
+keep_alive = "30m"
+# Request timeout per page in seconds
+request_timeout = 300
+
+[merge]
+# Claude model used for the vault merge step
+model = "claude-sonnet-4-5"
+max_tokens = 8000
+# Maximum characters of full OCR text included as context for the merge
+ocr_context_chars = 6000
+
+[watch]
+# Seconds to wait after a new file appears before processing (iCloud settle).
+settle_seconds = 5
+# Recursively watch the inbox.
+recursive = false
+
+[render]
+# Pandoc rendering options
+pdf_engine = "xelatex"
+geometry = "margin=1in"
+fontsize = "12pt"
