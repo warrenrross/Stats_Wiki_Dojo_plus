@@ -61,7 +61,7 @@ quarto publish gh-pages
 |----------|-----------|
 | `wiki/**/*.md` files rendered by Quarto | Quarto handles `.md` as plain markdown; wiki pages have no R code so no `.qmd` needed |
 | `freeze: auto` in `_quarto.yml` | R chunks cached to `_freeze/`; commit `_freeze/` to git so CI/GitHub Pages doesn't need R installed |
-| Relative Markdown links throughout | All wiki cross-references use `[text](relative/path.md)`; do not use `[[...]]` bracket syntax in any Quarto-rendered file |
+| Relative Markdown links (not `[[...]]`) | Wiki was authored in Obsidian using double-bracket links; Quarto renders those as literal text so all links were converted to relative Markdown paths. Do not use `[[...]]` syntax in any Quarto-rendered file. |
 | CPS tier model (`tier-focus:` frontmatter) | construct / procedure / script tiers drive lesson framing; see `wiki/concepts/taxonomy.md` |
 | `pacman::p_load()` for all packages | Used consistently throughout all R code; do not switch to `library()` |
 | Root design docs excluded via `.quartoignore` + `render:` list | `knowledge-dimensions.md`, `living_textbook.md`, `llm-wiki.md`, `quarto_site_scaffold.md`, `CLAUDE_CODE_SPEC.md` are not rendered |
