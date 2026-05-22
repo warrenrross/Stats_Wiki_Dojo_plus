@@ -1,5 +1,5 @@
 ---
-tags: [example, section-3]
+tags: [example, unit-3]
 tier: script
 sources: [L34&35P HT in Linear Regression, L36&37P CI in Regression, regression-ht]
 ---

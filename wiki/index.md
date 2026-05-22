@@ -22,13 +22,28 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 
 ---
 
-## Section 1–2: Probability, Distributions, Inference
+## Unit 1: Foundations
 
 ### Tier 2 — Procedures
 
 | Page | Summary |
 |------|---------|
 | [confidence-intervals](concepts/confidence-intervals.md) | Z and t intervals on μ; χ² interval on σ²; Z vs t decision; sample size |
+
+### Tier 3 — Scripts
+
+| Page | Summary |
+|------|---------|
+| [summary-stats-r](r-code/summary-stats-r.md) | Descriptive statistics: mean, sd, summary(), histogram, boxplot |
+
+---
+
+## Unit 2: Inference
+
+### Tier 2 — Procedures
+
+| Page | Summary |
+|------|---------|
 | [hypothesis-testing-overview](concepts/hypothesis-testing-overview.md) | 7-step procedure, H₀/H₁ setup, Type I/II error, Z-test, t-test, p-value, β, power |
 | [which-test](concepts/which-test.md) | Full decision flowchart — mean, variance, proportion, two means, ANOVA, factorial |
 | [two-sample-tests](concepts/two-sample-tests.md) | 2-sample Z, pooled t, Welch t, paired t, F-test on variances; all formulas + CIs |
@@ -50,7 +65,6 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 
 | Page | Summary |
 |------|---------|
-| [summary-stats-r](r-code/summary-stats-r.md) | Descriptive statistics: mean, sd, summary(), histogram, boxplot |
 | [hypothesis-tests-r](r-code/hypothesis-tests-r.md) | t.test(), var.test(), chisq.test(), prop.test(), critical values |
 | [[hw1-examples]] | Homework 1 worked problems — descriptive stats and basic probability (stub) |
 | [[hw4-drill-examples]] | Drill Homework 4 worked problems (stub) |
@@ -58,7 +72,7 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 
 ---
 
-## Section 3: Regression, Control Charts
+## Unit 3: Regression
 
 ### Tier 2 — Procedures
 
@@ -70,6 +84,26 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 | [regression-ci](concepts/regression-ci.md) | CI on βⱼ (confint), CI on mean response, PI on future obs; CI vs PI comparison |
 | [model-adequacy](concepts/model-adequacy.md) | Residual plots, 4 assumptions, outliers vs leverage vs influence, Cook's D |
 | [correlation-transformations](concepts/correlation-transformations.md) | Pearson r, HT for ρ=0 and ρ=ρ₀ (Fisher Z), linearizing transformations |
+
+### Tier 3 — Scripts
+
+| Page | Summary |
+|------|---------|
+| [regression-r](r-code/regression-r.md) | Full workflow: lm(), anova(), summary(), confint(), predict(), diagnostics |
+| [reading-r-output](r-code/reading-r-output.md) | Teacher-language guide for ALL R output terms — exam answer phrasing |
+| [[regression-examples]] | Rocket Motor SLR: summary table reading, ANOVA completion, non-zero null tests (stub) |
+| [regression-ci-examples](examples/regression-ci-examples.md) | CI/PI on βⱼ, mean response, and future observation — all 6 L36-37 homework problems (SLR & MLR) |
+| [model-adequacy-examples](examples/model-adequacy-examples.md) | R², normality check (QQ + Shapiro-Wilk), residual plots, Cook's D — NFL QB example |
+| [anova-table-examples](examples/anova-table-examples.md) | Completing partial ANOVA/summary tables; σ̂ = √MSE; recommendations from R output; DOE (RCBD) reverse-engineer from MS and F |
+
+---
+
+## Unit 4: Quality Methods
+
+### Tier 2 — Procedures
+
+| Page | Summary |
+|------|---------|
 | [control-charts](concepts/control-charts.md) | X̄/R, X̄/S, p-chart, c-chart, u-chart; control limits formulas; run rules; revising limits |
 | [process-capability](concepts/process-capability.md) | Cp, Cpk, σ̂ from control chart, spec limits vs control limits; interpretation |
 
@@ -77,19 +111,13 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 
 | Page | Summary |
 |------|---------|
-| [regression-r](r-code/regression-r.md) | Full workflow: lm(), anova(), summary(), confint(), predict(), diagnostics |
 | [control-charts-r](r-code/control-charts-r.md) | qcc package: xbar/R/S charts, p/c/u-charts, process.capability() |
-| [reading-r-output](r-code/reading-r-output.md) | Teacher-language guide for ALL R output terms — exam answer phrasing |
-| [[regression-examples]] | Rocket Motor SLR: summary table reading, ANOVA completion, non-zero null tests (stub) |
-| [regression-ci-examples](examples/regression-ci-examples.md) | CI/PI on βⱼ, mean response, and future observation — all 6 L36-37 homework problems (SLR & MLR) |
-| [model-adequacy-examples](examples/model-adequacy-examples.md) | R², normality check (QQ + Shapiro-Wilk), residual plots, Cook's D — NFL QB example |
-| [anova-table-examples](examples/anova-table-examples.md) | Completing partial ANOVA/summary tables; σ̂ = √MSE; recommendations from R output; DOE (RCBD) reverse-engineer from MS and F |
 | [control-chart-examples](examples/control-chart-examples.md) | WE rule application; reading qcc output; Cp/Cpk interpretation; chart characteristics |
 | [control-chart-practice](examples/control-chart-practice.md) | 5 hand-calc practice problems: X̄/R limits, Cp/Cpk, raw-data subgroups, p-chart, WE rules |
 
 ---
 
-## Section 4: Experimental Design (DOE)
+## Unit 5: Experimental Design (DOE)
 
 ### Tier 2 — Procedures
 
@@ -122,10 +150,10 @@ Quick-lookup pages spanning multiple tiers.
 |------|---------|
 | [formula-sheet](reference/formula-sheet.md) | Consolidated formula reference — all sections, all tests, regression, control charts, DOE |
 | [which-test-flowchart](reference/which-test-flowchart.md) | Quick-lookup flowchart for selecting the right test + "which t?" guide |
-| [quick-reference-section3](reference/quick-reference-section3.md) | Exam quick reference — all Section 3 formulas, tables, WE rules, PCR/PCRk, t critical values |
+| [quick-reference-section3](reference/quick-reference-section3.md) | Exam quick reference — all Units 3–4 formulas, tables, WE rules, PCR/PCRk, t critical values |
 | [anova-design-guide](reference/anova-design-guide.md) | Design decision table (CRD/RCBD/factorial/2^k), df by design, LSD/CI formulas, key distinctions |
-| [quick-reference-section4](reference/quick-reference-section4.md) | Compact Section 4 formula sheet — all ANOVA tables, Fisher LSD, 2^k effects, R cheat sheet |
-| [ht-tests-overview](reference/ht-tests-overview.md) | Section 1–2 all-tests summary table (a–j) with links to per-test pages; decision flow; z critical values |
+| [quick-reference-section4](reference/quick-reference-section4.md) | Compact Unit 5 formula sheet — all ANOVA tables, Fisher LSD, 2^k effects, R cheat sheet |
+| [ht-tests-overview](reference/ht-tests-overview.md) | Unit 2 all-tests summary table (a–j) with links to per-test pages; decision flow; z critical values |
 
 ---
 
@@ -138,4 +166,4 @@ Quick-lookup pages spanning multiple tiers.
 
 ---
 
-*Last updated: 2026-04-23 (session 6) — Section 1–2 per-test pages created. 10 new procedure pages (ht-one-sample-z-mean through ht-two-sample-f-variances) + 1 new reference page (ht-tests-overview). GoF df discrepancy documented: general form is k−1−p, not k−1. Constructs: 5. Procedures: 29. Scripts: 15. Reference: 6.*
+*Last updated: 2026-04-23 (session 6) — Unit 2 per-test pages created. 10 new procedure pages (ht-one-sample-z-mean through ht-two-sample-f-variances) + 1 new reference page (ht-tests-overview). GoF df discrepancy documented: general form is k−1−p, not k−1. Constructs: 5. Procedures: 29. Scripts: 15. Reference: 6.*

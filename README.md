@@ -25,11 +25,11 @@ Interactive R drills that run directly in your browser — no installation requi
 
 **New to a topic?** Start with the relevant Lesson page. It will introduce the concept, show the math, and demonstrate the R code with real output.
 
-**Need a quick formula or decision rule?** Go to the Wiki. The `reference/` section has one-page cheat sheets for each course section. The `which-test` flowchart tells you which test to use when.
+**Need a quick formula or decision rule?** Go to the Wiki. The `reference/` section has one-page cheat sheets for each unit. The `which-test` flowchart tells you which test to use when.
 
 **Practicing for an exam?** Use the Coding Dojo. Open one of the five drill pages, read the worked example, then modify the parameters in the interactive sandbox and re-run. The fill-anova-table drill is especially useful for reconstructing partial ANOVA tables from scratch.
 
-**Looking for a specific concept?** Use the search bar (top right) or go to the Wiki Index for a full catalog organized by section and tier.
+**Looking for a specific concept?** Use the search bar (top right) or go to the Wiki Index for a full catalog organized by unit and tier.
 
 ---
 
@@ -82,8 +82,10 @@ quarto publish gh-pages
 
 ## Course coverage
 
-| Section | Topics |
-|---------|--------|
-| 1–2 | Sampling distributions, standard error, confidence intervals, hypothesis testing (z, t, χ², F), proportions, chi-square tests |
-| 3 | Simple and multiple linear regression, model adequacy, control charts (X̄-R, p, c, u), process capability |
-| 4 | CRD one-way ANOVA, RCBD blocking, factorial ANOVA, 2^k factorial design, random effects |
+| Unit | Topics |
+|------|--------|
+| 1: Foundations | Sampling distributions, standard error, confidence intervals |
+| 2: Inference | Hypothesis testing (z, t, χ², F), proportions, chi-square tests |
+| 3: Regression | Simple and multiple linear regression, model adequacy |
+| 4: Quality Methods | Control charts (X̄-R, p, c, u), process capability |
+| 5: Experimental Design | CRD one-way ANOVA, RCBD blocking, factorial ANOVA, 2^k factorial design, random effects |

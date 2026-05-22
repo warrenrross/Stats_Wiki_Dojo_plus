@@ -14,7 +14,7 @@ At the beginning of every wiki session, do these steps in order:
 
 ## What This Wiki Is
 
-A persistent, exam-prep reference wiki for INEG Statistics (Sections 1–4) covering probability, distributions, hypothesis testing, regression, control charts, and experimental design. Built incrementally from lecture slides, formula PNGs, homework files, and R projects. You (Claude) write and maintain it; Warren reads and queries it.
+A persistent, exam-prep reference wiki for INEG Statistics (Units 1–5) covering probability, distributions, hypothesis testing, regression, control charts, and experimental design. Built incrementally from lecture slides, formula PNGs, homework files, and R projects. You (Claude) write and maintain it; Warren reads and queries it.
 
 ## Directory Layout
 
@@ -52,7 +52,7 @@ Stats_Notes/
 
 ```markdown
 ---
-tags: [concept, section-1-2]   # or section-3, section-4
+tags: [concept, unit-1]   # or unit-2, unit-3, unit-4, unit-5
 tier: construct                 # construct | procedure | script | reference
 sources: [L##P, formula-snippets]
 ---
@@ -87,7 +87,7 @@ $$\text{formula here}$$
 
 ```markdown
 ---
-tags: [example, section-1-2]
+tags: [example, unit-1]
 tier: script
 sources: [Homework1_Ross, L##E]
 ---
@@ -124,7 +124,7 @@ State the conclusion in full sentence form.
 
 ```markdown
 ---
-tags: [r-code, section-1-2]
+tags: [r-code, unit-1]
 tier: script
 sources: [Drill files, homework R scripts]
 ---
@@ -255,13 +255,15 @@ See `[taxonomy](concepts/taxonomy.md)` for the full page mapping.
 
 ---
 
-## Section Coverage Map
+## Unit Coverage Map
 
-| Section | Topics | Status |
-|---------|--------|--------|
-| 1–2 | Sampling, probability, distributions, CI, hypothesis testing, chi-square, proportions | Complete |
-| 3 | Regression (SLR, MLR, HT, CI, model adequacy), control charts, PCR, correlation, transformations | Complete |
-| 4 | CRD, RCBD, factorial ANOVA, 2^k factorial design, random effects model | Complete |
+| Unit | Topics | Status |
+|------|--------|--------|
+| 1: Foundations | Probability, distributions, standard error, confidence intervals | Complete |
+| 2: Inference | Hypothesis testing, t-tests, chi-square, proportions, power | Complete |
+| 3: Regression | SLR, MLR, HT, CI, model adequacy, correlation, transformations | Complete |
+| 4: Quality Methods | Control charts, process capability | Complete |
+| 5: Experimental Design | CRD, RCBD, factorial ANOVA, 2^k factorial design, random effects | Complete |
 
 ---
 
@@ -274,9 +276,9 @@ These decisions have been made and should not be revisited without deliberate in
 | CPS tier model live (2026-04-22) | `tier:` field in all 39 content pages; new pages must get a tier at creation time — do not create pages without a tier |
 | `concepts/taxonomy.md` is tier: reference | It spans all tiers; lives in concepts/ for navigational convenience, not because it is a concept page |
 | `concepts/` holds both Constructs and Procedures | Tier captured in frontmatter, not directory — keeps folder structure flat |
-| Quick reference is Section 3 only | `reference/quick-reference-section3.md` + `.docx` covers Sections 1–3. Section 4 has `quick-reference-section4.md` (markdown only; no .docx built yet) |
+| Quick reference split across two files | `reference/quick-reference-section3.md` covers Units 1–4. `quick-reference-section4.md` covers Unit 5 (markdown only; no .docx built yet) |
 | Two misplaced empty stubs at wiki root | `process-capability.md` and `regression-examples.md` in root are empty 1-line files — orphaned stubs, harmless, leave unless actively cleaning up |
-| Per-test pages for Section 1-2 HT (2026-04-23) | 10 `ht-*.md` pages, one per test (a–j from Exam2 quick reference), live in `concepts/`. Summary page at `reference/ht-tests-overview.md`. Existing broader pages (`chi-square.md`, `two-sample-tests.md`, etc.) remain; the per-test pages are the primary per-test reference. |
+| Per-test pages for Unit 2 HT (2026-04-23) | 10 `ht-*.md` pages, one per test (a–j from Exam2 quick reference), live in `concepts/`. Summary page at `reference/ht-tests-overview.md`. Existing broader pages (`chi-square.md`, `two-sample-tests.md`, etc.) remain; the per-test pages are the primary per-test reference. |
 | GoF df general form is k−1−p (2026-04-23) | The Exam2 quick reference listed df = k−1 (special case, p=0 parameters estimated). General form used in class is k−1−p. Both documented in `ht-goodness-of-fit.md` and `ht-tests-overview.md`. Do not revert to k−1-only. |
 | No separate `r-code/2k-r.md` (2026-05-16) | `factorial-anova-r.md` covers both factorial and 2^k R patterns. HANDOFF items referencing an optional `r-code/2k-r.md` were ingested into the existing script page instead. Do not create a duplicate 2k R page. |
 
@@ -287,5 +289,5 @@ These decisions have been made and should not be revisited without deliberate in
 | Item | Status | Notes |
 |------|--------|-------|
 | Stubs in index | Not yet filled | `hw1-examples`, `hw4-drill-examples`, `two-sample-examples`, `regression-examples` — listed in index but no file content |
-| Section 4 quick reference .docx | Not built | `quick-reference-section4.md` exists but no print-ready Word version; build if exam prep requires it |
+| Unit 5 quick reference .docx | Not built | `quick-reference-section4.md` exists but no print-ready Word version; build if exam prep requires it |
 | data-wrangling-r stub | Exists but not cross-linked | `r-code/data-wrangling-r.md` not referenced from taxonomy.md |

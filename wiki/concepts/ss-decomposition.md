@@ -1,5 +1,5 @@
 ---
-tags: [core-concept, section-3, section-4]
+tags: [core-concept, unit-3, unit-5]
 tier: construct
 sources: [regression-slr, crd-one-way-anova, rcbd-blocking, factorial-anova]
 ---

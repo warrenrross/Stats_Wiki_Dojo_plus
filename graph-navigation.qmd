@@ -44,7 +44,7 @@ These are the constructs most worth deeply understanding first — once they cli
 
 | Idea | Where it first appears | Where it recurs |
 |------|----------------------|----------------|
-| SE = σ/√n | Sections 1–2 CI | Regression βⱼ SE, control chart σ̂ |
+| SE = σ/√n | Unit 1 CI | Regression βⱼ SE, control chart σ̂ |
 | SS decomposition | Regression ANOVA | CRD, RCBD, factorial ANOVA |
 | F-test | Regression F-test | One-way ANOVA, factorial ANOVA, 2^k |
 | Residual diagnostics | Regression model adequacy | CRD and RCBD model checking |

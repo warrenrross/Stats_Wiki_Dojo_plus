@@ -46,8 +46,10 @@ Search or browse the full concept index.
 
 ## Course Coverage
 
-| Section | Topics |
-|---------|--------|
-| 1–2 | Sampling, probability, distributions, CI, hypothesis testing, chi-square, proportions |
-| 3 | Regression (SLR, MLR), control charts, process capability |
-| 4 | CRD, RCBD, factorial ANOVA, 2^k factorial design |
+| Unit | Topics |
+|------|--------|
+| 1: Foundations | Sampling, probability, distributions, standard error, confidence intervals |
+| 2: Inference | Hypothesis testing, t-tests, chi-square, proportions |
+| 3: Regression | Simple and multiple linear regression, model diagnostics |
+| 4: Quality Methods | Control charts (X̄/R, p, c, u), process capability |
+| 5: Experimental Design | CRD, RCBD, factorial ANOVA, 2^k factorial design |

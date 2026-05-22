@@ -1,5 +1,5 @@
 ---
-tags: [r-code, section-1-2, section-3]
+tags: [r-code, unit-2, unit-3]
 tier: script
 sources: [Section3_Study_Guide.Rmd, L34-35_Study_Sheet.Rmd, L36-37_Study_Guide.Rmd]
 ---

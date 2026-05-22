@@ -1,5 +1,5 @@
 ---
-tags: [reference, section-1-2, section-3]
+tags: [reference, unit-2, unit-3, unit-4]
 sources: [L26, L22&23W, 1-and-2-Sample-HT-Flowchart.pdf]
 ---
 # Which Test Flowchart — Exam Quick Reference

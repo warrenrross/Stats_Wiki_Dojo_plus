@@ -6,7 +6,7 @@ title: "Lessons"
 
 Quarto lessons combine prose explanation, math, and executable R code. Each lesson maps to one or more wiki pages and links to related coding dojo drills.
 
-## Foundations (Sections 1–2)
+## Unit 1: Foundations
 
 | Lesson | CPS Tier | Key Constructs |
 |--------|----------|----------------|
@@ -14,7 +14,7 @@ Quarto lessons combine prose explanation, math, and executable R code. Each less
 | [Standard Error](foundations/standard-error.qmd) | Construct | SE master table, all contexts |
 | [Confidence Intervals](foundations/confidence-intervals.qmd) | Procedure | Z and t intervals, CI on σ² |
 
-## Inference (Sections 1–2)
+## Unit 2: Inference
 
 | Lesson | CPS Tier | Key Constructs |
 |--------|----------|----------------|
@@ -22,7 +22,7 @@ Quarto lessons combine prose explanation, math, and executable R code. Each less
 | [One- and Two-Sample t-Tests](inference/t-tests.qmd) | Procedure | Pooled t, Welch t, paired t |
 | [One-Way ANOVA](inference/anova.qmd) | Procedure | F-test, Fisher LSD |
 
-## Regression (Section 3)
+## Unit 3: Regression
 
 | Lesson | CPS Tier | Key Constructs |
 |--------|----------|----------------|
@@ -30,7 +30,7 @@ Quarto lessons combine prose explanation, math, and executable R code. Each less
 | [Multiple Regression](regression/multiple-regression.qmd) | Procedure | MLR model, adjusted R², interaction terms |
 | [Model Diagnostics](regression/diagnostics.qmd) | Script | Residual plots, normality, Cook's D |
 
-## Quality Methods (Section 3)
+## Unit 4: Quality Methods
 
 | Lesson | CPS Tier | Key Constructs |
 |--------|----------|----------------|
@@ -38,7 +38,7 @@ Quarto lessons combine prose explanation, math, and executable R code. Each less
 | [X̄/R and X̄/S Charts](quality-methods/xbar-r-charts.qmd) | Script | Variables charts, revising limits, Cp/Cpk |
 | [p, c, and u Charts](quality-methods/p-c-u-charts.qmd) | Script | Attribute charts, variable sample sizes |
 
-## Experimental Design (Section 4)
+## Unit 5: Experimental Design
 
 | Lesson | CPS Tier | Key Constructs |
 |--------|----------|----------------|

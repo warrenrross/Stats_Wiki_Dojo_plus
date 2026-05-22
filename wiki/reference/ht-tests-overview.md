@@ -1,11 +1,11 @@
 ---
-tags: [reference, section-1-2]
+tags: [reference, unit-2]
 tier: reference
 sources: [L15P-L25P, quick_reference_Exam2]
 ---
-# Hypothesis Tests — Section 1–2 Overview
+# Hypothesis Tests — Unit 2 Overview
 
-Quick-lookup table for all Section 1–2 hypothesis tests. Each test has its own detailed page (linked in the Test column). Click through for full formulas, CI formulas, assumptions, and common mistakes.
+Quick-lookup table for all Unit 2 hypothesis tests. Each test has its own detailed page (linked in the Test column). Click through for full formulas, CI formulas, assumptions, and common mistakes.
 
 ---
 

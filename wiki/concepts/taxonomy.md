@@ -34,7 +34,7 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 | [probability](probability.md) | Foundation for all probability calculations; rules combine across contexts |
 | [ss-decomposition](ss-decomposition.md) | The SS partition identity (SS_T = SS_Model + SS_E) underlies every ANOVA table; appears in 7+ procedures without a shared name |
 
-### Tier 2 — Procedures (Section 1–2)
+### Tier 2 — Procedures (Unit 2: Inference)
 
 **Broad coverage pages:**
 
@@ -63,7 +63,7 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 | [ht-paired-t](ht-paired-t.md) | Paired T-test |
 | [ht-two-sample-f-variances](ht-two-sample-f-variances.md) | Two-sample F on equal variances |
 
-### Tier 2 — Procedures (Section 3)
+### Tier 2 — Procedures (Units 3 and 4: Regression and Quality)
 
 | Page | Goal |
 |------|------|
@@ -76,7 +76,7 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 | [control-charts](control-charts.md) | Monitor a process with X̄/R, X̄/S, p, c, u charts |
 | [process-capability](process-capability.md) | Compute Cp/Cpk and assess spec conformance |
 
-### Tier 2 — Procedures (Section 4)
+### Tier 2 — Procedures (Unit 5)
 
 | Page | Goal |
 |------|------|
@@ -121,9 +121,9 @@ Quick-lookup tier map for this wiki. Full theory at [[knowledge-dimensions]].
 |------|---------|
 | [formula-sheet](../reference/formula-sheet.md) | All formulas, all sections |
 | [which-test-flowchart](../reference/which-test-flowchart.md) | Quick test-selection flowchart |
-| [ht-tests-overview](../reference/ht-tests-overview.md) | Section 1–2 all-tests summary table (a–j) with links to per-test pages |
+| [ht-tests-overview](../reference/ht-tests-overview.md) | Unit 2 all-tests summary table (a–j) with links to per-test pages |
 | [quick-reference-section3](../reference/quick-reference-section3.md) | Exam 3 print-ready formula sheet |
-| [quick-reference-section4](../reference/quick-reference-section4.md) | Section 4 compact formula sheet |
+| [quick-reference-section4](../reference/quick-reference-section4.md) | Unit 5 compact formula sheet |
 | [anova-design-guide](../reference/anova-design-guide.md) | DOE design decision table |
 
 ---

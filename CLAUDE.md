@@ -132,7 +132,7 @@ Or simply run `quarto publish gh-pages` — now that the branch exists, it will 
 
 ## Pending Tasks
 
-1. **Section 4 quick reference .docx** — `wiki/reference/quick-reference-section4.md` exists but no Word version built
+1. **Unit 5 quick reference .docx** — `wiki/reference/quick-reference-section4.md` exists but no Word version built
 2. **Test WebR pages in browser** — confirm package loading works at deployed URL
 
 ---
