@@ -66,9 +66,9 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 | Page | Summary |
 |------|---------|
 | [hypothesis-tests-r](r-code/hypothesis-tests-r.md) | t.test(), var.test(), chisq.test(), prop.test(), critical values |
-| hw1-examples | Homework 1 worked problems — descriptive stats and basic probability (stub) |
-| hw4-drill-examples | Drill Homework 4 worked problems (stub) |
-| two-sample-examples | 2-sample Z/t and paired t worked examples from L22–23 (stub) |
+| [hw1-examples](examples/hw1-examples.md) | Normal distribution quantiles and probabilities (credit card, machinery); descriptive stats from sample data |
+| [hw4-drill-examples](examples/hw4-drill-examples.md) | AirPassengers time series (tsibble → tidy → group_by → ggplot); Titanic frequency table (uncount, left_join, proportion by class) |
+| [two-sample-examples](examples/two-sample-examples.md) | Pooled t (equal variances), Welch t (unequal variances after F-test), paired t — 3 worked problems with R |
 
 ---
 
@@ -91,7 +91,7 @@ These appear as building blocks inside multiple Procedures. Understand them deep
 |------|---------|
 | [regression-r](r-code/regression-r.md) | Full workflow: lm(), anova(), summary(), confint(), predict(), diagnostics |
 | [reading-r-output](r-code/reading-r-output.md) | Teacher-language guide for ALL R output terms — exam answer phrasing |
-| regression-examples | Rocket Motor SLR: summary table reading, ANOVA completion, non-zero null tests (stub) |
+| [regression-examples](examples/regression-examples.md) | WireBond SLR: fit model, read summary output, complete ANOVA table, non-zero null β₁ test, CI vs PI |
 | [regression-ci-examples](examples/regression-ci-examples.md) | CI/PI on βⱼ, mean response, and future observation — all 6 L36-37 homework problems (SLR & MLR) |
 | [model-adequacy-examples](examples/model-adequacy-examples.md) | R², normality check (QQ + Shapiro-Wilk), residual plots, Cook's D — NFL QB example |
 | [anova-table-examples](examples/anova-table-examples.md) | Completing partial ANOVA/summary tables; σ̂ = √MSE; recommendations from R output; DOE (RCBD) reverse-engineer from MS and F |
@@ -166,4 +166,4 @@ Quick-lookup pages spanning multiple tiers.
 
 ---
 
-*Last updated: 2026-04-23 (session 6) — Unit 2 per-test pages created. 10 new procedure pages (ht-one-sample-z-mean through ht-two-sample-f-variances) + 1 new reference page (ht-tests-overview). GoF df discrepancy documented: general form is k−1−p, not k−1. Constructs: 5. Procedures: 29. Scripts: 15. Reference: 6.*
+*Last updated: 2026-05-22 (session 7) — 4 previously-stub example pages created: hw1-examples (normal dist, descriptive stats), hw4-drill-examples (AirPassengers + Titanic data wrangling), two-sample-examples (pooled t, Welch t, paired t), regression-examples (WireBond SLR: model fitting, ANOVA table, non-zero null test, CI vs PI). Constructs: 5. Procedures: 29. Scripts: 19. Reference: 6.*

@@ -288,6 +288,5 @@ These decisions have been made and should not be revisited without deliberate in
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Stubs in index | Not yet filled | `hw1-examples`, `hw4-drill-examples`, `two-sample-examples`, `regression-examples` — listed in index but no file content |
 | Unit 5 quick reference .docx | Not built | `quick-reference-section4.md` exists but no print-ready Word version; build if exam prep requires it |
 | data-wrangling-r stub | Exists but not cross-linked | `r-code/data-wrangling-r.md` not referenced from taxonomy.md |
